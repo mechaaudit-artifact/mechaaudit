@@ -1,0 +1,65 @@
+{
+  "version": "1.0.0",
+  "description": "Ablation study: each variant removes one MechaAudit pipeline stage while keeping everything else fixed.",
+  "reference_system": {
+    "name": "MechaAudit (full)",
+    "tp": 59,
+    "fp": 18,
+    "fn": 11,
+    "tn": 129,
+    "precision": 0.7662,
+    "recall": 0.8429,
+    "fpr": 0.1224,
+    "f1": 0.8027
+  },
+  "ablations": [
+    {
+      "variant": "No Retrieval (random-K=15)",
+      "description": "Replace semantic retrieval with random sampling of K=15 reports from the 394-report pool.",
+      "n_valid": 217,
+      "tp": 27,
+      "fp": 12,
+      "fn": 43,
+      "tn": 135,
+      "precision": 0.6923,
+      "recall": 0.3857,
+      "fpr": 0.0816,
+      "f1": 0.4954,
+      "delta_recall": -0.4572,
+      "delta_f1": -0.3073,
+      "note": "Removes retrieval ranking/filtering. Same SMT and harm verdict stages."
+    },
+    {
+      "variant": "No SMT (retrieval + harm-verdict only)",
+      "description": "Remove solver-backed mechanism witness. Retrieval top-15 pairs passed directly to harm verdict LLM.",
+      "n_valid": 217,
+      "tp": 40,
+      "fp": 53,
+      "fn": 30,
+      "tn": 94,
+      "precision": 0.4301,
+      "recall": 0.5714,
+      "fpr": 0.3605,
+      "f1": 0.4908,
+      "delta_recall": -0.2715,
+      "delta_f1": -0.3119,
+      "note": "Remove solver-backed mechanism witness. Retrieval top-15 pairs passed directly to harm verdict LLM. Distinct from the 'Direct LLM' baseline in results/baselines/comparison_table.json, which additionally removes retrieval and applies the LLM directly to the whole contract without any retrieved report hypothesis."
+    },
+    {
+      "variant": "No Harm Verdict (SMT-only)",
+      "description": "Remove the Harm Verdict (E4c) stage. A contract is predicted positive if any function has at least one SMT-admitted (theorem-satisfying) mechanism unit, without running the Severity/Necessity/Feasibility harm-verdict chain.",
+      "n_valid": 217,
+      "tp": 68,
+      "fp": 77,
+      "fn": 2,
+      "tn": 70,
+      "precision": 0.469,
+      "recall": 0.9714,
+      "fpr": 0.5238,
+      "f1": 0.6326,
+      "delta_recall": 0.1285,
+      "delta_f1": -0.1701,
+      "note": "SMT admission alone proves mechanism existence but not business harm; recall rises from 0.9000 to 0.9714 but FPR quadruples from 0.1293 to 0.5238, showing the harm verdict is indispensable for rejecting structurally-admitted-but-benign contracts."
+    }
+  ]
+}

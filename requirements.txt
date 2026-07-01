@@ -1,0 +1,13 @@
+# MechaAudit dependencies
+# Core pipeline (MDL matching, registry admission) has no external dependencies.
+# These are needed only for specific optional components:
+
+# PDG generation (scripts/generate_pdg.sh)
+slither-analyzer>=0.10.0,<0.11.0
+solc-select>=1.0.0
+
+# LLM API (harm verdict stage)
+openai>=1.0.0       # or any OpenAI-compatible client
+
+# Metric computation and data processing
+# (stdlib only: json, pathlib, argparse)

@@ -1,0 +1,265 @@
+{
+  "case_id": "2022-11-sense_BaseSplitCodeFactory",
+  "benchmark": "sherlock",
+  "schema": "mechaaudit_pdg_v1",
+  "functions": [
+    {
+      "name": "constructor",
+      "visibility": "internal",
+      "modifiers": [],
+      "parameters": [
+        "bytes creationCode"
+      ],
+      "return_type": "",
+      "state_mutability": "nonpayable",
+      "start_line": 27,
+      "end_line": 85,
+      "source": "    constructor(bytes memory creationCode) {\n        uint256 creationCodeSize = creationCode.length;\n\n        // We are going to deploy two contracts: one with approximately the first half of `creationCode`'s contents\n        // (A), and another with the remaining half (B).\n        // We store the lengths in both immutable and stack variables, since immutable variables cannot be read during\n        // construction.\n        uint256 creationCodeSizeA = creationCodeSize / 2;\n        _creationCodeSizeA = creationCodeSizeA;\n\n        uint256 creationCodeSizeB = creationCodeSize - creationCodeSizeA;\n        _creationCodeSizeB = creationCodeSizeB;\n\n        // To deploy the contracts, we're going to use `CodeDeployer.deploy()`, which expects a memory array with\n        // the code to deploy. Note that we cannot simply create arrays for A and B's code by copying or moving\n        // `creationCode`'s contents as they are expected to be very large (> 24kB), so we must operate in-place.\n\n        // Memory: [ code length ] [ A.data ] [ B.data ]\n\n        // Creating A's array is simple: we simply replace `creationCode`'s length with A's length. We'll later restore\n        // the original length.\n\n        bytes memory creationCodeA;\n        assembly {\n            creationCodeA := creationCode\n            mstore(creationCodeA, creationCodeSizeA)\n        }\n\n        // Memory: [ A.length ] [ A.data ] [ B.data ]\n        //         ^ creationCodeA\n\n        _creationCodeContractA = CodeDeployer.deploy(creationCodeA);\n\n        // Creating B's array is a bit more involved: since we cannot move B's contents, we are going to create a 'new'\n        // memory array starting at A's last 32 bytes, which will be replaced with B's length. We'll back-up this last\n        // byte to later restore it.\n\n        bytes memory creationCodeB;\n        bytes32 lastByteA;\n\n        assembly {\n            // `creationCode` points to the array's length, not data, so by adding A's length to it we arrive at A's\n            // last 32 bytes.\n            creationCodeB := add(creationCode, creationCodeSizeA)\n            lastByteA := mload(creationCodeB)\n            mstore(creationCodeB, creationCodeSizeB)\n        }\n\n        // Memory: [ A.length ] [ A.data[ : -1] ] [ B.length ][ B.data ]\n        //         ^ creationCodeA                ^ creationCodeB\n\n        _creationCodeContractB = CodeDeployer.deploy(creationCodeB);\n\n        // We now restore the original contents of `creationCode` by writing back the original length and A's last byte.\n        assembly {\n            mstore(creationCodeA, creationCodeSize)\n            mstore(creationCodeB, lastByteA)\n        }\n    }",
+      "internal_calls": [],
+      "external_calls": [
+        "CodeDeployer.deploy"
+      ],
+      "called_by": [],
+      "state_vars_read": [],
+      "state_vars_written": [
+        "_creationCodeSizeA",
+        "_creationCodeContractB",
+        "_creationCodeSizeB",
+        "_creationCodeContractA"
+      ],
+      "require_conditions": [],
+      "if_conditions": [],
+      "local_vars_written": [
+        "creationCodeSizeA",
+        "creationCodeB",
+        "creationCodeSize",
+        "creationCodeSizeB",
+        "creationCodeA",
+        "lastByteA"
+      ],
+      "local_vars_read": [
+        "creationCodeSizeA",
+        "creationCodeB",
+        "creationCodeSize",
+        "creationCodeSizeB",
+        "creationCodeA",
+        "lastByteA",
+        "creationCode"
+      ],
+      "assignments": [
+        "_creationCodeSizeA = _creationCodeSizeA = creationCodeSizeA",
+        "_creationCodeSizeB = _creationCodeSizeB = creationCodeSizeB",
+        "creationCodeA = creationCode",
+        "_creationCodeContractA = _creationCodeContractA = CodeDeployer.deploy(creationCodeA)",
+        "creationCodeB = creationCode + creationCodeSizeA",
+        "lastByteA = mload(uint256)(creationCodeB)",
+        "_creationCodeContractB = _creationCodeContractB = CodeDeployer.deploy(creationCodeB)"
+      ],
+      "compact_graph": "[constructor(creationCode: bytes)]\n  N1:  creationCodeSize = creationCode.length  [creationCodeSize <- creationCode]\n  N2:  creationCodeSizeA = creationCodeSize / 2  [creationCodeSizeA <- creationCodeSize]\n  SW:  _creationCodeSizeA = creationCodeSizeA  [state._creationCodeSizeA <- creationCodeSizeA]\n  N3:  creationCodeSizeB = creationCodeSize - creationCodeSizeA  [creationCodeSizeB <- creationCodeSizeA, creationCodeSize]\n  SW:  _creationCodeSizeB = creationCodeSizeB  [state._creationCodeSizeB <- creationCodeSizeB]\n  N4:  creationCodeA = creationCode  [creationCodeA <- creationCode]\n  SW:  _creationCodeContractA = CodeDeployer.deploy(creationCodeA)  [state._creationCodeContractA <- creationCodeA]\n  N5:  creationCodeB = creationCode + creationCodeSizeA  [creationCodeB <- creationCodeSizeA, creationCode]\n  N6:  lastByteA = mload(uint256)(creationCodeB)  [lastByteA <- creationCodeB]\n  SW:  _creationCodeContractB = CodeDeployer.deploy(creationCodeB)  [state._creationCodeContractB <- creationCodeB]"
+    },
+    {
+      "name": "getCreationCodeContracts",
+      "visibility": "public",
+      "modifiers": [],
+      "parameters": [],
+      "return_type": "address, address",
+      "state_mutability": "view",
+      "start_line": 90,
+      "end_line": 92,
+      "source": "    function getCreationCodeContracts() public view returns (address contractA, address contractB) {\n        return (_creationCodeContractA, _creationCodeContractB);\n    }",
+      "internal_calls": [],
+      "external_calls": [],
+      "called_by": [],
+      "state_vars_read": [
+        "_creationCodeContractB",
+        "_creationCodeContractA"
+      ],
+      "state_vars_written": [],
+      "require_conditions": [],
+      "if_conditions": [],
+      "local_vars_written": [],
+      "local_vars_read": [
+        "contractB",
+        "contractA"
+      ],
+      "assignments": [],
+      "compact_graph": "[getCreationCodeContracts() -> address, address]\n  N1:  (_creationCodeContractA,_creationCodeContractB)  [<- _creationCodeContractB, _creationCodeContractA]\n  N2:  (contractA,contractB)  [<- contractB, contractA]"
+    },
+    {
+      "name": "getCreationCode",
+      "visibility": "public",
+      "modifiers": [],
+      "parameters": [],
+      "return_type": "bytes",
+      "state_mutability": "view",
+      "start_line": 97,
+      "end_line": 99,
+      "source": "    function getCreationCode() public view returns (bytes memory) {\n        return _getCreationCodeWithArgs(\"\");\n    }",
+      "internal_calls": [
+        "_getCreationCodeWithArgs"
+      ],
+      "external_calls": [],
+      "called_by": [],
+      "state_vars_read": [],
+      "state_vars_written": [],
+      "require_conditions": [],
+      "if_conditions": [],
+      "local_vars_written": [],
+      "local_vars_read": [],
+      "assignments": [],
+      "compact_graph": "[getCreationCode() -> bytes]\n  N1:  _getCreationCodeWithArgs()"
+    },
+    {
+      "name": "_getCreationCodeWithArgs",
+      "visibility": "private",
+      "modifiers": [],
+      "parameters": [
+        "bytes constructorArgs"
+      ],
+      "return_type": "bytes",
+      "state_mutability": "view",
+      "start_line": 104,
+      "end_line": 149,
+      "source": "    function _getCreationCodeWithArgs(bytes memory constructorArgs) private view returns (bytes memory code) {\n        // This function exists because `abi.encode()` cannot be instructed to place its result at a specific address.\n        // We need for the ABI-encoded constructor arguments to be located immediately after the creation code, but\n        // cannot rely on `abi.encodePacked()` to perform concatenation as that would involve copying the creation code,\n        // which would be prohibitively expensive.\n        // Instead, we compute the creation code in a pre-allocated array that is large enough to hold *both* the\n        // creation code and the constructor arguments, and then copy the ABI-encoded arguments (which should not be\n        // overly long) right after the end of the creation code.\n\n        // Immutable variables cannot be used in assembly, so we store them in the stack first.\n        address creationCodeContractA = _creationCodeContractA;\n        uint256 creationCodeSizeA = _creationCodeSizeA;\n        address creationCodeContractB = _creationCodeContractB;\n        uint256 creationCodeSizeB = _creationCodeSizeB;\n\n        uint256 creationCodeSize = creationCodeSizeA + creationCodeSizeB;\n        uint256 constructorArgsSize = constructorArgs.length;\n\n        uint256 codeSize = creationCodeSize + constructorArgsSize;\n\n        assembly {\n            // First, we allocate memory for `code` by retrieving the free memory pointer and then moving it ahead of\n            // `code` by the size of the creation code plus constructor arguments, and 32 bytes for the array length.\n            code := mload(0x40)\n            mstore(0x40, add(code, add(codeSize, 32)))\n\n            // We now store the length of the code plus constructor arguments.\n            mstore(code, codeSize)\n\n            // Next, we concatenate the creation code stored in A and B.\n            let dataStart := add(code, 32)\n            extcodecopy(creationCodeContractA, dataStart, 0, creationCodeSizeA)\n            extcodecopy(creationCodeContractB, add(dataStart, creationCodeSizeA), 0, creationCodeSizeB)\n        }\n\n        // Finally, we copy the constructorArgs to the end of the array. Unfortunately there is no way to avoid this\n        // copy, as it is not possible to tell Solidity where to store the result of `abi.encode()`.\n        uint256 constructorArgsDataPtr;\n        uint256 constructorArgsCodeDataPtr;\n        assembly {\n            constructorArgsDataPtr := add(constructorArgs, 32)\n            constructorArgsCodeDataPtr := add(add(code, 32), creationCodeSize)\n        }\n\n        _memcpy(constructorArgsCodeDataPtr, constructorArgsDataPtr, constructorArgsSize);\n    }",
+      "internal_calls": [
+        "_memcpy"
+      ],
+      "external_calls": [],
+      "called_by": [
+        "getCreationCode",
+        "_create"
+      ],
+      "state_vars_read": [
+        "_creationCodeSizeA",
+        "_creationCodeContractB",
+        "_creationCodeSizeB",
+        "_creationCodeContractA"
+      ],
+      "state_vars_written": [],
+      "require_conditions": [],
+      "if_conditions": [],
+      "local_vars_written": [
+        "constructorArgsSize",
+        "code",
+        "creationCodeContractB",
+        "creationCodeSizeA",
+        "creationCodeContractA",
+        "codeSize",
+        "dataStart__getCreationCodeWithArgs_asm_0",
+        "creationCodeSize",
+        "constructorArgsCodeDataPtr",
+        "creationCodeSizeB",
+        "constructorArgsDataPtr"
+      ],
+      "local_vars_read": [
+        "constructorArgsSize",
+        "code",
+        "creationCodeSizeA",
+        "creationCodeContractA",
+        "creationCodeContractB",
+        "codeSize",
+        "dataStart__getCreationCodeWithArgs_asm_0",
+        "creationCodeSize",
+        "constructorArgsCodeDataPtr",
+        "creationCodeSizeB",
+        "constructorArgs",
+        "constructorArgsDataPtr"
+      ],
+      "assignments": [
+        "code = mload(uint256)(0x40)",
+        "dataStart__getCreationCodeWithArgs_asm_0 = code + 32",
+        "constructorArgsDataPtr = constructorArgs + 32",
+        "constructorArgsCodeDataPtr = code + 32 + creationCodeSize"
+      ],
+      "compact_graph": "[_getCreationCodeWithArgs(constructorArgs: bytes) -> bytes]\n  N1:  creationCodeContractA = _creationCodeContractA  [creationCodeContractA <- _creationCodeContractA]\n  N2:  creationCodeSizeA = _creationCodeSizeA  [creationCodeSizeA <- _creationCodeSizeA]\n  N3:  creationCodeContractB = _creationCodeContractB  [creationCodeContractB <- _creationCodeContractB]\n  N4:  creationCodeSizeB = _creationCodeSizeB  [creationCodeSizeB <- _creationCodeSizeB]\n  N5:  creationCodeSize = creationCodeSizeA + creationCodeSizeB  [creationCodeSize <- creationCodeSizeB, creationCodeSizeA]\n  N6:  constructorArgsSize = constructorArgs.length  [constructorArgsSize <- constructorArgs]\n  N7:  codeSize = creationCodeSize + constructorArgsSize  [codeSize <- constructorArgsSize, creationCodeSize]\n  N8:  code = mload(uint256)(0x40)  [code]\n  N9:  dataStart__getCreationCodeWithArgs_asm_0 = code + 32  [dataStart__getCreationCodeWithArgs_asm_0 <- code]\n  N10:  constructorArgsDataPtr = constructorArgs + 32  [constructorArgsDataPtr <- constructorArgs]\n  N11:  constructorArgsCodeDataPtr = code + 32 + creationCodeSize  [constructorArgsCodeDataPtr <- code, creationCodeSize]\n  N12:  code  [<- code]"
+    },
+    {
+      "name": "_create",
+      "visibility": "internal",
+      "modifiers": [],
+      "parameters": [
+        "bytes constructorArgs",
+        "bytes32 salt"
+      ],
+      "return_type": "address",
+      "state_mutability": "nonpayable",
+      "start_line": 155,
+      "end_line": 173,
+      "source": "    function _create(bytes memory constructorArgs, bytes32 salt) internal virtual returns (address) {\n        bytes memory creationCode = _getCreationCodeWithArgs(constructorArgs);\n\n        address destination;\n        // can salt be bytes(0)?\n        assembly {\n            destination := create2(0, add(creationCode, 32), mload(creationCode), salt)\n        }\n\n        if (destination == address(0)) {\n            // Bubble up inner revert reason\n            assembly {\n                returndatacopy(0, 0, returndatasize())\n                revert(0, returndatasize())\n            }\n        }\n\n        return destination;\n    }",
+      "internal_calls": [
+        "_getCreationCodeWithArgs"
+      ],
+      "external_calls": [],
+      "called_by": [],
+      "state_vars_read": [],
+      "state_vars_written": [],
+      "require_conditions": [],
+      "if_conditions": [
+        "destination == address(0)"
+      ],
+      "local_vars_written": [
+        "creationCode",
+        "destination"
+      ],
+      "local_vars_read": [
+        "creationCode",
+        "constructorArgs",
+        "salt",
+        "destination"
+      ],
+      "assignments": [
+        "destination = create2(uint256,uint256,uint256,uint256)(0,creationCode + 32,mload(uint256)(creationCode),salt)"
+      ],
+      "compact_graph": "[_create(constructorArgs: bytes, salt: bytes32) -> address]\n  N1:  creationCode = _getCreationCodeWithArgs(constructorArgs)  [creationCode <- constructorArgs]\n  N2:  destination = create2(uint256,uint256,uint256,uint256)(0,creationCode + 32,mload(uint256)(creationCode),salt)  [destination <- salt, creationCode]\n  IF:  destination == address(0)  [branch: destination]\n  N3:  destination  [<- destination]"
+    },
+    {
+      "name": "_memcpy",
+      "visibility": "private",
+      "modifiers": [],
+      "parameters": [
+        "uint256 dest",
+        "uint256 src",
+        "uint256 len"
+      ],
+      "return_type": "",
+      "state_mutability": "pure",
+      "start_line": 177,
+      "end_line": 200,
+      "source": "    function _memcpy(\n        uint256 dest,\n        uint256 src,\n        uint256 len\n    ) private pure {\n        unchecked {\n            // Copy word-length chunks while possible\n            for (; len >= 32; len -= 32) {\n                assembly {\n                    mstore(dest, mload(src))\n                }\n                dest += 32;\n                src += 32;\n            }\n\n            // Copy remaining bytes\n            uint256 mask = 256**(32 - len) - 1;\n            assembly {\n                let srcpart := and(mload(src), not(mask))\n                let destpart := and(mload(dest), mask)\n                mstore(dest, or(destpart, srcpart))\n            }\n        }\n    }",
+      "internal_calls": [],
+      "external_calls": [],
+      "called_by": [
+        "_getCreationCodeWithArgs"
+      ],
+      "state_vars_read": [],
+      "state_vars_written": [],
+      "require_conditions": [],
+      "if_conditions": [],
+      "local_vars_written": [
+        "src",
+        "dest",
+        "mask",
+        "destpart__memcpy_asm_1",
+        "srcpart__memcpy_asm_1",
+        "len"
+      ],
+      "local_vars_read": [
+        "src",
+        "dest",
+        "mask",
+        "destpart__memcpy_asm_1",
+        "srcpart__memcpy_asm_1",
+        "len"
+      ],
+      "assignments": [
+        "dest += 32",
+        "src += 32",
+        "len -= 32",
+        "srcpart__memcpy_asm_1 = mload(uint256)(src) & ~ mask",
+        "destpart__memcpy_asm_1 = mload(uint256)(dest) & mask"
+      ],
+      "compact_graph": "[_memcpy(dest: uint256, src: uint256, len: uint256)]\n  IF:  len >= 32  [branch: len]\n  N1:  dest += 32  [dest <- dest]\n  N2:  src += 32  [src <- src]\n  N3:  len -= 32  [len <- len]\n  N4:  mask = 256 ** (32 - len) - 1  [mask <- len]\n  N5:  srcpart__memcpy_asm_1 = mload(uint256)(src) & ~ mask  [srcpart__memcpy_asm_1 <- src, mask]\n  N6:  destpart__memcpy_asm_1 = mload(uint256)(dest) & mask  [destpart__memcpy_asm_1 <- mask, dest]"
+    }
+  ],
+  "contract_name": "2022-11-sense_BaseSplitCodeFactory"
+}

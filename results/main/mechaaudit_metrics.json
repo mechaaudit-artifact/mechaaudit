@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "description": "MechaAudit main evaluation results on 217 contracts (Sherlock 95 + Web3Bugs 51 + DeFiHackLabs 71).",
+  "benchmark_totals": {
+    "vuln_contracts": 70,
+    "safe_contracts": 147,
+    "total_contracts": 217
+  },
+  "overall": {
+    "tp": 59,
+    "fp": 18,
+    "fn": 11,
+    "tn": 129,
+    "precision": 0.7662,
+    "recall": 0.8429,
+    "fpr": 0.1224,
+    "f1": 0.8027
+  },
+  "by_benchmark": {
+    "sherlock": {
+      "tp": 29,
+      "fp": 9,
+      "fn": 2,
+      "tn": 55,
+      "vuln_total": 31,
+      "safe_total": 64,
+      "precision": 0.7632,
+      "recall": 0.9355,
+      "fpr": 0.1406,
+      "f1": 0.8406
+    },
+    "web3bugs": {
+      "tp": 4,
+      "fp": 4,
+      "fn": 3,
+      "tn": 40,
+      "vuln_total": 7,
+      "safe_total": 44,
+      "precision": 0.5,
+      "recall": 0.5714,
+      "fpr": 0.0909,
+      "f1": 0.5333
+    },
+    "defihacklabs": {
+      "tp": 26,
+      "fp": 5,
+      "fn": 6,
+      "tn": 34,
+      "vuln_total": 32,
+      "safe_total": 39,
+      "precision": 0.8387,
+      "recall": 0.8125,
+      "fpr": 0.1282,
+      "f1": 0.8254
+    }
+  }
+}

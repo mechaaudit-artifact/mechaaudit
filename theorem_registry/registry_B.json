@@ -1,0 +1,701 @@
+{
+  "version": "1.0.0",
+  "description": "MechaAudit Theorem Registry. Theorems a1-a5 are the five core mechanism admission rules (Table 3 in the paper). Theorems b1-b11 are the eleven extension theorems for recurrent cross-cutting patterns (Table 3 in the paper). Theorems b_e1-b_e3 are additional extension theorems present in the artifact but not enumerated in the paper table; their harm boundary is unconstrained (HB = empty set). All theorems are label-blind: no ground-truth label is used as input during evaluation.",
+  "core_theorems": [
+    {
+      "theorem_id": "a1",
+      "name": "Reentrancy",
+      "mechanism_family": "L1",
+      "report_side": {
+        "report_types_any": [
+          "L1"
+        ],
+        "anchors_any": [
+          "external_call",
+          "callback",
+          "reentrancy",
+          "fallback_triggered"
+        ]
+      },
+      "function_side": {
+        "ops_any": [
+          "external_call",
+          "asset_withdrawal"
+        ],
+        "conditions_any": [
+          "no_reentrancy_lock"
+        ]
+      },
+      "harm_boundary": {
+        "predicate": "hb_asset_transfer OR hb_value_write",
+        "requires_external_consumer": true
+      }
+    },
+    {
+      "theorem_id": "a2",
+      "name": "Oracle_manipulation",
+      "mechanism_family": "S11",
+      "report_side": {
+        "report_types_any": [
+          "S1-1"
+        ],
+        "anchors_any": [
+          "price_oracle",
+          "spot_price",
+          "balanceOf_ratio",
+          "pool_balance"
+        ]
+      },
+      "function_side": {
+        "ops_any": [
+          "price_read",
+          "rate_read"
+        ],
+        "conditions_any": [
+          "no_twap_guard",
+          "no_staleness_check",
+          "no_supply_validation"
+        ]
+      },
+      "harm_boundary": {
+        "predicate": "hb_val OR hb_asset",
+        "requires_external_consumer": false
+      }
+    },
+    {
+      "theorem_id": "a3",
+      "name": "Slippage_loss",
+      "mechanism_family": "S12",
+      "report_side": {
+        "report_types_any": [
+          "S1-2"
+        ],
+        "anchors_any": [
+          "slippage",
+          "min_amount_out",
+          "deadline",
+          "amm_swap"
+        ]
+      },
+      "function_side": {
+        "ops_any": [
+          "swap",
+          "liquidity_op",
+          "asset_conversion"
+        ],
+        "conditions_any": [
+          "no_min_out_bound",
+          "no_deadline_bound"
+        ]
+      },
+      "harm_boundary": {
+        "predicate": "hb_val",
+        "requires_external_consumer": false
+      }
+    },
+    {
+      "theorem_id": "a4",
+      "name": "Unauthorized_access",
+      "mechanism_family": "S53",
+      "report_side": {
+        "report_types_any": [
+          "S5-3"
+        ],
+        "anchors_any": [
+          "without access control",
+          "any caller",
+          "missing authorization",
+          "authority_basis"
+        ]
+      },
+      "function_side": {
+        "ops_any": [
+          "critical_state_write",
+          "privileged_state_mutation"
+        ],
+        "conditions_any": [
+          "no_authorization_guard"
+        ]
+      },
+      "harm_boundary": {
+        "predicate": "hb_ast OR hb_aut OR hb_sta",
+        "requires_external_consumer": false
+      }
+    },
+    {
+      "theorem_id": "a5",
+      "name": "Privilege_escalation",
+      "mechanism_family": "S53",
+      "report_side": {
+        "report_types_any": [
+          "S5-3"
+        ],
+        "anchors_any": [
+          "role_assignment",
+          "privilege_escalation",
+          "caller_authority",
+          "delegated_authority"
+        ]
+      },
+      "function_side": {
+        "ops_any": [
+          "role_grant",
+          "role_assignment",
+          "authority_delegation"
+        ],
+        "conditions_any": [
+          "no_role_check_guard"
+        ]
+      },
+      "harm_boundary": {
+        "predicate": "hb_authority_write",
+        "requires_external_consumer": true
+      }
+    }
+  ],
+  "extension_theorems": [
+    {
+      "theorem_id": "b1",
+      "name": "centralized_authority_rugpull",
+      "mechanism_family": "S5-3",
+      "report_side": {
+        "report_types_any": [
+          "S5-3"
+        ],
+        "anchors_any": [
+          "authority_basis",
+          "caller_authority",
+          "without access control",
+          "any caller",
+          "privileged_state_mutation"
+        ]
+      },
+      "function_side": {
+        "function_roots_any": [
+          "transferOwnership",
+          "renounceOwnership",
+          "grantRole",
+          "revokeRole",
+          "setRoleAdmin",
+          "changeAdmin",
+          "upgradeAndCall"
+        ],
+        "pdg_conditions": [
+          "public_or_external_no_guard_critical_state_write"
+        ]
+      },
+      "exclusions": [
+        "read_only_getter_without_control_plane_consumer",
+        "generic_admin_name_without_state_or_authority_effect"
+      ],
+      "harm_boundary": {
+        "predicate": "hb_authority_write OR hb_state_write",
+        "facts": [
+          "closure.state_vars_written",
+          "authority_state_vars"
+        ]
+      }
+    },
+    {
+      "theorem_id": "b2",
+      "name": "asset_delegated_root_action",
+      "mechanism_family": "L1",
+      "report_side": {
+        "report_types_any": [
+          "L1"
+        ],
+        "anchors_any": [
+          "asset_withdrawal",
+          "outbound_asset_transfer",
+          "delegated_spend_authorization",
+          "spender_allowance_or_operator_approval"
+        ]
+      },
+      "function_side": {
+        "function_roots_any": [
+          "burn",
+          "depositYield",
+          "safeTransferFrom"
+        ],
+        "ops_any": [
+          "asset_withdrawal",
+          "outbound_asset_transfer",
+          "delegated_action"
+        ]
+      },
+      "exclusions": [
+        "generic_transfer_without_delegated_or_asset_root"
+      ],
+      "harm_boundary": {
+        "predicate": "hb_asset_transfer OR delegated_authorization OR hb_value_write",
+        "facts": [
+          "closure.external_calls",
+          "closure.state_vars_written"
+        ]
+      }
+    },
+    {
+      "theorem_id": "b3",
+      "name": "tokenomics_fee_rebase",
+      "mechanism_family": "S1-2",
+      "report_side": {
+        "report_types_any": [
+          "S1-2",
+          "S5-3"
+        ],
+        "anchors_any": [
+          "asset_value_operation",
+          "share_ratio",
+          "fee",
+          "privileged_state_mutation"
+        ]
+      },
+      "function_side": {
+        "function_roots_any": [
+          "deliver",
+          "includeInFee",
+          "excludeFromFee",
+          "claimFeesFor"
+        ],
+        "ops_any": [
+          "asset_value_operation",
+          "share_ratio_computation",
+          "privileged_state_mutation"
+        ]
+      },
+      "exclusions": [
+        "plain_set_fee_without_value_or_privileged_harm_boundary"
+      ],
+      "harm_boundary": {
+        "predicate": "hb_value_write OR hb_authority_write",
+        "facts": [
+          "closure.state_vars_written"
+        ]
+      }
+    },
+    {
+      "theorem_id": "b4",
+      "name": "delegated_operator_transfer_authority",
+      "mechanism_family": "L1",
+      "report_side": {
+        "report_types_any": [
+          "L1",
+          "S5-3"
+        ],
+        "anchors_any": [
+          "delegated_spend_authorization",
+          "spender_allowance_or_operator_approval",
+          "asset_withdrawal"
+        ]
+      },
+      "function_side": {
+        "function_roots_any": [
+          "setOperator",
+          "transferFrom"
+        ],
+        "ops_any": [
+          "delegated_action",
+          "outbound_asset_transfer",
+          "role_modification"
+        ]
+      },
+      "exclusions": [
+        "generic_transfer",
+        "transferFrom_without_delegated_action"
+      ],
+      "harm_boundary": {
+        "predicate": "delegated_authorization",
+        "facts": [
+          "delegated_authorization"
+        ]
+      }
+    },
+    {
+      "theorem_id": "b5",
+      "name": "lending_admin_economic_control",
+      "mechanism_family": "L1",
+      "report_side": {
+        "report_types_any": [
+          "L1",
+          "S5-3"
+        ],
+        "anchors_any": [
+          "asset_withdrawal",
+          "privileged_state_mutation",
+          "authority_basis",
+          "economic_control"
+        ]
+      },
+      "function_side": {
+        "function_roots_any": [
+          "_setInterestRateModel",
+          "_withdrawAdminFees",
+          "_withdrawFuseFees",
+          "admin"
+        ],
+        "ops_any": [
+          "asset_withdrawal",
+          "outbound_asset_transfer",
+          "privileged_state_mutation",
+          "protocol_internal_call"
+        ]
+      },
+      "exclusions": [
+        "admin_getter_without_state_or_asset_effect"
+      ],
+      "harm_boundary": {
+        "predicate": "hb_state_write OR hb_asset_transfer",
+        "facts": [
+          "closure.state_vars_written",
+          "closure.external_calls"
+        ]
+      }
+    },
+    {
+      "theorem_id": "b6",
+      "name": "valuation_availability_dependency",
+      "mechanism_family": "L1",
+      "report_side": {
+        "report_types_any": [
+          "L1",
+          "S1-2"
+        ],
+        "anchors_any": [
+          "valuation_dependent_decision",
+          "price_source",
+          "collateral",
+          "share_ratio",
+          "asset_value_operation"
+        ]
+      },
+      "function_side": {
+        "function_roots_any": [
+          "available",
+          "calculateCurrentCollateralRatio",
+          "getFreeMargin"
+        ],
+        "ops_any": [
+          "cross_contract_state_read",
+          "direct_balance_dependency",
+          "share_ratio_computation"
+        ]
+      },
+      "exclusions": [
+        "view_surface_without_consumer_or_valuation_decision"
+      ],
+      "harm_boundary": {
+        "predicate": "hb_value_write OR hb_asset_transfer",
+        "facts": [
+          "closure.state_vars_written",
+          "closure.external_calls"
+        ]
+      }
+    },
+    {
+      "theorem_id": "b7",
+      "name": "royalty_window_percentage_accounting",
+      "mechanism_family": "S5-3",
+      "report_side": {
+        "report_types_any": [
+          "S5-3",
+          "S1-2",
+          "L1"
+        ],
+        "anchors_any": [
+          "asset_value_operation",
+          "authority_basis",
+          "caller_authority",
+          "fee",
+          "privileged_state_mutation"
+        ]
+      },
+      "function_side": {
+        "function_roots_any": [
+          "incrementWindow",
+          "scaleAmountByPercentage"
+        ],
+        "ops_any": [
+          "asset_value_operation",
+          "privileged_state_mutation",
+          "share_ratio_computation"
+        ],
+        "conditions_any": [
+          "C-S11",
+          "C-L1"
+        ]
+      },
+      "exclusions": [
+        "generic_percentage_math_without_value_or_privilege_consumer"
+      ],
+      "harm_boundary": {
+        "predicate": "hb_value_write OR hb_authority_write",
+        "facts": [
+          "closure.state_vars_written"
+        ]
+      }
+    },
+    {
+      "theorem_id": "b8",
+      "name": "market_exit_settlement_refund",
+      "mechanism_family": "S5-3",
+      "report_side": {
+        "report_types_any": [
+          "S5-3",
+          "L1",
+          "S1-2"
+        ],
+        "anchors_any": [
+          "authority_basis",
+          "caller_authority",
+          "asset_value_operation",
+          "settlement",
+          "refund"
+        ]
+      },
+      "function_side": {
+        "function_roots_any": [
+          "exit"
+        ],
+        "ops_any": [
+          "asset_withdrawal",
+          "cross_contract_state_read",
+          "delegated_action",
+          "outbound_asset_transfer",
+          "settlement"
+        ],
+        "conditions_any": [
+          "ownership_gated_asset_action",
+          "caller_authority"
+        ]
+      },
+      "exclusions": [
+        "generic_exit_without_settlement_or_asset_effect"
+      ],
+      "harm_boundary": {
+        "predicate": "hb_asset_transfer OR hb_state_write",
+        "facts": [
+          "closure.external_calls",
+          "closure.state_vars_written"
+        ]
+      }
+    },
+    {
+      "theorem_id": "b9",
+      "name": "pdg_delegated_approval_allowance_root",
+      "mechanism_family": "L1",
+      "report_side": {
+        "report_types_any": [
+          "L1",
+          "S5-3"
+        ],
+        "anchors_any": [
+          "asset_withdrawal",
+          "delegated_spend_authorization",
+          "outbound_asset_transfer",
+          "spender_allowance_or_operator_approval"
+        ]
+      },
+      "function_side": {
+        "function_roots_any": [
+          "approve",
+          "decreaseAllowance",
+          "increaseAllowance",
+          "setApprovalForAll",
+          "transferFrom"
+        ]
+      },
+      "exclusions": [
+        "generic_transfer",
+        "approval_interface_without_body_evidence"
+      ],
+      "harm_boundary": {
+        "predicate": "hb_allowance_write OR delegated_authorization",
+        "facts": [
+          "closure.state_vars_written"
+        ]
+      }
+    },
+    {
+      "theorem_id": "b10",
+      "name": "staking_lifecycle_valuation",
+      "mechanism_family": "S1-2",
+      "report_side": {
+        "report_types_any": [
+          "S1-2"
+        ],
+        "anchors_any": [
+          "missing output bound",
+          "trivial minOut",
+          "price_sensitive_execution",
+          "asset_value_operation"
+        ]
+      },
+      "function_side": {
+        "function_roots_any": [
+          "Challenge",
+          "Extract",
+          "Invest",
+          "Reboot"
+        ],
+        "ops_any": [
+          "spot_price_read",
+          "cross_contract_state_read",
+          "asset_value_operation",
+          "exchange_execution"
+        ],
+        "conditions_any": [
+          "C-S11a",
+          "C-S12a",
+          "C-S12b"
+        ]
+      },
+      "exclusions": [
+        "broad_s1_2_without_staking_or_lp_lifecycle_root"
+      ],
+      "harm_boundary": {
+        "predicate": "hb_value_write OR hb_asset_transfer",
+        "facts": [
+          "closure.state_vars_written",
+          "closure.external_calls"
+        ]
+      }
+    },
+    {
+      "theorem_id": "b11",
+      "name": "amm_pair_lifecycle_minout_reanchor",
+      "mechanism_family": "S1-2",
+      "report_side": {
+        "report_types_any": [
+          "S1-2"
+        ],
+        "anchors_any": [
+          "missing output bound",
+          "minOut",
+          "swap",
+          "reserve",
+          "liquidity"
+        ]
+      },
+      "function_side": {
+        "function_roots_any": [
+          "mint",
+          "burn",
+          "swap",
+          "skim",
+          "sync",
+          "createPair"
+        ]
+      },
+      "exclusions": [
+        "generic_lp_transfer_without_pair_lifecycle_sibling",
+        "plain_token_transfer"
+      ],
+      "harm_boundary": {
+        "predicate": "hb_value_write OR hb_state_write",
+        "facts": [
+          "closure.state_vars_written"
+        ]
+      }
+    },
+    {
+      "theorem_id": "b_e1",
+      "name": "delegatecall_reserve_control",
+      "mechanism_family": "S5-3",
+      "report_side": {
+        "report_types_any": [
+          "S5-3",
+          "S1-2"
+        ],
+        "anchors_any": [
+          "authority_basis",
+          "privileged_state_mutation",
+          "reserve",
+          "delegatecall"
+        ]
+      },
+      "function_side": {
+        "function_roots_any": [
+          "borrowTokensToLiquidate",
+          "delegateCallReserves"
+        ],
+        "ops_any": [
+          "cross_contract_state_read",
+          "privileged_state_mutation",
+          "protocol_internal_call"
+        ]
+      },
+      "exclusions": [
+        "delegatecall_name_without_control_plane_or_reserve_effect"
+      ],
+      "harm_boundary": {
+        "predicate": "(unconstrained)",
+        "facts": []
+      }
+    },
+    {
+      "theorem_id": "b_e2",
+      "name": "proxy_control_plane_reanchor",
+      "mechanism_family": "S5-3",
+      "report_side": {
+        "report_types_any": [
+          "S5-3"
+        ],
+        "anchors_any": [
+          "authority_basis",
+          "caller_authority",
+          "upgrade",
+          "admin",
+          "implementation"
+        ]
+      },
+      "function_side": {
+        "function_roots_any": [
+          "admin",
+          "implementation",
+          "changeAdmin",
+          "upgradeTo",
+          "upgradeToAndCall"
+        ]
+      },
+      "exclusions": [
+        "proxy_getter_without_control_plane_sibling",
+        "implementation_getter_without_upgrade_or_admin_consumer"
+      ],
+      "harm_boundary": {
+        "predicate": "(unconstrained)",
+        "facts": []
+      }
+    },
+    {
+      "theorem_id": "b_e3",
+      "name": "diamond_fallback_delegatecall_dispatcher",
+      "mechanism_family": "L1",
+      "report_side": {
+        "report_types_any": [
+          "L1"
+        ],
+        "anchors_any": [
+          "external callback",
+          "delegatecall",
+          "fallback",
+          "settlement",
+          "withdrawal"
+        ]
+      },
+      "function_side": {
+        "function_roots_any": [
+          "fallback",
+          "implementation"
+        ]
+      },
+      "exclusions": [
+        "implementation_getter_without_fallback_delegatecall_consumer",
+        "fallback_without_delegatecall"
+      ],
+      "harm_boundary": {
+        "predicate": "(unconstrained)",
+        "facts": []
+      }
+    }
+  ]
+}
