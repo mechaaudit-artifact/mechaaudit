@@ -57,6 +57,10 @@ Induced from 394 audited findings across four mechanism families (L1, S1-1, S1-2
 
 ## Table 2 — Condition Templates (17 entries)
 
+For every template's vulnerability-family context, concrete operation flow,
+required/absent protection, and representative audit finding, see the
+[complete template-to-finding table](CONDITION_TEMPLATE_MAPPING.md).
+
 Induced from the `missing_what` fields of 394 audited findings. Templates are orthogonal to
 mechanism families: the same template can appear across L1, S1-1, S1-2, and S5-3 findings.
 The ID prefix (C-L1*, C-S11*, etc.) indicates the induction source, not a type restriction.

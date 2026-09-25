@@ -27,6 +27,8 @@ MechaAudit, a mechanism-based vulnerability detection system for DeFi smart cont
 |------|-------------|
 | `theorem_registry/registry_B.json` | 16 theorems matching the paper's theorem-registry table (a1-a5 core + b1-b11 extension), plus 3 additional extension theorems (b_e1-b_e3) included in this artifact's implementation but not enumerated in the paper's table (see the file's own `description` field) |
 | `corpus/corpus_manifest.jsonl` | 394 audited findings with MDL triples (pi_r, c_r, tau_r) |
+| `corpus/template_examples.json` | Representative source finding and archived condition assignment for each of the 17 templates |
+| `docs/CONDITION_TEMPLATE_MAPPING.md` | All 17 templates mapped to representative family contexts, operation flows, required/absent protections, and public findings |
 | `benchmark/manifest.jsonl` | 217 evaluated contracts with ground-truth labels |
 | `benchmark/sample_pdgs/` | 2 sample PDGs (VULN + SAFE) |
 

@@ -11,6 +11,11 @@ The pipeline has three stages:
 2. **Mechanism Satisfiability** — SMT-backed theorem admission (16 theorems matching the paper's theorem-registry table, plus 3 additional extension theorems included in this artifact; see `theorem_registry/registry_B.json`)
 3. **Harm Verdict** — serial Severity/Necessity/Feasibility LLM chain (see `mechaaudit/harm_verdict/harm_verdict.py`)
 
+The [17-template source mapping](docs/CONDITION_TEMPLATE_MAPPING.md) connects every
+condition template to a vulnerability-family context, operation flow, required
+protection, and original audit finding. [Structured examples](corpus/template_examples.json)
+provide the corresponding archived condition records.
+
 ## Benchmark
 
 217 contracts across three datasets (70 VULN, 147 SAFE):
