@@ -15,10 +15,11 @@ The [17-template source mapping](docs/CONDITION_TEMPLATE_MAPPING.md) connects ev
 condition template to a vulnerability-family context, operation flow, required
 protection, and original audit finding. [Structured examples](corpus/template_examples.json)
 provide the corresponding archived condition records.
-The [complete case trace](docs/COMPLETE_CASE_TRACE.md) follows a retrieved
-authority-transfer finding through target-code facts, registry admission, SMT
-SAT/UNSAT, and the downstream Harm Verdict, including a guarded negative
-contrast.
+The [complete case trace](docs/COMPLETE_CASE_TRACE.md) follows the paper's
+AutoRoller running example through MDL, target-code facts, registry admission,
+SMT SAT, and the downstream Harm Verdict. It also includes a Mover/Telcoin
+SAT/UNSAT contrast showing how an apparently identical missing-guard proposal
+is accepted or rejected by target-code facts.
 The [corpus construction note](docs/CORPUS_CONSTRUCTION.md) explains report
 selection, vocabulary induction, human review, and the corpus's family/year counts.
 
