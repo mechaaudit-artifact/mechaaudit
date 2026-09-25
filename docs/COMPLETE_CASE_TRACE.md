@@ -22,9 +22,10 @@ evaluation record rather than silently substituting the figure's Hubble text.
 
 ### Retrieval and MDL correspondence
 
-The target is `2022-11-sense_AutoRoller.deposit` in unit `U002`. The selected
-report `2022-03-prepo/H-02` is rank 0 and passes the type, operation, condition,
-and trigger gates. Its shared core operations are `asset_deposit` and
+The final Sherlock benchmark labels `2022-11-sense_AutoRoller` VULN. The target
+is its `deposit` function in unit `U002`. The selected report
+`2022-03-prepo/H-02` is rank 0 and passes the type, operation, condition, and
+trigger gates. Its shared core operations are `asset_deposit` and
 `share_ratio_computation`. The target condition record is:
 
 ```json
