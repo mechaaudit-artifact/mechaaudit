@@ -12,6 +12,11 @@ contract functions used to derive the code-side facts.
 
 ## 1. Paper running example: `AutoRoller.deposit`
 
+This is the single running example for the paper's Figure 2 and the requested
+three-stage presentation. The Mover/Telcoin records in Sections 2–3 are a
+separate paired contrast used only to make the A2 verifier-independence claim
+falsifiable; they are not substituted for, or presented as, this running trace.
+
 The paper's motivating example uses `2022-11-sense_AutoRoller`. Figure 1
 (`mechanism-compare`) shows its share-ratio code beside the Hubble H-03 finding;
 Figure 2 (`mdl-example`) shows the corresponding target-side and corpus-side
@@ -271,7 +276,10 @@ code fact. The corresponding archived fields are
 
 This pair is the important boundary: both candidates are retrieved and both
 propose an authority-protection deficiency, but independent target-code facts
-separate the vulnerable initialization from the guarded handoff.
+separate the vulnerable initialization from the guarded handoff. These two
+functions are separate target cases, deliberately paired for the A2 contrast;
+they are not a second claim that the paper's AutoRoller running example has
+been replaced.
 
 ## 4. Provenance of each field
 
