@@ -15,6 +15,8 @@ The [17-template source mapping](docs/CONDITION_TEMPLATE_MAPPING.md) connects ev
 condition template to a vulnerability-family context, operation flow, required
 protection, and original audit finding. [Structured examples](corpus/template_examples.json)
 provide the corresponding archived condition records.
+The [corpus construction note](docs/CORPUS_CONSTRUCTION.md) explains report
+selection, vocabulary induction, human review, and the corpus's family/year counts.
 
 ## Benchmark
 

@@ -26,9 +26,10 @@ MechaAudit, a mechanism-based vulnerability detection system for DeFi smart cont
 | File | Description |
 |------|-------------|
 | `theorem_registry/registry_B.json` | 16 theorems matching the paper's theorem-registry table (a1-a5 core + b1-b11 extension), plus 3 additional extension theorems (b_e1-b_e3) included in this artifact's implementation but not enumerated in the paper's table (see the file's own `description` field) |
-| `corpus/corpus_manifest.jsonl` | 394 audited findings with MDL triples (pi_r, c_r, tau_r) |
+| `corpus/corpus_manifest.jsonl` | 394 audited findings: report IDs, family annotations, operation records (pi_r), and condition records (c_r); this export does not include tau_r |
 | `corpus/template_examples.json` | Representative source finding and archived condition assignment for each of the 17 templates |
 | `docs/CONDITION_TEMPLATE_MAPPING.md` | All 17 templates mapped to representative family contexts, operation flows, required/absent protections, and public findings |
+| `docs/CORPUS_CONSTRUCTION.md` | Report selection and vocabulary construction, human-review role, and corpus family/year distributions |
 | `benchmark/manifest.jsonl` | 217 evaluated contracts with ground-truth labels |
 | `benchmark/sample_pdgs/` | 2 sample PDGs (VULN + SAFE) |
 
@@ -56,7 +57,7 @@ Labels (`VULN`/`SAFE`) in `benchmark/manifest.jsonl` are provided only for metri
 | Paper Claim | Artifact Location |
 |-------------|-------------------|
 | MDL vocabulary $V$, $\mathcal{L}$ (no dedicated table in the paper; moved to the artifact due to page limits) | `mechaaudit/mdl/primitives.py` -> `OPERATION_VOCAB`, `CONDITION_TEMPLATES`; `docs/MDL_PRIMITIVES.md` |
-| MDL adversarial-trigger space $\mathcal{T}$ | The corpus (`corpus/corpus_manifest.jsonl`) stores `adversarial_trigger` as a free natural-language record per report, not a closed categorical vocabulary like $V$/$\mathcal{L}$ (see `docs/MDL_PRIMITIVES.md`). It is not consumed by retrieval, SMT admission, or the Harm Verdict prompts; those independently re-derive triggerability from target-side PDG evidence (`mechaaudit/harm_verdict/harm_verdict.py`, FEASIBILITY condition). |
+| MDL adversarial-trigger space $\mathcal{T}$ | The paper defines a natural-language trigger component in addition to the closed operation/condition vocabularies. The public `corpus/corpus_manifest.jsonl` exports pi_r/c_r, not a separate adversarial_trigger/tau_r field; it should not be read as a complete three-component export. See `docs/CORPUS_CONSTRUCTION.md` for the exported fields and provenance. |
 | Theorem registry $B$ (theorem-registry table) | `theorem_registry/registry_B.json` |
 | 394-report corpus | `corpus/corpus_manifest.jsonl` |
 | Contract-level detection (main results table) | `results/main/mechaaudit_metrics.json` |

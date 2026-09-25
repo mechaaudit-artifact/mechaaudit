@@ -82,7 +82,8 @@
         "condition_validation_status": "ok",
         "condition_validation_notes": [],
         "public_finding_checked_on": "2026-09-25"
-      }
+      },
+      "representation_note": "This report also instantiates C-L1c; the two rows illustrate general CEI ordering and the concrete stale state, not distinct source findings."
     },
     {
       "template_id": "C-L1c",
@@ -122,7 +123,8 @@
         "condition_validation_status": "ok",
         "condition_validation_notes": [],
         "public_finding_checked_on": "2026-09-25"
-      }
+      },
+      "representation_note": "This report also instantiates C-L1b; the original finding identifies _userWithdrawn as the state read before accounting is updated."
     },
     {
       "template_id": "C-L1d",
@@ -162,7 +164,8 @@
         "condition_validation_status": "ok",
         "condition_validation_notes": [],
         "public_finding_checked_on": "2026-09-25"
-      }
+      },
+      "representation_note": "The public manifest describes CEI ordering, while this normalized template records cross-function protection; both are discussed in the source finding. A local lock already exists."
     },
     {
       "template_id": "C-S11a",
@@ -252,9 +255,9 @@
       "representative_family": "Asset valuation manipulation",
       "report_id": "2021-04-marginswap/H-03",
       "finding_url": "https://github.com/code-423n4/2021-04-marginswap-findings/issues/21",
-      "operation_flow_summary": "Flash-loan reserve change → forced price-feed update → borrowing/liquidation consumes the price.",
+      "operation_flow_summary": "Flash-loan reserve change → price-feed update when its update window permits → borrowing/liquidation consumes the price.",
       "required_protection": "A valuation input resistant to temporary reserve manipulation, such as a TWAP.",
-      "reported_deficiency": "Same-transaction reserve manipulation can determine the price.",
+      "reported_deficiency": "Reserve manipulation can determine the price when an update is permitted.",
       "template_predicates": [
         "invariant(price_manipulation)",
         "invariant(checkpoint_time_separation)"
@@ -451,7 +454,8 @@
           "conditions[0] repaired S1-2 action kind into price_sensitive_execution"
         ],
         "public_finding_checked_on": "2026-09-25"
-      }
+      },
+      "representation_note": "The source and public manifest describe an existing but weak/incorrect bound. The archived normalized deficiency_kind is missing; this denotes lack of the effective protection, not absence of all bound-checking code."
     },
     {
       "template_id": "C-S12d",
@@ -459,7 +463,7 @@
       "representative_family": "Slippage/sandwich",
       "report_id": "2021-10-slingshot/M-02",
       "finding_url": "https://github.com/code-423n4/2021-10-slingshot-findings/issues/77",
-      "operation_flow_summary": "Check `finalOutputAmount` → transfer fee-charging token → user receives less than `finalAmountMin`.",
+      "operation_flow_summary": "Check `finalOutputAmount` → transfer fee-charging token → user can receive less than `finalAmountMin`.",
       "required_protection": "Check the recipient's actual balance increase after transfer.",
       "reported_deficiency": "The minimum is checked before the transfer fee reduces the received amount.",
       "template_predicates": [
@@ -616,7 +620,8 @@
         "condition_validation_status": "ok",
         "condition_validation_notes": [],
         "public_finding_checked_on": "2026-09-25"
-      }
+      },
+      "representation_note": "The archived protected_action slot names addLiquidity, the intended router operation. The source identifies BasePool.mint as the entry missing onlyRouter; a direct call bypasses VaderRouter.addLiquidity validation."
     },
     {
       "template_id": "C-S53d",
@@ -656,7 +661,8 @@
         "condition_validation_status": "ok",
         "condition_validation_notes": [],
         "public_finding_checked_on": "2026-09-25"
-      }
+      },
+      "representation_note": "The source follows retrieveFromStrategy through message delivery to strategyWithdraw. This corpus provenance example does not establish end-to-end cross-chain analysis by MechaAudit. The source issue title uses HF06; H-34 is the existing corpus identifier."
     },
     {
       "template_id": "C-S53e",
@@ -696,7 +702,9 @@
         "condition_validation_status": "ok",
         "condition_validation_notes": [],
         "public_finding_checked_on": "2026-09-25"
-      }
+      },
+      "representation_note": "The source explicitly states that onlyOwner exists and discusses medium severity. H-04 is the existing corpus identifier; the missing protection is the one-time initialization guard."
     }
-  ]
+  ],
+  "usage": "Documentation sidecar only; not loaded by the detector. Concrete names identify source-report locations. Archived fields are retained without rewriting; source summaries are not serialized MDL traces."
 }

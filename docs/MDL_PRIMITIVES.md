@@ -7,12 +7,12 @@ the adversarial trigger description.
 Π and C are the two closed, corpus-validated vocabularies below (Tables 1 and 2): every
 `pi_r`/`pi_f` operation and `c_r`/`c_f` condition instance is drawn from one of these fixed
 symbol sets, which is what makes structural comparison between a report and a target function
-decidable. τ is **not** reduced to a closed vocabulary: `adversarial_trigger` is stored as free
-natural-language text per corpus report (see `corpus/corpus_manifest.jsonl`), recording the
-auditor-established exploit channel. This is by design: τ is not needed by retrieval, which
-compares only Π/C; its role is in Harm Verdict, where the LLM receives `τ_r` as input to
-identify the relevant harm category and judges reachability from the target's PDG-grounded
-evidence (see `mechaaudit/harm_verdict/harm_verdict.py`). `τ_f = ∅` by construction — static
+decidable. In the paper's representation, τ is **not** reduced to a closed vocabulary:
+it is natural-language text recording the auditor-established exploit channel. Retrieval
+compares only Π/C; the paper describes τ's role in Harm Verdict. The public
+`corpus/corpus_manifest.jsonl` exports Π/C records but has no separate
+`adversarial_trigger`/`tau_r` field; it is not a complete three-component export.
+`τ_f = ∅` by construction — static
 analysis cannot recover the adversary's access channel from the target alone. τ is
 correspondingly absent from the `pi_r`/`pi_f` and `c_r`/`c_f` comparisons below and from
 the retrieval-equivalence check that groups findings into mechanism units.
@@ -23,6 +23,10 @@ project onto the same shared Π/C vocabulary, enabling structural comparison acr
 ---
 
 ## Table 1 — Operation Vocabulary (24 entries)
+
+The paper counts **23 code-observable operation types**. This implementation table
+also lists `none_applicable`, a skip marker for steps that are not code operations;
+it is not a 24th operation type in the paper's vocabulary.
 
 Induced from 394 audited findings across four mechanism families (L1, S1-1, S1-2, S5-3).
 
