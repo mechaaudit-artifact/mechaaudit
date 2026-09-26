@@ -1,8 +1,10 @@
 # Mover–Telcoin verifier-independence contrast
 
-Two Sherlock benchmark cases show how independent code facts accept or reject
-an LLM-proposed missing-guard condition. The paper's AutoRoller running example
-has a separate [three-stage trace](AUTOROLLER_THREE_STAGE_TRACE.md).
+This page is the A2 case study. It contains two separate target functions from
+two separate benchmark cases, deliberately paired to test whether the
+model-proposed missing-guard condition is accepted or rejected by independent
+code facts. It is not the paper's Figure 2 running example; that AutoRoller
+three-stage trace is documented on a separate page.
 
 The [complete solver traces](solver_evidence/authority_reconstruction/README.md)
 provide raw SMT-LIB, input facts, SAT/UNSAT outputs, and provenance for this pair.
@@ -36,14 +38,12 @@ The target condition record is:
 }
 ```
 
-The shared report/target operation is `role_assignment`. The target also has a
+The shared report/target operation is `role_assignment`; the target also has a
 privileged-state mutation. The archived route is the authority-handoff /
 escalation rule, initializer-entry variant. In the paper's notation this is
-the privilege-escalation category (Table II, a5). The archived encoder calls this
-family `b5_authority_handoff_or_escalation`. This internal name is not Table II's
-b5, which denotes lending admin economic control. The formula below is the
-encoder's concrete authority-check rule. The report type, operation and condition
-select that rule, while target-code analysis supplies the facts it checks.
+the privilege-escalation rule (Table II, a5). The report type, operation and
+condition guide the route; they do not assert that the target code has the
+reported missing protection.
 
 ### Target code and independently extracted facts
 
@@ -74,10 +74,10 @@ first caller. Thus a first successful caller can obtain the administrator role.
 
 ### Reduced form of the actual admission constraint
 
-The encoder constructs a formula over finite function and path domains. The
-following uses readable aliases for its predicates, omitting datatype declarations
-and fixed facts. The linked raw SMT-LIB retains the exact emitted symbols and
-complete assertions.
+The production encoder constructs a finite-function/finite-path formula. Omitting
+datatype declarations and fixed facts, the following is the relevant logical
+conjunction (the atom names are the encoder's semantic names; the exact source
+clause keys are shown immediately below):
 
 ```text
 exists entry, carrier, path:
@@ -119,7 +119,7 @@ Thus the `missing` label in the retrieved condition selects
 
 The archived solver record binds `entry=initialize`, `carrier=initialize`, and
 `path=[initialize]`, and returns `sat`. The helper calls are part of the
-code-fact closure used for the entry. The stored witness is not a claim that
+code-fact closure used for the entry; the stored witness is not a claim that
 Z3 printed a three-function model.
 
 For archival cross-checking, the positive input identifier is
@@ -158,13 +158,21 @@ function acceptExecutorship() external {
 ```
 
 The code-side extractor finds both an authority-state write and a caller
-identity guard. Consequently `NoCallerAuthGuard(entry)` is false, the authority
-rule's non-initializer branch is `unsat`, and the candidate has no downstream
-Harm Verdict input or output. The model-proposed `missing` condition is therefore not accepted as a
+identity guard. Consequently `NoCallerAuthGuard(entry)` is false, the same
+joint rule is `unsat`, and the candidate has no downstream Harm Verdict input or
+output. The model-proposed `missing` condition is therefore not accepted as a
 code fact. The corresponding archived fields are
 `code_side_no_auth_guard=false`,
 `code_side_caller_guard_state_carriers=[acceptExecutorship]`, and
 `solver_result=unsat` (SMT replay row 692, zero-based).
+
+This pair is the important boundary: both candidates are retrieved and both
+propose an authority-protection deficiency, but independent target-code facts
+separate the vulnerable initialization from the guarded handoff. These two
+functions are separate target cases, deliberately paired for the A2 contrast;
+they are not a second claim that the paper's AutoRoller running example has
+been replaced.
+
 
 ## Field provenance
 

@@ -10,7 +10,7 @@ marked `\ddagger`.
 
 All **217 contracts have valid, decided outputs** in the combined archived run.
 The table below is copied from that run's aggregate records, rather than obtained
-by rerunning the detector. MechaAudit is evaluated on the same 70 VULN and
+by rerunning the detector. The full pipeline is evaluated on the same 70 VULN and
 147 SAFE contracts with the same local Qwen3-32B-AWQ model.
 
 | Benchmark | Valid | TP | FP | FN | TN |

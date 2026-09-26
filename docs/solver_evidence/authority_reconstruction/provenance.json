@@ -101,7 +101,7 @@
     }
   ],
   "files_sha256": {
-    "README.md": "225ad4414f9604d835ffdb6b0c4defc37f18e9d20ac5f95d6b513ce57897b14f",
+    "README.md": "a2ce2aee4026f99e29dd6f28a653cbc74842da0089a7d1efdac58dc679a020de",
     "mover_initialize.input.json": "5210fc0ee9cf9df0440270eb03537e3ebcb7327d60f0ae0f949593e41f12c504",
     "mover_initialize.model.txt": "7fa273da232a6a6d03f789f75931691ff5c6319c528cd60c4c7567789685b1e7",
     "mover_initialize.output.json": "bdbccd87a00e9c43e4c94edacd7c7db8b36c941b415f56755372eecf9672879f",
@@ -118,6 +118,5 @@
   "witness_provenance": "The encoder obtains the witness by deterministic enumeration after SAT. The separate .model.txt file is the actual newly obtained Z3 model.",
   "instrumentation": "A Solver subclass captured the unmodified encoder assertions and imposed a 20-second timeout. No fact values or constraints were patched.",
   "compilation_isolation": "Project contracts copied to temporary directories, existing dependency directories referenced read-only, project preparation disabled.",
-  "reconstruction_driver_sha256": "b1842c2c00428da3b432599db35c6cfa362f505befdd98027da6d9713777775d",
-  "source_commit_scope": "Original implementation checkout. This is not a commit in the public artifact repository."
+  "reconstruction_driver_sha256": "b1842c2c00428da3b432599db35c6cfa362f505befdd98027da6d9713777775d"
 }

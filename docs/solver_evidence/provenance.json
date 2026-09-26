@@ -1,5 +1,5 @@
 {
-  "scope": "This manifest covers root-level historical records and the 2026-09-24 archived-fact replay. autoroller_deposit.archived.json carries its own three-stage source provenance. The new Mover/Telcoin reconstruction is documented separately in authority_reconstruction/provenance.json.",
+  "scope": "This manifest covers root-level historical records and the 2026-09-24 archived-fact replay. The new Mover/Telcoin reconstruction is documented separately in authority_reconstruction/provenance.json.",
   "theory_fragment": "Finite enumerated datatypes, Boolean-valued predicates, equality and quantifiers; no arithmetic, arrays or symbolic Solidity state.",
   "witness_provenance": "Production Python enumerates emitted triples after Z3 SAT; not an extracted existential model assignment.",
   "original_archive": "docs/experiment/v10_test/V10_MDL_V0_S53_FORMAL_PROTOTYPE_V0.json",
@@ -352,8 +352,7 @@
     "reconstructed_trace_manifest": "authority_reconstruction/provenance.json"
   },
   "files_sha256": {
-    "README.md": "6e8afa4af80ad1eb084802507d56c94940d06db71078d4359070e996dbc90080",
-    "autoroller_deposit.archived.json": "d1c7957e9a1c99ff56a1f54a518c53f67c1071608998abe0c3189037e34fde47",
+    "README.md": "659703f8eb1aad4a7e189e26a6bc5510afc3b208a9f9a0124e2e34f39e861e7f",
     "autoroller_previewDeposit.archived.json": "5884bc4101c83f95e1b2df9c0c4c0f34bf4c7d81f8c6b8b271d1d87c6d3eec66",
     "autoroller_previewDeposit.input.json": "03de2ba6dcfded4e7c2c2b900c700208bb61fbbfb4c347cc3e36a7426b6f726f",
     "autoroller_previewDeposit.output.json": "c6a8100408d2caf216fbf8e4242b5de7d26d868367a41c63515c23f495cf0e71",

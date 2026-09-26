@@ -35,10 +35,8 @@ the complete final formulas, and comparisons against the historical records.
    records. All comparisons pass for both cases.
 
 The reconstruction used solc 0.8.20, Slither 0.11.5, crytic-compile 0.3.11, and
-Z3 4.16.0. The manifest pins the original implementation checkout's commit and
-encoder hash. Its `source_files` paths refer to that checkout, not paths in this
-public artifact. The only solver instrumentation records assertions and sets a
-20-second timeout.
+Z3 4.16.0. The source commit and encoder hash are pinned in the manifest. The
+only solver instrumentation records assertions and sets a 20-second timeout.
 The full reconstructed input was not stored in the historical result rows, so
 the agreement claim is limited to the historical fields that were saved.
 
