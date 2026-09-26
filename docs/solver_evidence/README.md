@@ -4,10 +4,15 @@ This supplement provides historical evaluation results, complete SMT-LIB from
 archived-fact replay, and newly reconstructed Mover/Telcoin solver traces.
 Historical and reconstructed records are identified separately.
 
-**For the A2 Mover/Telcoin contrast, see the
+**For the Mover/Telcoin contrast, see the
 [complete reconstructed solver traces](authority_reconstruction/README.md).**
 They include both raw formulas and reproduce the historical results, routes,
 witnesses, and all saved alignment fields. No LLM or Harm Verdict was rerun.
+
+The separate [AutoRoller deposit archive](autoroller_deposit.archived.json)
+supports the [three-stage running example](../AUTOROLLER_THREE_STAGE_TRACE.md).
+It preserves the adopted retrieval and Harm Verdict records for `deposit`,
+distinct from the earlier `previewDeposit` replay below.
 
 ## Historical authority-check contrast
 

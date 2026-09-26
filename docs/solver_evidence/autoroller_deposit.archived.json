@@ -1,0 +1,1233 @@
+{
+  "kind": "historical_three_stage_record_not_new_execution",
+  "added_on": "2026-09-26",
+  "case_id": "2022-11-sense_AutoRoller",
+  "benchmark": "Sherlock",
+  "benchmark_label": "VULN",
+  "input_id": "2022-11-sense_AutoRoller::2022-11-sense_AutoRoller::U002::deposit::2022-03-prepo/H-02",
+  "source_records": {
+    "retrieval": {
+      "path": "docs/experiment/v10_test/V10_MECHANISM_UNIT_REPLAY_TABLE_FULL.json",
+      "sha256": "b00651a3836e7267418fe16abedbbb6899d48462664d51f9108166db60602eaa"
+    },
+    "smt": {
+      "path": "logs/mdl_v0_mu_replay_after_gt_level_reproject_20260520_1620.json",
+      "sha256": "193fabe09c38b18c9f476e1ebe52a021343ec5855814737957db10d58fb5eade"
+    },
+    "harm_inputs": {
+      "path": "docs/experiment/v10_test/V10_E4C_ON_MU_SMT_ALL_INPUTS_LONGFIX_BACKUP.json",
+      "sha256": "970cc8064e5a18d1ad3b546b5414bde483101b5c489be1073376546982d938fc"
+    },
+    "harm_outputs": {
+      "path": "docs/experiment/v10_test/V10_E4C_ON_MU_SMT_ALL_RESULTS_LONGFIX_RERUN.jsonl",
+      "sha256": "42a3b1b3c759de4defe505d14db7c0fc16fcce23cae944b01d202c9dccdbe339"
+    },
+    "target_source": {
+      "path": "data/benchmark/sherlock/repos/2022-11-sense/contracts/src/AutoRoller.sol",
+      "sha256": "77980e5e41b8722c4532e33548dda51715dc234e2d0b301b34ee34c4dc07c98b"
+    },
+    "inherited_erc4626": {
+      "path": "data/benchmark/sherlock/repos/2022-11-sense/contracts/lib/solmate/src/mixins/ERC4626.sol",
+      "sha256": "d7439e077fe37e6b3bf501b1511ad8e49fd33a1b6d31ea33c23eb88ed7e8bd5b"
+    }
+  },
+  "record_locations": {
+    "smt_row_zero_based": 321,
+    "harm_output_line_one_based": 191
+  },
+  "selection_scope": "Selected fields copied unchanged from the adopted historical Sherlock run. The retrieval configuration used top_k=5 per member. This is separate from the top-15 retrieval-quality measurement. Labels and GT annotations retained in the archives are evaluation metadata.",
+  "retrieval_configuration": {
+    "top_k": 5,
+    "per_member_top_k": 5,
+    "topk_reports_semantics": "deduplicated union of each cluster member TopK; not truncated back to K"
+  },
+  "unit_metadata": {
+    "unit_id": "2022-11-sense_AutoRoller::U002",
+    "rep_function": "2022-11-sense_AutoRoller.deposit",
+    "cluster_member_ids": [
+      "2022-11-sense_AutoRoller.deposit"
+    ],
+    "mechanism_signature": {
+      "core_ops": [
+        "asset_deposit",
+        "share_ratio_computation"
+      ],
+      "template_ids": [
+        "C-S11a",
+        "C-S11b"
+      ],
+      "candidate_types": [
+        "S1-1"
+      ]
+    },
+    "topk_reports": [
+      "2022-03-prepo/H-02",
+      "2022-04-pooltogether/H-01",
+      "2022-04-xtribe/M-02",
+      "2022-12-gogopool/H-05",
+      "2022-04-badger-citadel/H-03"
+    ]
+  },
+  "retrieved_report": {
+    "report_id": "2022-03-prepo/H-02",
+    "gt_label": "GT",
+    "support_member_gt_label": "GT",
+    "type_r": "S1-1",
+    "rank_key": [
+      1,
+      7,
+      1,
+      0,
+      3,
+      0,
+      2,
+      5,
+      0
+    ],
+    "support_member": "2022-11-sense_AutoRoller.deposit",
+    "supporters": [
+      "2022-11-sense_AutoRoller.deposit"
+    ],
+    "supporter_gt_labels": {
+      "2022-11-sense_AutoRoller.deposit": "GT"
+    },
+    "m_ref": {
+      "report_id": "2022-03-prepo/H-02",
+      "target_function": "deposit",
+      "target_contract": "2022-11-sense_AutoRoller",
+      "support_function": "deposit",
+      "proof_anchor_function": "deposit",
+      "report_type": "S1-1",
+      "candidate_types": [
+        "S1-1"
+      ],
+      "pi_ref": {
+        "function_core_ops": [
+          "asset_deposit",
+          "share_ratio_computation"
+        ],
+        "report_core_ops": [
+          "asset_deposit",
+          "outbound_asset_transfer",
+          "share_ratio_computation"
+        ],
+        "shared_core_ops": [
+          "asset_deposit",
+          "share_ratio_computation"
+        ],
+        "shared_core_relations": [],
+        "rel_core_match_count": 0
+      },
+      "c_ref": {
+        "function_condition_families": [
+          "C-S11a",
+          "C-S11b"
+        ],
+        "report_condition_families": [
+          "C-S11b"
+        ],
+        "family_support": true,
+        "hard_contradiction": false,
+        "exact_template": 1,
+        "exact_slots": 1,
+        "hard_conflicts": 0,
+        "best_function_condition": {
+          "template_id": "C-S11b",
+          "protected_action_kind": "valuation_dependent_decision",
+          "protected_object_kind": "valuation_input",
+          "deficiency_kind": "missing",
+          "slots": {
+            "protected_action": "previewDeposit",
+            "source_kind": "share_ratio",
+            "carrier_kind": "direct",
+            "value_anchor": "initial totalSupply / totalAssets not seeded"
+          }
+        },
+        "best_report_condition": {
+          "template_id": "C-S11b",
+          "protected_action_kind": "valuation_dependent_decision",
+          "protected_object_kind": "price_source",
+          "deficiency_kind": "missing",
+          "slots": {
+            "source_kind": "share_ratio",
+            "value_anchor": "totalSupply near zero"
+          }
+        },
+        "best_pair_metrics": {
+          "exact_template": 1,
+          "exact_slots": 1,
+          "hard_conflicts": 0
+        }
+      },
+      "tau_ref": {
+        "authority_basis": "",
+        "price_source": "",
+        "surface_entry": "deposit",
+        "carrier_function": "deposit",
+        "target_path_bundle": [],
+        "report_path_bundle": [],
+        "role_action_consistency": 5,
+        "surface_action_affinity": 3,
+        "tau_gate": true,
+        "tau_score": 7,
+        "tau_reason": "share_ratio_computation,deposit_path,valuation_input_guard,bootstrap_share_source,bootstrap_surface"
+      },
+      "retrieval_record": {
+        "report_id": "2022-03-prepo/H-02",
+        "type_r": "S1-1",
+        "candidate_types": [
+          "S1-1"
+        ],
+        "type_compat": true,
+        "pi_core_gate": true,
+        "c_gate": true,
+        "tau_gate": true,
+        "sim_gate": 0.6667,
+        "gate_pass": true,
+        "rank_key": [
+          1,
+          7,
+          1,
+          0,
+          3,
+          0,
+          2,
+          5,
+          0
+        ],
+        "core_op_overlap": [
+          "asset_deposit",
+          "share_ratio_computation"
+        ],
+        "comparable_report_rel_count": 1,
+        "rel_core_match_count": 0,
+        "c_exact_template": 1,
+        "c_exact_slots": 1,
+        "c_hard_conflicts": 0,
+        "tau_score": 7,
+        "tau_reason": "share_ratio_computation,deposit_path,valuation_input_guard,bootstrap_share_source,bootstrap_surface",
+        "gt_label": "GT",
+        "is_gt": true
+      }
+    }
+  },
+  "archived_smt_row": {
+    "case_id": "2022-11-sense_AutoRoller",
+    "unit_id": "2022-11-sense_AutoRoller::U002",
+    "rep_function": "2022-11-sense_AutoRoller.deposit",
+    "cluster_member_ids": [
+      "2022-11-sense_AutoRoller.deposit"
+    ],
+    "support_member": "2022-11-sense_AutoRoller.deposit",
+    "supporters": [
+      "2022-11-sense_AutoRoller.deposit"
+    ],
+    "supporter_gt_labels": {
+      "2022-11-sense_AutoRoller.deposit": "GT"
+    },
+    "target_function": "deposit",
+    "report_id": "2022-03-prepo/H-02",
+    "report_rank": 0,
+    "benchmark_label": "VULN",
+    "expected_verdict": "",
+    "gt_label": "GT",
+    "support_member_gt_label": "GT",
+    "is_gt": true,
+    "target_final_verdict": null,
+    "report_verdict": null,
+    "route": {
+      "theorem_basis": "b2_attacker_movable_measurement",
+      "route_variant": "share_ratio_dependency",
+      "template_id": "C-S11b",
+      "protected_action_kind": "valuation_dependent_decision",
+      "protected_object_kind": "valuation_input",
+      "route_axes": {
+        "measurement_source_kind": "share_ratio",
+        "manipulation_channel": "share_ratio_computation",
+        "decision_kind": "valuation_quote"
+      },
+      "route_basis": "template_id=C-S11b + valuation_axes=share_ratio/share_ratio_computation/valuation_quote"
+    },
+    "solver_result": "sat",
+    "witness": {
+      "entry_const": "fn_321_0",
+      "entry_function": "deposit",
+      "carrier_const": "fn_321_0",
+      "carrier_function": "deposit",
+      "path_const": "path_321_0",
+      "path_nodes": [
+        "deposit"
+      ],
+      "m_ref_carrier_function": "deposit",
+      "carrier_hint_matches": true
+    },
+    "m_ref_alignment": {
+      "m_ref_report_type": "S1-1",
+      "m_ref_function_core_ops": [
+        "asset_deposit",
+        "share_ratio_computation"
+      ],
+      "m_ref_best_function_condition": {
+        "template_id": "C-S11b",
+        "protected_action_kind": "valuation_dependent_decision",
+        "protected_object_kind": "valuation_input",
+        "deficiency_kind": "missing",
+        "slots": {
+          "protected_action": "previewDeposit",
+          "source_kind": "share_ratio",
+          "carrier_kind": "direct",
+          "value_anchor": "initial totalSupply / totalAssets not seeded"
+        }
+      },
+      "m_ref_theorem_route": {
+        "theorem_basis": "b2_attacker_movable_measurement",
+        "route_variant": "share_ratio_dependency",
+        "template_id": "C-S11b",
+        "protected_action_kind": "valuation_dependent_decision",
+        "protected_object_kind": "valuation_input",
+        "route_axes": {
+          "measurement_source_kind": "share_ratio",
+          "manipulation_channel": "share_ratio_computation",
+          "decision_kind": "valuation_quote"
+        },
+        "route_basis": "template_id=C-S11b + valuation_axes=share_ratio/share_ratio_computation/valuation_quote"
+      },
+      "m_ref_theorem_basis": "b2_attacker_movable_measurement",
+      "m_ref_route_variant": "share_ratio_dependency",
+      "m_ref_surface_entry_binding": {
+        "bound_surface_entry": "deposit",
+        "binding_source": "tau_ref.surface_entry"
+      },
+      "m_ref_tau_ref": {
+        "surface_entry": "deposit",
+        "carrier_function": "deposit",
+        "target_path_bundle": [],
+        "authority_basis": "",
+        "role_action_consistency": 5
+      },
+      "code_side_initializer_surface": false,
+      "code_side_no_auth_guard": true,
+      "code_side_entry_asset_execution": true,
+      "code_side_entry_min_out_bound_present": false,
+      "code_side_entry_deadline_bound_present": false,
+      "code_side_deadline_execution_carriers": [],
+      "code_side_deadline_execution_primitives": {},
+      "code_side_fixed_tolerance_carriers": [],
+      "code_side_fixed_tolerance_sources": {},
+      "code_side_price_source_read_carriers": [
+        "deposit",
+        "convertToShares",
+        "_getTargetForIssuance",
+        "totalAssets",
+        "_decomposeShares"
+      ],
+      "code_side_price_source_read_sources": {
+        "deposit": [
+          "previewDeposit:price-read"
+        ],
+        "convertToShares": [
+          "totalAssets:price-read"
+        ],
+        "_getTargetForIssuance": [
+          "_getTargetForIssuance:price-read"
+        ],
+        "totalAssets": [
+          "totalAssets:price-read",
+          "_decomposeShares:price-read"
+        ],
+        "_decomposeShares": [
+          "_decomposeShares:price-read"
+        ]
+      },
+      "code_side_reward_weight_carriers": [],
+      "code_side_reward_weight_sources": {},
+      "code_side_share_ratio_carriers": [
+        "deposit",
+        "_mint",
+        "previewDeposit",
+        "convertToShares",
+        "totalAssets",
+        "_decomposeShares",
+        "roll"
+      ],
+      "code_side_share_ratio_sources": {
+        "deposit": [
+          "deposit:previewdeposit",
+          "deposit:share-ratio-read",
+          "previewDeposit:share-ratio-function",
+          "previewDeposit:previewdeposit",
+          "previewDeposit:share-ratio-read",
+          "_mint:share-ratio-read",
+          "afterDeposit:share-ratio-read"
+        ],
+        "_mint": [
+          "_mint:share-ratio-read"
+        ],
+        "previewDeposit": [
+          "previewDeposit:share-ratio-function",
+          "previewDeposit:converttoshares",
+          "convertToShares:share-ratio-function",
+          "convertToShares:share-ratio-read",
+          "convertToShares:totalassets"
+        ],
+        "convertToShares": [
+          "convertToShares:share-ratio-function",
+          "convertToShares:share-ratio-read",
+          "convertToShares:totalassets",
+          "totalAssets:share-ratio-function",
+          "totalAssets:share-ratio-read"
+        ],
+        "totalAssets": [
+          "totalAssets:share-ratio-function",
+          "totalAssets:share-ratio-read",
+          "_decomposeShares:share-ratio-read"
+        ],
+        "_decomposeShares": [
+          "_decomposeShares:share-ratio-read"
+        ],
+        "roll": [
+          "deposit:previewdeposit",
+          "deposit:share-ratio-read"
+        ]
+      },
+      "code_side_external_value_carriers": [
+        "deposit",
+        "_mint",
+        "convertToShares",
+        "_getSpaceReserves",
+        "_joinPool",
+        "totalAssets",
+        "_decomposeShares",
+        "roll"
+      ],
+      "code_side_external_value_sources": {
+        "deposit": [
+          "deposit:safetransferfrom",
+          "previewDeposit:balanceof",
+          "_mint:external-value",
+          "afterDeposit:external-value",
+          "afterDeposit:balanceof"
+        ],
+        "_mint": [
+          "_mint:external-value"
+        ],
+        "convertToShares": [
+          "totalAssets:balanceof"
+        ],
+        "_getSpaceReserves": [
+          "_getSpaceReserves:external-value"
+        ],
+        "_joinPool": [
+          "_joinPool:external-value"
+        ],
+        "totalAssets": [
+          "totalAssets:balanceof",
+          "_getSpaceReserves:external-value",
+          "_decomposeShares:balanceof"
+        ],
+        "_decomposeShares": [
+          "_decomposeShares:balanceof"
+        ],
+        "roll": [
+          "roll:deposit",
+          "deposit:safetransferfrom"
+        ]
+      },
+      "code_side_entry_cei_violation": false,
+      "code_side_entry_cei_variables": [],
+      "code_side_zero_supply_carriers": [
+        "deposit",
+        "previewDeposit",
+        "convertToShares"
+      ],
+      "code_side_raw_balance_carriers": [
+        "deposit",
+        "convertToShares",
+        "totalAssets",
+        "_decomposeShares"
+      ],
+      "code_side_exact_authority_carriers": [],
+      "code_side_caller_guard_state_carriers": [
+        "deposit",
+        "_mint",
+        "roll"
+      ],
+      "code_side_non_init_mutation_carriers": [
+        "deposit",
+        "_mint",
+        "roll"
+      ],
+      "caller_guard_state_vars": [
+        "MATURITY_NOT_SET",
+        "WAD",
+        "adapter",
+        "allowance",
+        "asset",
+        "balanceOf",
+        "balancerVault",
+        "divider",
+        "ifee",
+        "initScale",
+        "lastRoller",
+        "lastSettle",
+        "maturity",
+        "owner",
+        "periphery",
+        "poolId",
+        "pt",
+        "pti",
+        "space",
+        "targetDuration",
+        "targetedRate",
+        "totalSupply",
+        "utils",
+        "yt"
+      ]
+    }
+  },
+  "harm_input_core": {
+    "input_id": "2022-11-sense_AutoRoller::2022-11-sense_AutoRoller::U002::deposit::2022-03-prepo/H-02",
+    "smt": {
+      "solver_result": "sat",
+      "route": {
+        "theorem_basis": "b2_attacker_movable_measurement",
+        "route_variant": "share_ratio_dependency",
+        "template_id": "C-S11b",
+        "protected_action_kind": "valuation_dependent_decision",
+        "protected_object_kind": "valuation_input",
+        "route_axes": {
+          "measurement_source_kind": "share_ratio",
+          "manipulation_channel": "share_ratio_computation",
+          "decision_kind": "valuation_quote"
+        },
+        "route_basis": "template_id=C-S11b + valuation_axes=share_ratio/share_ratio_computation/valuation_quote"
+      },
+      "witness": {
+        "entry_const": "fn_321_0",
+        "entry_function": "deposit",
+        "carrier_const": "fn_321_0",
+        "carrier_function": "deposit",
+        "path_const": "path_321_0",
+        "path_nodes": [
+          "deposit"
+        ],
+        "m_ref_carrier_function": "deposit",
+        "carrier_hint_matches": true
+      },
+      "m_ref_alignment": {
+        "m_ref_report_type": "S1-1",
+        "m_ref_function_core_ops": [
+          "asset_deposit",
+          "share_ratio_computation"
+        ],
+        "m_ref_best_function_condition": {
+          "template_id": "C-S11b",
+          "protected_action_kind": "valuation_dependent_decision",
+          "protected_object_kind": "valuation_input",
+          "deficiency_kind": "missing",
+          "slots": {
+            "protected_action": "previewDeposit",
+            "source_kind": "share_ratio",
+            "carrier_kind": "direct",
+            "value_anchor": "initial totalSupply / totalAssets not seeded"
+          }
+        },
+        "m_ref_theorem_route": {
+          "theorem_basis": "b2_attacker_movable_measurement",
+          "route_variant": "share_ratio_dependency",
+          "template_id": "C-S11b",
+          "protected_action_kind": "valuation_dependent_decision",
+          "protected_object_kind": "valuation_input",
+          "route_axes": {
+            "measurement_source_kind": "share_ratio",
+            "manipulation_channel": "share_ratio_computation",
+            "decision_kind": "valuation_quote"
+          },
+          "route_basis": "template_id=C-S11b + valuation_axes=share_ratio/share_ratio_computation/valuation_quote"
+        },
+        "m_ref_theorem_basis": "b2_attacker_movable_measurement",
+        "m_ref_route_variant": "share_ratio_dependency",
+        "m_ref_surface_entry_binding": {
+          "bound_surface_entry": "deposit",
+          "binding_source": "tau_ref.surface_entry"
+        },
+        "m_ref_tau_ref": {
+          "surface_entry": "deposit",
+          "carrier_function": "deposit",
+          "target_path_bundle": [],
+          "authority_basis": "",
+          "role_action_consistency": 5
+        },
+        "code_side_initializer_surface": false,
+        "code_side_no_auth_guard": true,
+        "code_side_entry_asset_execution": true,
+        "code_side_entry_min_out_bound_present": false,
+        "code_side_entry_deadline_bound_present": false,
+        "code_side_deadline_execution_carriers": [],
+        "code_side_deadline_execution_primitives": {},
+        "code_side_fixed_tolerance_carriers": [],
+        "code_side_fixed_tolerance_sources": {},
+        "code_side_price_source_read_carriers": [
+          "deposit",
+          "convertToShares",
+          "_getTargetForIssuance",
+          "totalAssets",
+          "_decomposeShares"
+        ],
+        "code_side_price_source_read_sources": {
+          "deposit": [
+            "previewDeposit:price-read"
+          ],
+          "convertToShares": [
+            "totalAssets:price-read"
+          ],
+          "_getTargetForIssuance": [
+            "_getTargetForIssuance:price-read"
+          ],
+          "totalAssets": [
+            "totalAssets:price-read",
+            "_decomposeShares:price-read"
+          ],
+          "_decomposeShares": [
+            "_decomposeShares:price-read"
+          ]
+        },
+        "code_side_reward_weight_carriers": [],
+        "code_side_reward_weight_sources": {},
+        "code_side_share_ratio_carriers": [
+          "deposit",
+          "_mint",
+          "previewDeposit",
+          "convertToShares",
+          "totalAssets",
+          "_decomposeShares",
+          "roll"
+        ],
+        "code_side_share_ratio_sources": {
+          "deposit": [
+            "deposit:previewdeposit",
+            "deposit:share-ratio-read",
+            "previewDeposit:share-ratio-function",
+            "previewDeposit:previewdeposit",
+            "previewDeposit:share-ratio-read",
+            "_mint:share-ratio-read",
+            "afterDeposit:share-ratio-read"
+          ],
+          "_mint": [
+            "_mint:share-ratio-read"
+          ],
+          "previewDeposit": [
+            "previewDeposit:share-ratio-function",
+            "previewDeposit:converttoshares",
+            "convertToShares:share-ratio-function",
+            "convertToShares:share-ratio-read",
+            "convertToShares:totalassets"
+          ],
+          "convertToShares": [
+            "convertToShares:share-ratio-function",
+            "convertToShares:share-ratio-read",
+            "convertToShares:totalassets",
+            "totalAssets:share-ratio-function",
+            "totalAssets:share-ratio-read"
+          ],
+          "totalAssets": [
+            "totalAssets:share-ratio-function",
+            "totalAssets:share-ratio-read",
+            "_decomposeShares:share-ratio-read"
+          ],
+          "_decomposeShares": [
+            "_decomposeShares:share-ratio-read"
+          ],
+          "roll": [
+            "deposit:previewdeposit",
+            "deposit:share-ratio-read"
+          ]
+        },
+        "code_side_external_value_carriers": [
+          "deposit",
+          "_mint",
+          "convertToShares",
+          "_getSpaceReserves",
+          "_joinPool",
+          "totalAssets",
+          "_decomposeShares",
+          "roll"
+        ],
+        "code_side_external_value_sources": {
+          "deposit": [
+            "deposit:safetransferfrom",
+            "previewDeposit:balanceof",
+            "_mint:external-value",
+            "afterDeposit:external-value",
+            "afterDeposit:balanceof"
+          ],
+          "_mint": [
+            "_mint:external-value"
+          ],
+          "convertToShares": [
+            "totalAssets:balanceof"
+          ],
+          "_getSpaceReserves": [
+            "_getSpaceReserves:external-value"
+          ],
+          "_joinPool": [
+            "_joinPool:external-value"
+          ],
+          "totalAssets": [
+            "totalAssets:balanceof",
+            "_getSpaceReserves:external-value",
+            "_decomposeShares:balanceof"
+          ],
+          "_decomposeShares": [
+            "_decomposeShares:balanceof"
+          ],
+          "roll": [
+            "roll:deposit",
+            "deposit:safetransferfrom"
+          ]
+        },
+        "code_side_entry_cei_violation": false,
+        "code_side_entry_cei_variables": [],
+        "code_side_zero_supply_carriers": [
+          "deposit",
+          "previewDeposit",
+          "convertToShares"
+        ],
+        "code_side_raw_balance_carriers": [
+          "deposit",
+          "convertToShares",
+          "totalAssets",
+          "_decomposeShares"
+        ],
+        "code_side_exact_authority_carriers": [],
+        "code_side_caller_guard_state_carriers": [
+          "deposit",
+          "_mint",
+          "roll"
+        ],
+        "code_side_non_init_mutation_carriers": [
+          "deposit",
+          "_mint",
+          "roll"
+        ],
+        "caller_guard_state_vars": [
+          "MATURITY_NOT_SET",
+          "WAD",
+          "adapter",
+          "allowance",
+          "asset",
+          "balanceOf",
+          "balancerVault",
+          "divider",
+          "ifee",
+          "initScale",
+          "lastRoller",
+          "lastSettle",
+          "maturity",
+          "owner",
+          "periphery",
+          "poolId",
+          "pt",
+          "pti",
+          "space",
+          "targetDuration",
+          "targetedRate",
+          "totalSupply",
+          "utils",
+          "yt"
+        ]
+      }
+    },
+    "m_ref": {
+      "report_id": "2022-03-prepo/H-02",
+      "target_function": "deposit",
+      "target_contract": "2022-11-sense_AutoRoller",
+      "support_function": "deposit",
+      "proof_anchor_function": "deposit",
+      "report_type": "S1-1",
+      "candidate_types": [
+        "S1-1"
+      ],
+      "pi_ref": {
+        "function_core_ops": [
+          "asset_deposit",
+          "share_ratio_computation"
+        ],
+        "report_core_ops": [
+          "asset_deposit",
+          "outbound_asset_transfer",
+          "share_ratio_computation"
+        ],
+        "shared_core_ops": [
+          "asset_deposit",
+          "share_ratio_computation"
+        ],
+        "shared_core_relations": [],
+        "rel_core_match_count": 0
+      },
+      "c_ref": {
+        "function_condition_families": [
+          "C-S11a",
+          "C-S11b"
+        ],
+        "report_condition_families": [
+          "C-S11b"
+        ],
+        "family_support": true,
+        "hard_contradiction": false,
+        "exact_template": 1,
+        "exact_slots": 1,
+        "hard_conflicts": 0,
+        "best_function_condition": {
+          "template_id": "C-S11b",
+          "protected_action_kind": "valuation_dependent_decision",
+          "protected_object_kind": "valuation_input",
+          "deficiency_kind": "missing",
+          "slots": {
+            "protected_action": "previewDeposit",
+            "source_kind": "share_ratio",
+            "carrier_kind": "direct",
+            "value_anchor": "initial totalSupply / totalAssets not seeded"
+          }
+        },
+        "best_report_condition": {
+          "template_id": "C-S11b",
+          "protected_action_kind": "valuation_dependent_decision",
+          "protected_object_kind": "price_source",
+          "deficiency_kind": "missing",
+          "slots": {
+            "source_kind": "share_ratio",
+            "value_anchor": "totalSupply near zero"
+          }
+        },
+        "best_pair_metrics": {
+          "exact_template": 1,
+          "exact_slots": 1,
+          "hard_conflicts": 0
+        }
+      },
+      "tau_ref": {
+        "authority_basis": "",
+        "price_source": "",
+        "surface_entry": "deposit",
+        "carrier_function": "deposit",
+        "target_path_bundle": [],
+        "report_path_bundle": [],
+        "role_action_consistency": 5,
+        "surface_action_affinity": 3,
+        "tau_gate": true,
+        "tau_score": 7,
+        "tau_reason": "share_ratio_computation,deposit_path,valuation_input_guard,bootstrap_share_source,bootstrap_surface"
+      },
+      "retrieval_record": {
+        "report_id": "2022-03-prepo/H-02",
+        "type_r": "S1-1",
+        "candidate_types": [
+          "S1-1"
+        ],
+        "type_compat": true,
+        "pi_core_gate": true,
+        "c_gate": true,
+        "tau_gate": true,
+        "sim_gate": 0.6667,
+        "gate_pass": true,
+        "rank_key": [
+          1,
+          7,
+          1,
+          0,
+          3,
+          0,
+          2,
+          5,
+          0
+        ],
+        "core_op_overlap": [
+          "asset_deposit",
+          "share_ratio_computation"
+        ],
+        "comparable_report_rel_count": 1,
+        "rel_core_match_count": 0,
+        "c_exact_template": 1,
+        "c_exact_slots": 1,
+        "c_hard_conflicts": 0,
+        "tau_score": 7,
+        "tau_reason": "share_ratio_computation,deposit_path,valuation_input_guard,bootstrap_share_source,bootstrap_surface",
+        "gt_label": "GT",
+        "is_gt": true
+      }
+    },
+    "entry_routes": {
+      "entry_function": "deposit",
+      "entry_function_is_synthetic": false,
+      "structural_anchor_function": "deposit",
+      "direct_external_or_public": true,
+      "visibility": "public",
+      "modifiers": [],
+      "called_by": [
+        "roll"
+      ],
+      "internal_calls": [
+        "_mint",
+        "previewDeposit",
+        "afterDeposit"
+      ],
+      "external_calls": [
+        "SafeTransferLib.safeTransferFrom"
+      ],
+      "require_conditions": [
+        "require(bool,string)((shares = previewDeposit(assets)) != 0,ZERO_SHARES)"
+      ]
+    }
+  },
+  "harm_input_mechanism_functions": [
+    {
+      "name": "deposit",
+      "visibility": "public",
+      "state_mutability": "nonpayable",
+      "modifiers": [],
+      "parameters": [
+        "uint256 assets",
+        "address receiver"
+      ],
+      "return_type": "uint256",
+      "state_vars_read": [
+        "asset"
+      ],
+      "state_vars_written": [],
+      "local_vars_read": [
+        "assets",
+        "shares",
+        "receiver"
+      ],
+      "local_vars_written": [
+        "shares"
+      ],
+      "external_calls": [
+        "SafeTransferLib.safeTransferFrom"
+      ],
+      "internal_calls": [
+        "_mint",
+        "previewDeposit",
+        "afterDeposit"
+      ],
+      "called_by": [
+        "roll"
+      ],
+      "require_conditions": [
+        "require(bool,string)((shares = previewDeposit(assets)) != 0,ZERO_SHARES)"
+      ],
+      "if_conditions": [],
+      "assignments": [
+        "require(bool,string)((shares = previewDeposit(assets)) != 0,ZERO_SHARES)"
+      ],
+      "compact_graph": "[deposit(assets: uint256, receiver: address) -> uint256]\n  REQ: require(bool,string)((shares = previewDeposit(assets)) != 0,ZERO_SHARES)  [check: assets, shares]\n  EXT: asset.safeTransferFrom(msg.sender,address(this),assets)  [<- asset, assets]\n  N1:  shares  [<- shares]",
+      "source": "    function deposit(uint256 assets, address receiver) public virtual returns (uint256 shares) {\n        // Check for rounding error since we round down in previewDeposit.\n        require((shares = previewDeposit(assets)) != 0, \"ZERO_SHARES\");\n\n        // Need to transfer before minting or ERC777s could reenter.\n        asset.safeTransferFrom(msg.sender, address(this), assets);\n\n        _mint(receiver, shares);\n\n        emit Deposit(msg.sender, receiver, assets, shares);\n\n        afterDeposit(assets, shares);\n    }",
+      "start_line": 46,
+      "end_line": 58,
+      "_pdg_case_id": "2022-11-sense_AutoRoller",
+      "_pdg_file": "cache/v9/sherlock/pdg/2022-11-sense_AutoRoller_pdg.json",
+      "_contract_name": "2022-11-sense_AutoRoller"
+    },
+    {
+      "name": "_mint",
+      "visibility": "internal",
+      "state_mutability": "nonpayable",
+      "modifiers": [],
+      "parameters": [
+        "address to",
+        "uint256 amount"
+      ],
+      "return_type": "",
+      "state_vars_read": [
+        "balanceOf",
+        "totalSupply"
+      ],
+      "state_vars_written": [
+        "balanceOf",
+        "totalSupply"
+      ],
+      "local_vars_read": [
+        "to",
+        "amount"
+      ],
+      "local_vars_written": [],
+      "external_calls": [],
+      "internal_calls": [],
+      "called_by": [
+        "deposit",
+        "mint"
+      ],
+      "require_conditions": [],
+      "if_conditions": [],
+      "assignments": [
+        "totalSupply = totalSupply += amount",
+        "balanceOf = balanceOf[to] += amount"
+      ],
+      "compact_graph": "[_mint(to: address, amount: uint256)]\n  SW:  totalSupply += amount  [state.totalSupply <- totalSupply, amount]\n  SW:  balanceOf[to] += amount  [state.balanceOf <- balanceOf, amount, to]",
+      "source": "    function _mint(address to, uint256 amount) internal virtual {\n        totalSupply += amount;\n\n        // Cannot overflow because the sum of all user\n        // balances can't exceed the max uint256 value.\n        unchecked {\n            balanceOf[to] += amount;\n        }\n\n        emit Transfer(address(0), to, amount);\n    }",
+      "start_line": 183,
+      "end_line": 193,
+      "_pdg_case_id": "2022-11-sense_AutoRoller",
+      "_pdg_file": "cache/v9/sherlock/pdg/2022-11-sense_AutoRoller_pdg.json",
+      "_contract_name": "2022-11-sense_AutoRoller"
+    },
+    {
+      "name": "previewDeposit",
+      "visibility": "public",
+      "state_mutability": "view",
+      "modifiers": [],
+      "parameters": [
+        "uint256 assets"
+      ],
+      "return_type": "uint256",
+      "state_vars_read": [
+        "maturity",
+        "adapter",
+        "MATURITY_NOT_SET",
+        "space",
+        "totalSupply"
+      ],
+      "state_vars_written": [],
+      "local_vars_read": [
+        "previewedLPBal",
+        "_space",
+        "ptReserves",
+        "assets",
+        "targetReserves"
+      ],
+      "local_vars_written": [
+        "previewedLPBal",
+        "_space",
+        "ptReserves",
+        "targetReserves"
+      ],
+      "external_calls": [
+        "FixedPointMathLib.mulDivDown",
+        "OwnedAdapterLike.scaleStored",
+        "Space.adjustedTotalSupply",
+        "Space.balanceOf"
+      ],
+      "internal_calls": [
+        "_getTargetForIssuance",
+        "_getSpaceReserves"
+      ],
+      "called_by": [
+        "deposit"
+      ],
+      "require_conditions": [],
+      "if_conditions": [
+        "maturity == MATURITY_NOT_SET"
+      ],
+      "assignments": [
+        "(ptReserves,targetReserves) = _getSpaceReserves()"
+      ],
+      "compact_graph": "[previewDeposit(assets: uint256) -> uint256]\n  IF:  maturity == MATURITY_NOT_SET  [branch: MATURITY_NOT_SET, maturity]\n  N1:  super.previewDeposit(assets)  [<- assets]\n  N2:  _space = space  [_space <- space]\n  N3:  (ptReserves,targetReserves) = _getSpaceReserves()  [ptReserves, targetReserves]\n  EXT: previewedLPBal = (assets - _getTargetForIssuance(ptReserves,targetReserves,assets,adapter.scaleStored())).mulDivDown(_sp  [previewedLPBal <- adapter, ptReserves, targetReserves, _space, assets]\n  EXT: previewedLPBal.mulDivDown(totalSupply,_space.balanceOf(address(this)))  [<- totalSupply, _space, previewedLPBal]",
+      "source": "    function previewDeposit(uint256 assets) public view override returns (uint256) {\n        if (maturity == MATURITY_NOT_SET) {\n            return super.previewDeposit(assets);\n        } else {\n            Space _space = space;\n            (uint256 ptReserves, uint256 targetReserves) = _getSpaceReserves();\n\n            // Calculate how much Target we'll end up joining the pool with, and use that to preview minted LP shares.\n            uint256 previewedLPBal = (assets - _getTargetForIssuance(ptReserves, targetReserves, assets, adapter.scaleStored()))\n                .mulDivDown(_space.adjustedTotalSupply(), targetReserves);\n\n            // Shares represent proportional ownership of LP shares the vault holds.\n            return previewedLPBal.mulDivDown(totalSupply, _space.balanceOf(address(this)));\n        }\n    }",
+      "start_line": 420,
+      "end_line": 434,
+      "_pdg_case_id": "2022-11-sense_AutoRoller",
+      "_pdg_file": "cache/v9/sherlock/pdg/2022-11-sense_AutoRoller_pdg.json",
+      "_contract_name": "2022-11-sense_AutoRoller"
+    },
+    {
+      "name": "afterDeposit",
+      "visibility": "internal",
+      "state_mutability": "nonpayable",
+      "modifiers": [],
+      "parameters": [
+        "uint256 assets",
+        "uint256 shares"
+      ],
+      "return_type": "",
+      "state_vars_read": [
+        "divider",
+        "adapter",
+        "totalSupply",
+        "pti",
+        "MATURITY_NOT_SET",
+        "balancerVault",
+        "space",
+        "poolId",
+        "maturity"
+      ],
+      "state_vars_written": [],
+      "local_vars_read": [
+        "previewedLPBal",
+        "tokens",
+        "shares",
+        "_supply",
+        "balances",
+        "assets",
+        "targetToJoin",
+        "_poolId",
+        "_pti"
+      ],
+      "local_vars_written": [
+        "tokens",
+        "previewedLPBal",
+        "_supply",
+        "balances",
+        "targetToJoin",
+        "_poolId",
+        "_pti"
+      ],
+      "external_calls": [
+        "BalancerVault.getPoolTokens",
+        "Space.adjustedTotalSupply",
+        "FixedPointMathLib.mulDivUp",
+        "DividerLike.issue",
+        "Space.balanceOf"
+      ],
+      "internal_calls": [
+        "_joinPool"
+      ],
+      "called_by": [
+        "deposit",
+        "mint"
+      ],
+      "require_conditions": [],
+      "if_conditions": [
+        "maturity != MATURITY_NOT_SET",
+        "assets - targetToJoin > 0",
+        "_supply - shares == 0"
+      ],
+      "assignments": [
+        "(tokens,balances,None) = balancerVault.getPoolTokens(_poolId)",
+        "balances[1 - _pti] = targetToJoin",
+        "balances[_pti] = divider.issue(address(adapter),maturity,assets - targetToJoin)",
+        "previewedLPBal = shares",
+        "previewedLPBal = shares.mulDivUp(space.balanceOf(address(this)),_supply - shares)"
+      ],
+      "compact_graph": "[afterDeposit(assets: uint256, shares: uint256)]\n  IF:  maturity != MATURITY_NOT_SET  [branch: MATURITY_NOT_SET, maturity]\n  N1:  _supply = totalSupply  [_supply <- totalSupply]\n  N2:  _poolId = poolId  [_poolId <- poolId]\n  N3:  _pti = pti  [_pti <- pti]\n  EXT: (tokens,balances,None) = balancerVault.getPoolTokens(_poolId)  [tokens, balances <- balancerVault, _poolId]\n  EXT: targetToJoin = previewedLPBal.mulDivUp(balances[1 - _pti],space.adjustedTotalSupply())  [targetToJoin <- space, balances, previewedLPBal, _pti]\n  N4:  balances[1 - _pti] = targetToJoin  [balances <- targetToJoin, _pti]\n  IF:  assets - targetToJoin > 0  [branch: targetToJoin, assets]\n  EXT: balances[_pti] = divider.issue(address(adapter),maturity,assets - targetToJoin)  [balances <- maturity, adapter, divider, targetToJoin, assets, _pti]\n  IF:  _supply - shares == 0  [branch: _supply, shares, previewedLPBal]\n  N5:  previewedLPBal = shares  [previewedLPBal <- shares]\n  EXT: previewedLPBal = shares.mulDivUp(space.balanceOf(address(this)),_supply - shares)  [previewedLPBal <- space, _supply, shares]",
+      "source": "    function afterDeposit(uint256 assets, uint256 shares) internal override {\n        if (maturity != MATURITY_NOT_SET) {\n            uint256 _supply = totalSupply; // Saves extra SLOADs.\n            bytes32 _poolId = poolId;\n            uint256 _pti    = pti;\n\n            (ERC20[] memory tokens, uint256[] memory balances, ) = balancerVault.getPoolTokens(_poolId);\n\n            uint256 previewedLPBal = _supply - shares == 0 ?\n                shares : shares.mulDivUp(space.balanceOf(address(this)), _supply - shares); // _supply - shares b/c this is after minting new shares.\n\n            uint256 targetToJoin = previewedLPBal.mulDivUp(balances[1 - _pti], space.adjustedTotalSupply());\n\n            balances[1 - _pti] = targetToJoin;\n\n            if (assets - targetToJoin > 0) { // Assumption: this is false if Space has only Target liquidity.\n                balances[_pti] = divider.issue(address(adapter), maturity, assets - targetToJoin);\n            }\n\n            _joinPool(\n                _poolId,\n                BalancerVault.JoinPoolRequest({\n                    assets: tokens,\n                    maxAmountsIn: balances,\n                    userData: abi.encode(balances, 0),\n                    fromInternalBalance: false\n                })\n            );\n        }\n    }",
+      "start_line": 357,
+      "end_line": 386,
+      "_pdg_case_id": "2022-11-sense_AutoRoller",
+      "_pdg_file": "cache/v9/sherlock/pdg/2022-11-sense_AutoRoller_pdg.json",
+      "_contract_name": "2022-11-sense_AutoRoller"
+    },
+    {
+      "name": "mint",
+      "visibility": "public",
+      "state_mutability": "nonpayable",
+      "modifiers": [],
+      "parameters": [
+        "uint256 shares",
+        "address receiver"
+      ],
+      "return_type": "uint256",
+      "state_vars_read": [
+        "asset"
+      ],
+      "state_vars_written": [],
+      "local_vars_read": [
+        "assets",
+        "shares",
+        "receiver"
+      ],
+      "local_vars_written": [
+        "assets"
+      ],
+      "external_calls": [
+        "SafeTransferLib.safeTransferFrom"
+      ],
+      "internal_calls": [
+        "afterDeposit",
+        "_mint",
+        "previewMint"
+      ],
+      "called_by": [],
+      "require_conditions": [],
+      "if_conditions": [],
+      "assignments": [
+        "assets = previewMint(shares)"
+      ],
+      "compact_graph": "[mint(shares: uint256, receiver: address) -> uint256]\n  N1:  assets = previewMint(shares)  [assets <- shares]\n  EXT: asset.safeTransferFrom(msg.sender,address(this),assets)  [<- asset, assets]\n  N2:  assets  [<- assets]",
+      "source": "    function mint(uint256 shares, address receiver) public virtual returns (uint256 assets) {\n        assets = previewMint(shares); // No need to check for rounding error, previewMint rounds up.\n\n        // Need to transfer before minting or ERC777s could reenter.\n        asset.safeTransferFrom(msg.sender, address(this), assets);\n\n        _mint(receiver, shares);\n\n        emit Deposit(msg.sender, receiver, assets, shares);\n\n        afterDeposit(assets, shares);\n    }",
+      "start_line": 60,
+      "end_line": 71,
+      "_pdg_case_id": "2022-11-sense_AutoRoller",
+      "_pdg_file": "cache/v9/sherlock/pdg/2022-11-sense_AutoRoller_pdg.json",
+      "_contract_name": "2022-11-sense_AutoRoller"
+    }
+  ],
+  "harm_output": {
+    "input_id": "2022-11-sense_AutoRoller::2022-11-sense_AutoRoller::U002::deposit::2022-03-prepo/H-02",
+    "case_id": "2022-11-sense_AutoRoller",
+    "unit_id": "2022-11-sense_AutoRoller::U002",
+    "target_contract": "2022-11-sense_AutoRoller",
+    "target_function": "deposit",
+    "report_id": "2022-03-prepo/H-02",
+    "benchmark_label": "VULN",
+    "is_gt": true,
+    "vuln_gt_sat": true,
+    "old_e4c_family": "S1-1",
+    "route_variant": "share_ratio_dependency",
+    "template_id": "C-S11b",
+    "prompt_mode": "old_e4c_sequential_adapter",
+    "condition_results": {
+      "severity": {
+        "applicable": true,
+        "failed_condition": "NONE",
+        "sub_reason": "none",
+        "reason": "The 'deposit' function uses a share-ratio value dependency derived from manipulable price sources (previewDeposit, totalAssets, etc.) for minting and asset allocation. This creates a concrete attacker-beneficial and victim-adverse delta in asset entitlement and accounting, as evidenced by the connected minting and external asset movement sinks.",
+        "evidence_refs": [
+          "deposit",
+          "previewDeposit",
+          "_mint",
+          "SafeTransferLib.safeTransferFrom",
+          "BalancerVault.getPoolTokens",
+          "DividerLike.issue"
+        ]
+      },
+      "necessity": {
+        "applicable": true,
+        "failed_condition": "NONE",
+        "sub_reason": "none",
+        "reason": "The target-side evidence shows no equivalent protection or delegated responsibility for the share-ratio value dependency. The mechanism source connects to asset movement and state-changing accounting sinks, indicating the contract is responsible for validating the price inputs.",
+        "evidence_refs": [
+          "previewDeposit:price-read",
+          "require(bool,string)((shares = previewDeposit(assets)) != 0,ZERO_SHARES)",
+          "SafeTransferLib.safeTransferFrom",
+          "_mint"
+        ]
+      },
+      "feasibility": {
+        "applicable": true,
+        "failed_condition": "NONE",
+        "sub_reason": "none",
+        "reason": "The deposit function is public and accessible to external attackers, and the mechanism candidate connects to asset movement and state-changing sinks.",
+        "evidence_refs": [
+          "deposit",
+          "previewDeposit",
+          "afterDeposit",
+          "SafeTransferLib.safeTransferFrom"
+        ]
+      }
+    },
+    "condition_elapsed_sec": {
+      "severity": 14.211,
+      "necessity": 10.416,
+      "feasibility": 7.213
+    },
+    "status": "ok",
+    "stopped_at": "feasibility",
+    "elapsed_sec": 31.841,
+    "e4c": {
+      "applicable": true,
+      "failed_condition": "NONE",
+      "sub_reason": "none",
+      "reason": "The deposit function is public and accessible to external attackers, and the mechanism candidate connects to asset movement and state-changing sinks.",
+      "evidence_refs": [
+        "deposit",
+        "previewDeposit",
+        "afterDeposit",
+        "SafeTransferLib.safeTransferFrom"
+      ]
+    }
+  },
+  "output_omissions": "Only duplicate condition_raw_content strings are omitted from the Harm output. Structured condition_results, evidence references, timing, and the final verdict are unchanged.",
+  "code_boundary": "The analyzed inherited deposit function includes ZERO_SHARES. These records do not demonstrate a successful transfer that mints zero shares.",
+  "path_normalization": "Only the machine-local prefix of function _pdg_file metadata is removed. Code facts, proposals, solver results, and verdicts are unchanged."
+}
