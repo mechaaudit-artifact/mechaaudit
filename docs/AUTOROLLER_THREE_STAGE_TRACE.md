@@ -27,9 +27,11 @@ evaluation record rather than silently substituting the figure's Hubble text.
 
 The final Sherlock benchmark labels `2022-11-sense_AutoRoller` VULN. The target
 is its `deposit` function in unit `U002`. The selected report
-`2022-03-prepo/H-02` is rank 0 and passes the type, operation, condition, and
-trigger gates. Its shared core operations are `asset_deposit` and
-`share_ratio_computation`. The target condition record is:
+`2022-03-prepo/H-02` is rank 0 and passes the recorded type, operation, condition,
+and path-profile checks. The archived field `tau_gate` is computed from operation,
+condition, and role features, not the report's natural-language adversarial trigger.
+Its shared core operations are `asset_deposit` and `share_ratio_computation`.
+The target condition record is:
 
 ```json
 {
@@ -48,6 +50,7 @@ trigger gates. Its shared core operations are `asset_deposit` and
 The surface entry used by the target-side mechanism unit is `deposit`; the
 retrieved route is `b2_attacker_movable_measurement`, variant
 `share_ratio_dependency`.
+This is the encoder's internal route name for asset valuation (Table II, a2).
 
 ### Concrete code facts
 
@@ -71,7 +74,7 @@ function convertToShares(uint256 assets) public view returns (uint256) {
 function totalAssets() public view returns (uint256) {
     if (maturity == MATURITY_NOT_SET)
         return asset.balanceOf(address(this));
-    // cooldown branch omitted
+    // active-series branch omitted
 }
 ```
 
