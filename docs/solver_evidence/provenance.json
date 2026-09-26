@@ -1,0 +1,366 @@
+{
+  "scope": "Existing archived records and previously captured fact-replay SMT-LIB. No new pipeline or LLM execution.",
+  "theory_fragment": "Finite enumerated datatypes, Boolean-valued predicates, equality and quantifiers; no arithmetic, arrays or symbolic Solidity state.",
+  "witness_provenance": "Production Python enumerates emitted triples after Z3 SAT; not an extracted existential model assignment.",
+  "original_archive": "docs/experiment/v10_test/V10_MDL_V0_S53_FORMAL_PROTOTYPE_V0.json",
+  "original_archive_sha256": "aba62989952c038622e77a8bfaeade537175f4d36f55177b9dca469edee6c4eb",
+  "encoder_source": "scripts/isolated_mdl_v0_s53_formal_check.py",
+  "encoder_sha256": "3b176230658470cdd967f8f69efd14573896d8808efbc1bc72a00d96f18762b7",
+  "replay_timestamp_utc": "2026-09-24T03:04:29.694507+00:00",
+  "replay_z3_version": "4.16.0",
+  "cases": [
+    {
+      "name": "autoroller",
+      "result": "sat",
+      "witness": {
+        "entry_const": "fn_5_0",
+        "entry_function": "previewDeposit",
+        "carrier_const": "fn_5_1",
+        "carrier_function": "convertToShares",
+        "path_const": "path_5_1",
+        "path_nodes": [
+          "previewDeposit",
+          "convertToShares"
+        ],
+        "m_ref_carrier_function": "previewDeposit",
+        "carrier_hint_matches": false
+      },
+      "theorem_formula_smtlib": "(exists ((w_entry_5 Fn_5) (w_carrier_5 Fn_5) (w_path_5 Path_5))\n  (and (IsEntry_5 w_entry_5)\n       (EntryAdmissible_5 w_entry_5)\n       (PublicOrExternal_5 w_entry_5)\n       (PathFromTo_5 w_path_5 w_entry_5 w_carrier_5)\n       (ZeroSupplyBranch_5 w_carrier_5)\n       (RawBalanceOfSelf_5 w_carrier_5)))",
+      "assertion_count": 340,
+      "solver_check_ms": 11.578458012081683,
+      "smtlib_reparse_result": "sat",
+      "direct_evaluation": {
+        "result": "sat",
+        "witnesses": [
+          {
+            "entry": "previewDeposit",
+            "carrier": "convertToShares",
+            "path": [
+              "previewDeposit",
+              "convertToShares"
+            ]
+          }
+        ]
+      },
+      "historical_result": "sat",
+      "label": "positive_autoroller_previewdeposit_cs11b",
+      "unrelated_schema_defaults_added": {
+        "previewDeposit": {
+          "deadline_bound_present": false,
+          "deadline_execution_primitives": [],
+          "deadline_execution_surface": false,
+          "external_value_present": false,
+          "external_value_sources": [],
+          "fixed_tolerance_bound_present": false,
+          "fixed_tolerance_bound_sources": [],
+          "price_source_read_present": false,
+          "price_source_read_sources": [],
+          "reward_weight_present": false,
+          "reward_weight_sources": [],
+          "share_ratio_present": false,
+          "share_ratio_sources": []
+        },
+        "convertToShares": {
+          "deadline_bound_present": false,
+          "deadline_execution_primitives": [],
+          "deadline_execution_surface": false,
+          "external_value_present": false,
+          "external_value_sources": [],
+          "fixed_tolerance_bound_present": false,
+          "fixed_tolerance_bound_sources": [],
+          "price_source_read_present": false,
+          "price_source_read_sources": [],
+          "reward_weight_present": false,
+          "reward_weight_sources": [],
+          "share_ratio_present": false,
+          "share_ratio_sources": []
+        },
+        "_getTargetForIssuance": {
+          "deadline_bound_present": false,
+          "deadline_execution_primitives": [],
+          "deadline_execution_surface": false,
+          "external_value_present": false,
+          "external_value_sources": [],
+          "fixed_tolerance_bound_present": false,
+          "fixed_tolerance_bound_sources": [],
+          "price_source_read_present": false,
+          "price_source_read_sources": [],
+          "reward_weight_present": false,
+          "reward_weight_sources": [],
+          "share_ratio_present": false,
+          "share_ratio_sources": []
+        },
+        "_getSpaceReserves": {
+          "deadline_bound_present": false,
+          "deadline_execution_primitives": [],
+          "deadline_execution_surface": false,
+          "external_value_present": false,
+          "external_value_sources": [],
+          "fixed_tolerance_bound_present": false,
+          "fixed_tolerance_bound_sources": [],
+          "price_source_read_present": false,
+          "price_source_read_sources": [],
+          "reward_weight_present": false,
+          "reward_weight_sources": [],
+          "share_ratio_present": false,
+          "share_ratio_sources": []
+        },
+        "totalAssets": {
+          "deadline_bound_present": false,
+          "deadline_execution_primitives": [],
+          "deadline_execution_surface": false,
+          "external_value_present": false,
+          "external_value_sources": [],
+          "fixed_tolerance_bound_present": false,
+          "fixed_tolerance_bound_sources": [],
+          "price_source_read_present": false,
+          "price_source_read_sources": [],
+          "reward_weight_present": false,
+          "reward_weight_sources": [],
+          "share_ratio_present": false,
+          "share_ratio_sources": []
+        },
+        "_decomposeShares": {
+          "deadline_bound_present": false,
+          "deadline_execution_primitives": [],
+          "deadline_execution_surface": false,
+          "external_value_present": false,
+          "external_value_sources": [],
+          "fixed_tolerance_bound_present": false,
+          "fixed_tolerance_bound_sources": [],
+          "price_source_read_present": false,
+          "price_source_read_sources": [],
+          "reward_weight_present": false,
+          "reward_weight_sources": [],
+          "share_ratio_present": false,
+          "share_ratio_sources": []
+        }
+      },
+      "file_prefix": "autoroller_previewDeposit"
+    },
+    {
+      "name": "erc4626_control",
+      "result": "unsat",
+      "witness": null,
+      "theorem_formula_smtlib": "(exists ((w_entry_6 Fn_6) (w_carrier_6 Fn_6) (w_path_6 Path_6))\n  (and (IsEntry_6 w_entry_6)\n       (EntryAdmissible_6 w_entry_6)\n       (PublicOrExternal_6 w_entry_6)\n       (PathFromTo_6 w_path_6 w_entry_6 w_carrier_6)\n       (ZeroSupplyBranch_6 w_carrier_6)\n       (RawBalanceOfSelf_6 w_carrier_6)))",
+      "assertion_count": 913,
+      "solver_check_ms": 10.1290640886873,
+      "smtlib_reparse_result": "unsat",
+      "direct_evaluation": {
+        "result": "unsat",
+        "witnesses": []
+      },
+      "historical_result": "unsat",
+      "label": "control_erc4626_deposit_cs11b",
+      "unrelated_schema_defaults_added": {
+        "deposit": {
+          "deadline_bound_present": false,
+          "deadline_execution_primitives": [],
+          "deadline_execution_surface": false,
+          "external_value_present": false,
+          "external_value_sources": [],
+          "fixed_tolerance_bound_present": false,
+          "fixed_tolerance_bound_sources": [],
+          "price_source_read_present": false,
+          "price_source_read_sources": [],
+          "reward_weight_present": false,
+          "reward_weight_sources": [],
+          "share_ratio_present": false,
+          "share_ratio_sources": []
+        },
+        "afterDeposit": {
+          "deadline_bound_present": false,
+          "deadline_execution_primitives": [],
+          "deadline_execution_surface": false,
+          "external_value_present": false,
+          "external_value_sources": [],
+          "fixed_tolerance_bound_present": false,
+          "fixed_tolerance_bound_sources": [],
+          "price_source_read_present": false,
+          "price_source_read_sources": [],
+          "reward_weight_present": false,
+          "reward_weight_sources": [],
+          "share_ratio_present": false,
+          "share_ratio_sources": []
+        },
+        "previewDeposit": {
+          "deadline_bound_present": false,
+          "deadline_execution_primitives": [],
+          "deadline_execution_surface": false,
+          "external_value_present": false,
+          "external_value_sources": [],
+          "fixed_tolerance_bound_present": false,
+          "fixed_tolerance_bound_sources": [],
+          "price_source_read_present": false,
+          "price_source_read_sources": [],
+          "reward_weight_present": false,
+          "reward_weight_sources": [],
+          "share_ratio_present": false,
+          "share_ratio_sources": []
+        },
+        "_mint": {
+          "deadline_bound_present": false,
+          "deadline_execution_primitives": [],
+          "deadline_execution_surface": false,
+          "external_value_present": false,
+          "external_value_sources": [],
+          "fixed_tolerance_bound_present": false,
+          "fixed_tolerance_bound_sources": [],
+          "price_source_read_present": false,
+          "price_source_read_sources": [],
+          "reward_weight_present": false,
+          "reward_weight_sources": [],
+          "share_ratio_present": false,
+          "share_ratio_sources": []
+        },
+        "convertToShares": {
+          "deadline_bound_present": false,
+          "deadline_execution_primitives": [],
+          "deadline_execution_surface": false,
+          "external_value_present": false,
+          "external_value_sources": [],
+          "fixed_tolerance_bound_present": false,
+          "fixed_tolerance_bound_sources": [],
+          "price_source_read_present": false,
+          "price_source_read_sources": [],
+          "reward_weight_present": false,
+          "reward_weight_sources": [],
+          "share_ratio_present": false,
+          "share_ratio_sources": []
+        },
+        "_beforeTokenTransfer": {
+          "deadline_bound_present": false,
+          "deadline_execution_primitives": [],
+          "deadline_execution_surface": false,
+          "external_value_present": false,
+          "external_value_sources": [],
+          "fixed_tolerance_bound_present": false,
+          "fixed_tolerance_bound_sources": [],
+          "price_source_read_present": false,
+          "price_source_read_sources": [],
+          "reward_weight_present": false,
+          "reward_weight_sources": [],
+          "share_ratio_present": false,
+          "share_ratio_sources": []
+        },
+        "_afterTokenTransfer": {
+          "deadline_bound_present": false,
+          "deadline_execution_primitives": [],
+          "deadline_execution_surface": false,
+          "external_value_present": false,
+          "external_value_sources": [],
+          "fixed_tolerance_bound_present": false,
+          "fixed_tolerance_bound_sources": [],
+          "price_source_read_present": false,
+          "price_source_read_sources": [],
+          "reward_weight_present": false,
+          "reward_weight_sources": [],
+          "share_ratio_present": false,
+          "share_ratio_sources": []
+        },
+        "totalSupply": {
+          "deadline_bound_present": false,
+          "deadline_execution_primitives": [],
+          "deadline_execution_surface": false,
+          "external_value_present": false,
+          "external_value_sources": [],
+          "fixed_tolerance_bound_present": false,
+          "fixed_tolerance_bound_sources": [],
+          "price_source_read_present": false,
+          "price_source_read_sources": [],
+          "reward_weight_present": false,
+          "reward_weight_sources": [],
+          "share_ratio_present": false,
+          "share_ratio_sources": []
+        },
+        "totalAssets": {
+          "deadline_bound_present": false,
+          "deadline_execution_primitives": [],
+          "deadline_execution_surface": false,
+          "external_value_present": false,
+          "external_value_sources": [],
+          "fixed_tolerance_bound_present": false,
+          "fixed_tolerance_bound_sources": [],
+          "price_source_read_present": false,
+          "price_source_read_sources": [],
+          "reward_weight_present": false,
+          "reward_weight_sources": [],
+          "share_ratio_present": false,
+          "share_ratio_sources": []
+        }
+      },
+      "file_prefix": "erc4626_deposit_control"
+    }
+  ],
+  "authority_cases": {
+    "raw_smtlib_available": false,
+    "historical_solver_log": {
+      "path": "logs/mdl_v0_mu_replay_after_gt_level_reproject_20260520_1620.json",
+      "sha256": "193fabe09c38b18c9f476e1ebe52a021343ec5855814737957db10d58fb5eade"
+    },
+    "rows_zero_based": {
+      "mover_initialize": 46,
+      "telcoin_acceptExecutorship": 692
+    },
+    "source_artifacts": {
+      "smt": {
+        "path": "logs/mdl_v0_mu_replay_after_gt_level_reproject_20260520_1620.json",
+        "sha256": "193fabe09c38b18c9f476e1ebe52a021343ec5855814737957db10d58fb5eade"
+      },
+      "retrieval": {
+        "path": "docs/experiment/v10_test/V10_MECHANISM_UNIT_REPLAY_TABLE_FULL.json",
+        "sha256": "b00651a3836e7267418fe16abedbbb6899d48462664d51f9108166db60602eaa"
+      },
+      "inputs": {
+        "path": "docs/experiment/v10_test/V10_E4C_ON_MU_SMT_ALL_INPUTS_LONGFIX_BACKUP.json",
+        "sha256": "970cc8064e5a18d1ad3b546b5414bde483101b5c489be1073376546982d938fc"
+      },
+      "results": {
+        "path": "docs/experiment/v10_test/V10_E4C_ON_MU_SMT_ALL_RESULTS_LONGFIX_RERUN.jsonl",
+        "sha256": "42a3b1b3c759de4defe505d14db7c0fc16fcce23cae944b01d202c9dccdbe339"
+      },
+      "mover_pdg": {
+        "path": "cache/v9/sherlock/pdg/2022-10-mover_HardenedTopupProxy_pdg.json",
+        "sha256": "f584ca64df2a0e7c486e189c8b1df560d93d32572a32b06fdb59243b8010adb3"
+      },
+      "tiered_pdg": {
+        "path": "cache/v9/sherlock/pdg/2022-11-telcoin_TieredOwnership_pdg.json",
+        "sha256": "1afdc994e9b2b7b40a5fd9f1671f0cf226912290a2721ca7a39c203c1029d646"
+      },
+      "factory_pdg": {
+        "path": "cache/v9/sherlock/pdg/2022-10-nftport_Factory_pdg.json",
+        "sha256": "5679a6f77cd3f58a4b2299b1b48725d0d7f5b8dc642c915b3d03c9797b30f8af"
+      },
+      "encoder": {
+        "path": "scripts/isolated_mdl_v0_s53_formal_check.py",
+        "sha256": "3b176230658470cdd967f8f69efd14573896d8808efbc1bc72a00d96f18762b7"
+      },
+      "registry": {
+        "path": "artifact_workspace/theorem_registry/registry_B.json",
+        "sha256": "58973a737a6d1a0fd7329e7b72c59660f02a4f9545d952617cca6a78c2144daa"
+      },
+      "manifest": {
+        "path": "artifact_workspace/benchmark/manifest.jsonl",
+        "sha256": "fa99dc02b41696d52c308663a934ce7e51a6b60956c1c3f77526949a7eb75000"
+      },
+      "reference": {
+        "path": "docs/experiment/V10_EXPERIMENT_REFERENCE_BOOK.md",
+        "sha256": "6b043f8616d1c27836cc15f1b3049d39b2f5d343383a38907942e44b21c5b24a"
+      }
+    },
+    "scope": "Exact current-source excerpts only; no historical SMT-LIB dump for these two chosen calls is claimed. Saved SAT/UNSAT outcomes and recovered bindings are historical records. The stored witness is recovered by code after SAT, not claimed to be a printed Z3 model."
+  },
+  "files_sha256": {
+    "README.md": "0cb08398ad58ae82608b3cf67a20a975ab918535ffd6d90a32f10ebf6c9eeab7",
+    "autoroller_previewDeposit.archived.json": "5884bc4101c83f95e1b2df9c0c4c0f34bf4c7d81f8c6b8b271d1d87c6d3eec66",
+    "autoroller_previewDeposit.input.json": "03de2ba6dcfded4e7c2c2b900c700208bb61fbbfb4c347cc3e36a7426b6f726f",
+    "autoroller_previewDeposit.output.json": "c6a8100408d2caf216fbf8e4242b5de7d26d868367a41c63515c23f495cf0e71",
+    "autoroller_previewDeposit.smt2": "87187d60fdece050be3eef9da8777e1c65e3ab5fc815150c5b0da9dc053dbc66",
+    "erc4626_deposit_control.archived.json": "fc44f5e8e9fd56127d9d00ad370a3132bc5681f1db7b938a7f18b8d6bee39708",
+    "erc4626_deposit_control.input.json": "855da974dccdc3bb2242345ce5bfa3db111cfa67682fb67a0cda2d7cc56b15dc",
+    "erc4626_deposit_control.output.json": "eaef47f50f93f8310089ab5f04ae7f81695aedb835179f13b885bc18d0ee8bde",
+    "erc4626_deposit_control.smt2": "c30b665e756898e3f2a703cb5a1d2d8aaf02c69a3aeece77ecddbc9707066205",
+    "mover_initialize.archived.json": "5aabdf986934288cee4ce2bd2d2a3b60d97731923dd0bf99d84f096a9777cf24",
+    "telcoin_acceptExecutorship.archived.json": "eb5464f277282c177dce985ded043a5ab2ee6583d06c239ab43a0c92a4274aa7"
+  }
+}

@@ -1,0 +1,373 @@
+{
+  "label": "positive_autoroller_previewdeposit_cs11b",
+  "contract": "2022-11-sense_AutoRoller",
+  "benchmark_label": "VULN",
+  "contract_focus_types": [],
+  "entry_function": "previewDeposit",
+  "report_id": "2022-03-prepo/H-02",
+  "expected": "sat",
+  "theorem_route": {
+    "theorem_basis": "b2_attacker_movable_measurement",
+    "route_variant": "bootstrap_share_inflation",
+    "template_id": "C-S11b",
+    "protected_action_kind": "valuation_dependent_decision",
+    "protected_object_kind": "valuation_input",
+    "route_axes": {
+      "measurement_source_kind": "share_ratio",
+      "manipulation_channel": "bootstrap_balance_inflow",
+      "decision_kind": "valuation_quote"
+    },
+    "route_basis": "template_id=C-S11b + axes=share_ratio/bootstrap_balance_inflow/valuation_quote"
+  },
+  "m_ref_surface_entry_binding": {
+    "bound_surface_entry": "previewDeposit",
+    "binding_source": "tau_ref.surface_entry"
+  },
+  "path_candidates": {
+    "previewDeposit": [
+      "previewDeposit"
+    ],
+    "convertToShares": [
+      "previewDeposit",
+      "convertToShares"
+    ],
+    "_getTargetForIssuance": [
+      "previewDeposit",
+      "_getTargetForIssuance"
+    ],
+    "_getSpaceReserves": [
+      "previewDeposit",
+      "_getSpaceReserves"
+    ],
+    "totalAssets": [
+      "previewDeposit",
+      "convertToShares",
+      "totalAssets"
+    ],
+    "_decomposeShares": [
+      "previewDeposit",
+      "convertToShares",
+      "totalAssets",
+      "_decomposeShares"
+    ]
+  },
+  "caller_guard_state_vars": [
+    "MATURITY_NOT_SET",
+    "WAD",
+    "adapter",
+    "allowance",
+    "asset",
+    "balanceOf",
+    "balancerVault",
+    "divider",
+    "ifee",
+    "initScale",
+    "lastRoller",
+    "lastSettle",
+    "maturity",
+    "owner",
+    "periphery",
+    "poolId",
+    "pt",
+    "pti",
+    "space",
+    "targetDuration",
+    "targetedRate",
+    "totalSupply",
+    "utils",
+    "yt"
+  ],
+  "function_facts": [
+    {
+      "name": "previewDeposit",
+      "visibility": "public",
+      "parameter_names": [
+        "assets"
+      ],
+      "min_out_parameter_names": [],
+      "min_out_bound_present": false,
+      "deadline_bound_present": false,
+      "deadline_execution_primitives": [],
+      "deadline_execution_surface": false,
+      "fixed_tolerance_bound_sources": [],
+      "fixed_tolerance_bound_present": false,
+      "price_source_read_sources": [],
+      "price_source_read_present": false,
+      "reward_weight_sources": [],
+      "reward_weight_present": false,
+      "share_ratio_sources": [],
+      "share_ratio_present": false,
+      "external_value_sources": [],
+      "external_value_present": false,
+      "asset_execution_primitives": [],
+      "asset_execution_surface": false,
+      "cei_violation_present": false,
+      "cei_violation_variables": [],
+      "zero_supply_branch": true,
+      "raw_balance_of_self": false,
+      "is_entry": true,
+      "initializer_surface": false,
+      "auth_guard_present": false,
+      "writes_any_transitively": false,
+      "authority_primitive_present": false,
+      "caller_guard_state_writes": [],
+      "non_init_state_writes": [],
+      "transitive_state_writes": [],
+      "closure_functions": [
+        "previewDeposit",
+        "_getTargetForIssuance",
+        "_getSpaceReserves"
+      ],
+      "slither_chain": [
+        "previewDeposit",
+        "convertToShares"
+      ]
+    },
+    {
+      "name": "convertToShares",
+      "visibility": "public",
+      "parameter_names": [
+        "assets"
+      ],
+      "min_out_parameter_names": [],
+      "min_out_bound_present": false,
+      "deadline_bound_present": false,
+      "deadline_execution_primitives": [],
+      "deadline_execution_surface": false,
+      "fixed_tolerance_bound_sources": [],
+      "fixed_tolerance_bound_present": false,
+      "price_source_read_sources": [],
+      "price_source_read_present": false,
+      "reward_weight_sources": [],
+      "reward_weight_present": false,
+      "share_ratio_sources": [],
+      "share_ratio_present": false,
+      "external_value_sources": [],
+      "external_value_present": false,
+      "asset_execution_primitives": [],
+      "asset_execution_surface": false,
+      "cei_violation_present": false,
+      "cei_violation_variables": [],
+      "zero_supply_branch": true,
+      "raw_balance_of_self": true,
+      "is_entry": false,
+      "initializer_surface": false,
+      "auth_guard_present": false,
+      "writes_any_transitively": false,
+      "authority_primitive_present": false,
+      "caller_guard_state_writes": [],
+      "non_init_state_writes": [],
+      "transitive_state_writes": [],
+      "closure_functions": [
+        "convertToShares",
+        "totalAssets",
+        "_getSpaceReserves",
+        "_decomposeShares"
+      ],
+      "slither_chain": [
+        "convertToShares",
+        "totalAssets"
+      ]
+    },
+    {
+      "name": "_getTargetForIssuance",
+      "visibility": "internal",
+      "parameter_names": [
+        "ptReserves",
+        "targetReserves",
+        "targetBal",
+        "scale"
+      ],
+      "min_out_parameter_names": [],
+      "min_out_bound_present": false,
+      "deadline_bound_present": false,
+      "deadline_execution_primitives": [],
+      "deadline_execution_surface": false,
+      "fixed_tolerance_bound_sources": [],
+      "fixed_tolerance_bound_present": false,
+      "price_source_read_sources": [],
+      "price_source_read_present": false,
+      "reward_weight_sources": [],
+      "reward_weight_present": false,
+      "share_ratio_sources": [],
+      "share_ratio_present": false,
+      "external_value_sources": [],
+      "external_value_present": false,
+      "asset_execution_primitives": [],
+      "asset_execution_surface": false,
+      "cei_violation_present": false,
+      "cei_violation_variables": [],
+      "zero_supply_branch": false,
+      "raw_balance_of_self": false,
+      "is_entry": false,
+      "initializer_surface": false,
+      "auth_guard_present": false,
+      "writes_any_transitively": false,
+      "authority_primitive_present": false,
+      "caller_guard_state_writes": [],
+      "non_init_state_writes": [],
+      "transitive_state_writes": [],
+      "closure_functions": [
+        "_getTargetForIssuance"
+      ],
+      "slither_chain": [
+        "_getTargetForIssuance"
+      ]
+    },
+    {
+      "name": "_getSpaceReserves",
+      "visibility": "internal",
+      "parameter_names": [],
+      "min_out_parameter_names": [],
+      "min_out_bound_present": false,
+      "deadline_bound_present": false,
+      "deadline_execution_primitives": [],
+      "deadline_execution_surface": false,
+      "fixed_tolerance_bound_sources": [],
+      "fixed_tolerance_bound_present": false,
+      "price_source_read_sources": [],
+      "price_source_read_present": false,
+      "reward_weight_sources": [],
+      "reward_weight_present": false,
+      "share_ratio_sources": [],
+      "share_ratio_present": false,
+      "external_value_sources": [],
+      "external_value_present": false,
+      "asset_execution_primitives": [],
+      "asset_execution_surface": false,
+      "cei_violation_present": false,
+      "cei_violation_variables": [],
+      "zero_supply_branch": false,
+      "raw_balance_of_self": false,
+      "is_entry": false,
+      "initializer_surface": false,
+      "auth_guard_present": false,
+      "writes_any_transitively": false,
+      "authority_primitive_present": false,
+      "caller_guard_state_writes": [],
+      "non_init_state_writes": [],
+      "transitive_state_writes": [],
+      "closure_functions": [
+        "_getSpaceReserves"
+      ],
+      "slither_chain": [
+        "_getSpaceReserves"
+      ]
+    },
+    {
+      "name": "totalAssets",
+      "visibility": "public",
+      "parameter_names": [],
+      "min_out_parameter_names": [],
+      "min_out_bound_present": false,
+      "deadline_bound_present": false,
+      "deadline_execution_primitives": [],
+      "deadline_execution_surface": false,
+      "fixed_tolerance_bound_sources": [],
+      "fixed_tolerance_bound_present": false,
+      "price_source_read_sources": [],
+      "price_source_read_present": false,
+      "reward_weight_sources": [],
+      "reward_weight_present": false,
+      "share_ratio_sources": [],
+      "share_ratio_present": false,
+      "external_value_sources": [],
+      "external_value_present": false,
+      "asset_execution_primitives": [],
+      "asset_execution_surface": false,
+      "cei_violation_present": false,
+      "cei_violation_variables": [],
+      "zero_supply_branch": false,
+      "raw_balance_of_self": true,
+      "is_entry": false,
+      "initializer_surface": false,
+      "auth_guard_present": false,
+      "writes_any_transitively": false,
+      "authority_primitive_present": false,
+      "caller_guard_state_writes": [],
+      "non_init_state_writes": [],
+      "transitive_state_writes": [],
+      "closure_functions": [
+        "totalAssets",
+        "_getSpaceReserves",
+        "_decomposeShares"
+      ],
+      "slither_chain": [
+        "totalAssets",
+        "_getSpaceReserves",
+        "_decomposeShares"
+      ]
+    },
+    {
+      "name": "_decomposeShares",
+      "visibility": "internal",
+      "parameter_names": [
+        "ptReserves",
+        "targetReserves",
+        "shares",
+        "withLoose"
+      ],
+      "min_out_parameter_names": [],
+      "min_out_bound_present": false,
+      "deadline_bound_present": false,
+      "deadline_execution_primitives": [],
+      "deadline_execution_surface": false,
+      "fixed_tolerance_bound_sources": [],
+      "fixed_tolerance_bound_present": false,
+      "price_source_read_sources": [],
+      "price_source_read_present": false,
+      "reward_weight_sources": [],
+      "reward_weight_present": false,
+      "share_ratio_sources": [],
+      "share_ratio_present": false,
+      "external_value_sources": [],
+      "external_value_present": false,
+      "asset_execution_primitives": [],
+      "asset_execution_surface": false,
+      "cei_violation_present": false,
+      "cei_violation_variables": [],
+      "zero_supply_branch": false,
+      "raw_balance_of_self": true,
+      "is_entry": false,
+      "initializer_surface": false,
+      "auth_guard_present": false,
+      "writes_any_transitively": false,
+      "authority_primitive_present": false,
+      "caller_guard_state_writes": [],
+      "non_init_state_writes": [],
+      "transitive_state_writes": [],
+      "closure_functions": [
+        "_decomposeShares"
+      ],
+      "slither_chain": [
+        "_decomposeShares"
+      ]
+    }
+  ],
+  "m_ref_summary": {
+    "report_type": "S1-1",
+    "pi_ref": {
+      "function_core_ops": [
+        "asset_deposit",
+        "share_ratio_computation",
+        "spot_price_read"
+      ]
+    },
+    "best_function_condition": {
+      "template_id": "C-S11b",
+      "protected_action_kind": "valuation_dependent_decision",
+      "protected_object_kind": "valuation_input",
+      "deficiency_kind": "missing",
+      "slots": {
+        "protected_action": "previewDeposit",
+        "source_kind": "share_ratio",
+        "value_anchor": "initial totalSupply / totalAssets not seeded"
+      }
+    },
+    "tau_ref": {
+      "surface_entry": "previewDeposit",
+      "carrier_function": "previewDeposit",
+      "target_path_bundle": []
+    }
+  }
+}

@@ -7,6 +7,12 @@ through registry admission, SMT, and Harm Verdict. The Mover/Telcoin cases are
 not part of this page; they are documented separately for the verifier
 independence question.
 
+The [solver evidence supplement](solver_evidence/README.md) provides complete
+raw SMT-LIB, inputs, outputs, and provenance for a separate archived AutoRoller
+`previewDeposit` check and an ERC4626 control. That archived-fact replay uses
+the `bootstrap_share_inflation` route. The final `deposit` trace below uses
+`share_ratio_dependency`, and its result should not be confused with that replay.
+
 ## AutoRoller.deposit: the paper running example
 
 The paper's motivating example uses `2022-11-sense_AutoRoller`. Figure 1

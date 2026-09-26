@@ -6,6 +6,11 @@ model-proposed missing-guard condition is accepted or rejected by independent
 code facts. It is not the paper's Figure 2 running example; that AutoRoller
 three-stage trace is documented on a separate page.
 
+The [solver evidence supplement](solver_evidence/README.md) now provides the
+historical input/proposal records, code facts, SAT/UNSAT results, and provenance
+for this pair. It also provides complete raw SMT-LIB from a separately identified
+archived-fact replay. No historical SMT-LIB dump is claimed for the two calls here.
+
 ## 1. Positive case: `HardenedTopupProxy.initialize`
 
 Target case: `2022-10-mover_HardenedTopupProxy` (benchmark label VULN).

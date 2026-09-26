@@ -1,0 +1,785 @@
+{
+  "kind": "historical_result_and_evidence_not_raw_smtlib",
+  "smt_row_index_zero_based": 46,
+  "archived_smt_row": {
+    "case_id": "2022-10-mover_HardenedTopupProxy",
+    "unit_id": "2022-10-mover_HardenedTopupProxy::U001",
+    "rep_function": "2022-10-mover_HardenedTopupProxy.initialize",
+    "cluster_member_ids": [
+      "2022-10-mover_HardenedTopupProxy.initialize"
+    ],
+    "support_member": "2022-10-mover_HardenedTopupProxy.initialize",
+    "supporters": [
+      "2022-10-mover_HardenedTopupProxy.initialize"
+    ],
+    "supporter_gt_labels": {
+      "2022-10-mover_HardenedTopupProxy.initialize": "GT"
+    },
+    "target_function": "initialize",
+    "report_id": "2021-08-notional/H-08",
+    "report_rank": 1,
+    "benchmark_label": "VULN",
+    "expected_verdict": "",
+    "gt_label": "GT",
+    "support_member_gt_label": "GT",
+    "is_gt": true,
+    "target_final_verdict": null,
+    "report_verdict": null,
+    "route": {
+      "theorem_basis": "b5_authority_handoff_or_escalation",
+      "route_variant": "role_self_escalation_or_acl_bypass",
+      "template_id": "C-S53a",
+      "protected_action_kind": "authority_assignment",
+      "protected_object_kind": "caller_authority",
+      "route_axes": {
+        "entry_kind": "initializer_entry",
+        "authority_state_kind": "caller_authority_state",
+        "downstream_privileged_kind": "future_privileged_authority"
+      },
+      "route_basis": "template_id=C-S53a + axes=initializer_entry/caller_authority_state/future_privileged_authority"
+    },
+    "solver_result": "sat",
+    "witness": {
+      "entry_const": "fn_46_0",
+      "entry_function": "initialize",
+      "carrier_const": "fn_46_0",
+      "carrier_function": "initialize",
+      "path_const": "path_46_0",
+      "path_nodes": [
+        "initialize"
+      ],
+      "m_ref_carrier_function": "initialize",
+      "carrier_hint_matches": true
+    },
+    "m_ref_alignment": {
+      "m_ref_report_type": "S5-3",
+      "m_ref_function_core_ops": [
+        "privileged_state_mutation",
+        "role_assignment"
+      ],
+      "m_ref_best_function_condition": {
+        "template_id": "C-S53a",
+        "protected_action_kind": "authority_assignment",
+        "protected_object_kind": "caller_authority",
+        "deficiency_kind": "missing",
+        "slots": {
+          "authority_basis": "initializer_once",
+          "protected_action": "initialize"
+        }
+      },
+      "m_ref_theorem_route": {
+        "theorem_basis": "b5_authority_handoff_or_escalation",
+        "route_variant": "role_self_escalation_or_acl_bypass",
+        "template_id": "C-S53a",
+        "protected_action_kind": "authority_assignment",
+        "protected_object_kind": "caller_authority",
+        "route_axes": {
+          "entry_kind": "initializer_entry",
+          "authority_state_kind": "caller_authority_state",
+          "downstream_privileged_kind": "future_privileged_authority"
+        },
+        "route_basis": "template_id=C-S53a + axes=initializer_entry/caller_authority_state/future_privileged_authority"
+      },
+      "m_ref_theorem_basis": "b5_authority_handoff_or_escalation",
+      "m_ref_route_variant": "role_self_escalation_or_acl_bypass",
+      "m_ref_surface_entry_binding": {
+        "bound_surface_entry": "initialize",
+        "binding_source": "tau_ref.surface_entry"
+      },
+      "m_ref_tau_ref": {
+        "surface_entry": "initialize",
+        "carrier_function": "initialize",
+        "target_path_bundle": [],
+        "authority_basis": "role_assignment",
+        "role_action_consistency": 4
+      },
+      "code_side_initializer_surface": true,
+      "code_side_no_auth_guard": true,
+      "code_side_entry_asset_execution": false,
+      "code_side_entry_min_out_bound_present": false,
+      "code_side_entry_deadline_bound_present": false,
+      "code_side_deadline_execution_carriers": [],
+      "code_side_deadline_execution_primitives": {},
+      "code_side_fixed_tolerance_carriers": [],
+      "code_side_fixed_tolerance_sources": {},
+      "code_side_price_source_read_carriers": [],
+      "code_side_price_source_read_sources": {},
+      "code_side_reward_weight_carriers": [],
+      "code_side_reward_weight_sources": {},
+      "code_side_share_ratio_carriers": [],
+      "code_side_share_ratio_sources": {},
+      "code_side_external_value_carriers": [],
+      "code_side_external_value_sources": {},
+      "code_side_entry_cei_violation": false,
+      "code_side_entry_cei_variables": [],
+      "code_side_zero_supply_carriers": [],
+      "code_side_raw_balance_carriers": [],
+      "code_side_exact_authority_carriers": [
+        "initialize",
+        "_setupRole",
+        "_grantRole"
+      ],
+      "code_side_caller_guard_state_carriers": [
+        "initialize",
+        "_setupRole",
+        "_grantRole"
+      ],
+      "code_side_non_init_mutation_carriers": [
+        "initialize",
+        "_setupRole",
+        "_grantRole"
+      ],
+      "caller_guard_state_vars": [
+        "APPROVE_METHOD_ID",
+        "CHAIN_ID",
+        "CHAIN_ID_RLP",
+        "DEFAULT_ADMIN_ROLE",
+        "ETH_TOKEN_ADDRESS",
+        "LIST_LONG_START",
+        "LIST_SHORT_START",
+        "STRING_LONG_START",
+        "STRING_SHORT_START",
+        "TRUSTED_PAUSER_ROLE",
+        "TX_PROOF_RESULT_ABSENT",
+        "TX_PROOF_RESULT_PRESENT",
+        "TX_ROOT_HASH_INDEX",
+        "WORD_SIZE",
+        "_roles",
+        "allowanceTreshold",
+        "cardPartnerAddress",
+        "cardTopupToken",
+        "exchangeFee",
+        "exchangeProxyContract",
+        "maxAmount",
+        "minAmount",
+        "paused",
+        "topupFee",
+        "trustedRegistryContract",
+        "yieldDistributorAddress"
+      ]
+    }
+  },
+  "retrieval_records": [
+    {
+      "unit_id": "2022-10-mover_HardenedTopupProxy::U001",
+      "report": {
+        "report_id": "2021-08-notional/H-08",
+        "gt_label": "GT",
+        "support_member_gt_label": "GT",
+        "type_r": "S5-3",
+        "rank_key": [
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          4,
+          0
+        ],
+        "support_member": "2022-10-mover_HardenedTopupProxy.initialize",
+        "supporters": [
+          "2022-10-mover_HardenedTopupProxy.initialize"
+        ],
+        "supporter_gt_labels": {
+          "2022-10-mover_HardenedTopupProxy.initialize": "GT"
+        },
+        "m_ref": {
+          "report_id": "2021-08-notional/H-08",
+          "target_function": "initialize",
+          "target_contract": "2022-10-mover_HardenedTopupProxy",
+          "support_function": "initialize",
+          "proof_anchor_function": "initialize",
+          "report_type": "S5-3",
+          "candidate_types": [
+            "S5-3"
+          ],
+          "pi_ref": {
+            "function_core_ops": [
+              "privileged_state_mutation",
+              "role_assignment"
+            ],
+            "report_core_ops": [
+              "role_assignment"
+            ],
+            "shared_core_ops": [
+              "role_assignment"
+            ],
+            "shared_core_relations": [],
+            "rel_core_match_count": 0
+          },
+          "c_ref": {
+            "function_condition_families": [
+              "C-S53a",
+              "C-S53e"
+            ],
+            "report_condition_families": [
+              "C-S53a"
+            ],
+            "family_support": true,
+            "hard_contradiction": false,
+            "exact_template": 1,
+            "exact_slots": 1,
+            "hard_conflicts": 0,
+            "best_function_condition": {
+              "template_id": "C-S53a",
+              "protected_action_kind": "authority_assignment",
+              "protected_object_kind": "caller_authority",
+              "deficiency_kind": "missing",
+              "slots": {
+                "authority_basis": "initializer_once",
+                "protected_action": "initialize"
+              }
+            },
+            "best_report_condition": {
+              "template_id": "C-S53a",
+              "protected_action_kind": "authority_assignment",
+              "protected_object_kind": "caller_authority",
+              "deficiency_kind": "missing",
+              "slots": {
+                "authority_basis": "initializer_once",
+                "protected_action": "initialize",
+                "value_anchor": "initialize() function"
+              }
+            },
+            "best_pair_metrics": {
+              "exact_template": 1,
+              "exact_slots": 1,
+              "hard_conflicts": 0
+            }
+          },
+          "tau_ref": {
+            "authority_basis": "role_assignment",
+            "price_source": "",
+            "surface_entry": "initialize",
+            "carrier_function": "initialize",
+            "target_path_bundle": [],
+            "report_path_bundle": [],
+            "role_action_consistency": 4,
+            "surface_action_affinity": 0,
+            "tau_gate": true,
+            "tau_score": 0,
+            "tau_reason": "neutral"
+          },
+          "retrieval_record": {
+            "report_id": "2021-08-notional/H-08",
+            "type_r": "S5-3",
+            "candidate_types": [
+              "S5-3"
+            ],
+            "type_compat": true,
+            "pi_core_gate": true,
+            "c_gate": true,
+            "tau_gate": true,
+            "sim_gate": 0.75,
+            "gate_pass": true,
+            "rank_key": [
+              1,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              4,
+              0
+            ],
+            "core_op_overlap": [
+              "role_assignment"
+            ],
+            "comparable_report_rel_count": 0,
+            "rel_core_match_count": 0,
+            "c_exact_template": 1,
+            "c_exact_slots": 1,
+            "c_hard_conflicts": 0,
+            "tau_score": 0,
+            "tau_reason": "neutral",
+            "gt_label": "GT",
+            "is_gt": true
+          }
+        }
+      }
+    }
+  ],
+  "input_core": [
+    {
+      "input_id": "2022-10-mover_HardenedTopupProxy::2022-10-mover_HardenedTopupProxy::U001::initialize::2021-08-notional/H-08",
+      "smt": {
+        "solver_result": "sat",
+        "route": {
+          "theorem_basis": "b5_authority_handoff_or_escalation",
+          "route_variant": "role_self_escalation_or_acl_bypass",
+          "template_id": "C-S53a",
+          "protected_action_kind": "authority_assignment",
+          "protected_object_kind": "caller_authority",
+          "route_axes": {
+            "entry_kind": "initializer_entry",
+            "authority_state_kind": "caller_authority_state",
+            "downstream_privileged_kind": "future_privileged_authority"
+          },
+          "route_basis": "template_id=C-S53a + axes=initializer_entry/caller_authority_state/future_privileged_authority"
+        },
+        "witness": {
+          "entry_const": "fn_46_0",
+          "entry_function": "initialize",
+          "carrier_const": "fn_46_0",
+          "carrier_function": "initialize",
+          "path_const": "path_46_0",
+          "path_nodes": [
+            "initialize"
+          ],
+          "m_ref_carrier_function": "initialize",
+          "carrier_hint_matches": true
+        },
+        "m_ref_alignment": {
+          "m_ref_report_type": "S5-3",
+          "m_ref_function_core_ops": [
+            "privileged_state_mutation",
+            "role_assignment"
+          ],
+          "m_ref_best_function_condition": {
+            "template_id": "C-S53a",
+            "protected_action_kind": "authority_assignment",
+            "protected_object_kind": "caller_authority",
+            "deficiency_kind": "missing",
+            "slots": {
+              "authority_basis": "initializer_once",
+              "protected_action": "initialize"
+            }
+          },
+          "m_ref_theorem_route": {
+            "theorem_basis": "b5_authority_handoff_or_escalation",
+            "route_variant": "role_self_escalation_or_acl_bypass",
+            "template_id": "C-S53a",
+            "protected_action_kind": "authority_assignment",
+            "protected_object_kind": "caller_authority",
+            "route_axes": {
+              "entry_kind": "initializer_entry",
+              "authority_state_kind": "caller_authority_state",
+              "downstream_privileged_kind": "future_privileged_authority"
+            },
+            "route_basis": "template_id=C-S53a + axes=initializer_entry/caller_authority_state/future_privileged_authority"
+          },
+          "m_ref_theorem_basis": "b5_authority_handoff_or_escalation",
+          "m_ref_route_variant": "role_self_escalation_or_acl_bypass",
+          "m_ref_surface_entry_binding": {
+            "bound_surface_entry": "initialize",
+            "binding_source": "tau_ref.surface_entry"
+          },
+          "m_ref_tau_ref": {
+            "surface_entry": "initialize",
+            "carrier_function": "initialize",
+            "target_path_bundle": [],
+            "authority_basis": "role_assignment",
+            "role_action_consistency": 4
+          },
+          "code_side_initializer_surface": true,
+          "code_side_no_auth_guard": true,
+          "code_side_entry_asset_execution": false,
+          "code_side_entry_min_out_bound_present": false,
+          "code_side_entry_deadline_bound_present": false,
+          "code_side_deadline_execution_carriers": [],
+          "code_side_deadline_execution_primitives": {},
+          "code_side_fixed_tolerance_carriers": [],
+          "code_side_fixed_tolerance_sources": {},
+          "code_side_price_source_read_carriers": [],
+          "code_side_price_source_read_sources": {},
+          "code_side_reward_weight_carriers": [],
+          "code_side_reward_weight_sources": {},
+          "code_side_share_ratio_carriers": [],
+          "code_side_share_ratio_sources": {},
+          "code_side_external_value_carriers": [],
+          "code_side_external_value_sources": {},
+          "code_side_entry_cei_violation": false,
+          "code_side_entry_cei_variables": [],
+          "code_side_zero_supply_carriers": [],
+          "code_side_raw_balance_carriers": [],
+          "code_side_exact_authority_carriers": [
+            "initialize",
+            "_setupRole",
+            "_grantRole"
+          ],
+          "code_side_caller_guard_state_carriers": [
+            "initialize",
+            "_setupRole",
+            "_grantRole"
+          ],
+          "code_side_non_init_mutation_carriers": [
+            "initialize",
+            "_setupRole",
+            "_grantRole"
+          ],
+          "caller_guard_state_vars": [
+            "APPROVE_METHOD_ID",
+            "CHAIN_ID",
+            "CHAIN_ID_RLP",
+            "DEFAULT_ADMIN_ROLE",
+            "ETH_TOKEN_ADDRESS",
+            "LIST_LONG_START",
+            "LIST_SHORT_START",
+            "STRING_LONG_START",
+            "STRING_SHORT_START",
+            "TRUSTED_PAUSER_ROLE",
+            "TX_PROOF_RESULT_ABSENT",
+            "TX_PROOF_RESULT_PRESENT",
+            "TX_ROOT_HASH_INDEX",
+            "WORD_SIZE",
+            "_roles",
+            "allowanceTreshold",
+            "cardPartnerAddress",
+            "cardTopupToken",
+            "exchangeFee",
+            "exchangeProxyContract",
+            "maxAmount",
+            "minAmount",
+            "paused",
+            "topupFee",
+            "trustedRegistryContract",
+            "yieldDistributorAddress"
+          ]
+        }
+      },
+      "m_ref": {
+        "report_id": "2021-08-notional/H-08",
+        "target_function": "initialize",
+        "target_contract": "2022-10-mover_HardenedTopupProxy",
+        "support_function": "initialize",
+        "proof_anchor_function": "initialize",
+        "report_type": "S5-3",
+        "candidate_types": [
+          "S5-3"
+        ],
+        "pi_ref": {
+          "function_core_ops": [
+            "privileged_state_mutation",
+            "role_assignment"
+          ],
+          "report_core_ops": [
+            "role_assignment"
+          ],
+          "shared_core_ops": [
+            "role_assignment"
+          ],
+          "shared_core_relations": [],
+          "rel_core_match_count": 0
+        },
+        "c_ref": {
+          "function_condition_families": [
+            "C-S53a",
+            "C-S53e"
+          ],
+          "report_condition_families": [
+            "C-S53a"
+          ],
+          "family_support": true,
+          "hard_contradiction": false,
+          "exact_template": 1,
+          "exact_slots": 1,
+          "hard_conflicts": 0,
+          "best_function_condition": {
+            "template_id": "C-S53a",
+            "protected_action_kind": "authority_assignment",
+            "protected_object_kind": "caller_authority",
+            "deficiency_kind": "missing",
+            "slots": {
+              "authority_basis": "initializer_once",
+              "protected_action": "initialize"
+            }
+          },
+          "best_report_condition": {
+            "template_id": "C-S53a",
+            "protected_action_kind": "authority_assignment",
+            "protected_object_kind": "caller_authority",
+            "deficiency_kind": "missing",
+            "slots": {
+              "authority_basis": "initializer_once",
+              "protected_action": "initialize",
+              "value_anchor": "initialize() function"
+            }
+          },
+          "best_pair_metrics": {
+            "exact_template": 1,
+            "exact_slots": 1,
+            "hard_conflicts": 0
+          }
+        },
+        "tau_ref": {
+          "authority_basis": "role_assignment",
+          "price_source": "",
+          "surface_entry": "initialize",
+          "carrier_function": "initialize",
+          "target_path_bundle": [],
+          "report_path_bundle": [],
+          "role_action_consistency": 4,
+          "surface_action_affinity": 0,
+          "tau_gate": true,
+          "tau_score": 0,
+          "tau_reason": "neutral"
+        },
+        "retrieval_record": {
+          "report_id": "2021-08-notional/H-08",
+          "type_r": "S5-3",
+          "candidate_types": [
+            "S5-3"
+          ],
+          "type_compat": true,
+          "pi_core_gate": true,
+          "c_gate": true,
+          "tau_gate": true,
+          "sim_gate": 0.75,
+          "gate_pass": true,
+          "rank_key": [
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            4,
+            0
+          ],
+          "core_op_overlap": [
+            "role_assignment"
+          ],
+          "comparable_report_rel_count": 0,
+          "rel_core_match_count": 0,
+          "c_exact_template": 1,
+          "c_exact_slots": 1,
+          "c_hard_conflicts": 0,
+          "tau_score": 0,
+          "tau_reason": "neutral",
+          "gt_label": "GT",
+          "is_gt": true
+        }
+      },
+      "entry_routes": {
+        "entry_function": "initialize",
+        "entry_function_is_synthetic": false,
+        "structural_anchor_function": "initialize",
+        "direct_external_or_public": true,
+        "visibility": "public",
+        "modifiers": [
+          "initializer"
+        ],
+        "called_by": [],
+        "internal_calls": [
+          "initializer",
+          "_msgSender",
+          "_setupRole"
+        ],
+        "external_calls": [],
+        "require_conditions": []
+      },
+      "topk_reports": {
+        "ids": [
+          "2022-08-rigor/M-14",
+          "2021-08-notional/H-08",
+          "2021-11-unlock/M-08",
+          "2022-03-joyn/H-04",
+          "2022-10-thegraph/M-01"
+        ],
+        "gt_labels": [
+          "GT",
+          "GT",
+          "GT",
+          "GT",
+          "GT"
+        ],
+        "types": [
+          "S5-3",
+          "S5-3",
+          "S5-3",
+          "S5-3",
+          "S5-3"
+        ],
+        "support_map": {
+          "2022-08-rigor/M-14": {
+            "support_member": "2022-10-mover_HardenedTopupProxy.initialize",
+            "supporters": [
+              "2022-10-mover_HardenedTopupProxy.initialize"
+            ]
+          },
+          "2021-08-notional/H-08": {
+            "support_member": "2022-10-mover_HardenedTopupProxy.initialize",
+            "supporters": [
+              "2022-10-mover_HardenedTopupProxy.initialize"
+            ]
+          },
+          "2021-11-unlock/M-08": {
+            "support_member": "2022-10-mover_HardenedTopupProxy.initialize",
+            "supporters": [
+              "2022-10-mover_HardenedTopupProxy.initialize"
+            ]
+          },
+          "2022-03-joyn/H-04": {
+            "support_member": "2022-10-mover_HardenedTopupProxy.initialize",
+            "supporters": [
+              "2022-10-mover_HardenedTopupProxy.initialize"
+            ]
+          },
+          "2022-10-thegraph/M-01": {
+            "support_member": "2022-10-mover_HardenedTopupProxy.initialize",
+            "supporters": [
+              "2022-10-mover_HardenedTopupProxy.initialize"
+            ]
+          }
+        },
+        "current_report_support": {
+          "support_member": "2022-10-mover_HardenedTopupProxy.initialize",
+          "supporters": [
+            "2022-10-mover_HardenedTopupProxy.initialize"
+          ],
+          "supporter_gt_labels": {
+            "2022-10-mover_HardenedTopupProxy.initialize": "GT"
+          }
+        }
+      }
+    }
+  ],
+  "pdg_functions": [
+    {
+      "name": "_setupRole",
+      "visibility": "internal",
+      "modifiers": [],
+      "require_conditions": [],
+      "internal_calls": [
+        "_grantRole"
+      ],
+      "state_vars_read": [],
+      "state_vars_written": [],
+      "source": "    function _setupRole(bytes32 role, address account) internal virtual {\n        _grantRole(role, account);\n    }",
+      "start_line": 212,
+      "end_line": 214
+    },
+    {
+      "name": "_grantRole",
+      "visibility": "internal",
+      "modifiers": [],
+      "require_conditions": [],
+      "internal_calls": [
+        "hasRole",
+        "_msgSender"
+      ],
+      "state_vars_read": [],
+      "state_vars_written": [],
+      "source": "    function _grantRole(bytes32 role, address account) internal virtual {\n        if (!hasRole(role, account)) {\n            _roles[role].members[account] = true;\n            emit RoleGranted(role, account, _msgSender());\n        }\n    }",
+      "start_line": 234,
+      "end_line": 239
+    },
+    {
+      "name": "_msgSender",
+      "visibility": "internal",
+      "modifiers": [],
+      "require_conditions": [],
+      "internal_calls": [],
+      "state_vars_read": [],
+      "state_vars_written": [],
+      "source": "    function _msgSender() internal view virtual returns (address) {\n        return msg.sender;\n    }",
+      "start_line": 23,
+      "end_line": 25
+    },
+    {
+      "name": "initialize",
+      "visibility": "public",
+      "modifiers": [
+        "initializer"
+      ],
+      "require_conditions": [],
+      "internal_calls": [
+        "initializer",
+        "_msgSender",
+        "_setupRole"
+      ],
+      "state_vars_read": [
+        "DEFAULT_ADMIN_ROLE"
+      ],
+      "state_vars_written": [
+        "maxAmount",
+        "CHAIN_ID",
+        "allowanceTreshold",
+        "CHAIN_ID_RLP"
+      ],
+      "source": "    function initialize(uint _chainId, bytes memory _chainIdRLP) public initializer {\n        _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());\n\n        CHAIN_ID = _chainId;\n        CHAIN_ID_RLP = _chainIdRLP;\n\n        // no need to initialize zero and false values\n        // paused = false;\n        // topupFee = 0;\n        // exchangeFee = 0;\n        // minAmount = 0;\n        maxAmount = 10000000000;\n\n        // 10% allowance tolerance treshold\n        allowanceTreshold = 1_100_000_000_000_000_000;\n    }",
+      "start_line": 146,
+      "end_line": 161
+    }
+  ],
+  "final_input_count": 1,
+  "harm_outputs": [
+    {
+      "record": {
+        "input_id": "2022-10-mover_HardenedTopupProxy::2022-10-mover_HardenedTopupProxy::U001::initialize::2021-08-notional/H-08",
+        "case_id": "2022-10-mover_HardenedTopupProxy",
+        "unit_id": "2022-10-mover_HardenedTopupProxy::U001",
+        "target_contract": "2022-10-mover_HardenedTopupProxy",
+        "target_function": "initialize",
+        "report_id": "2021-08-notional/H-08",
+        "benchmark_label": "VULN",
+        "is_gt": true,
+        "vuln_gt_sat": true,
+        "old_e4c_family": "S5-3",
+        "route_variant": "role_self_escalation_or_acl_bypass",
+        "template_id": "C-S53a",
+        "prompt_mode": "old_e4c_sequential_adapter",
+        "condition_results": {
+          "severity": {
+            "applicable": true,
+            "failed_condition": "NONE",
+            "sub_reason": "none",
+            "reason": "The 'initialize' function is public and unguarded, allowing any external caller to invoke it. It calls '_setupRole' without an owner/admin/timelock guard, which modifies the authority state by referencing 'DEFAULT_ADMIN_ROLE'. This represents a concrete business harm as it enables unauthorized modification of privileged configuration and authority state, which can lead to irreversible control over the contract.",
+            "evidence_refs": [
+              "initialize",
+              "DEFAULT_ADMIN_ROLE",
+              "_setupRole"
+            ]
+          },
+          "necessity": {
+            "applicable": true,
+            "failed_condition": "NONE",
+            "sub_reason": "none",
+            "reason": "The initialize function is public and uses the initializer modifier, which allows only one-time execution but no authority guard. It calls _setupRole with DEFAULT_ADMIN_ROLE, which is a privileged configuration state mutation without equivalent protection.",
+            "evidence_refs": [
+              "initialize",
+              "initializer",
+              "_setupRole",
+              "DEFAULT_ADMIN_ROLE"
+            ]
+          },
+          "feasibility": {
+            "applicable": true,
+            "failed_condition": "NONE",
+            "sub_reason": "none",
+            "reason": "The privileged function 'initialize' is public and lacks an authority guard, allowing an external attacker to trigger it and mutate role/authority state via '_setupRole'.",
+            "evidence_refs": [
+              "initialize",
+              "DEFAULT_ADMIN_ROLE",
+              "_setupRole"
+            ]
+          }
+        },
+        "condition_elapsed_sec": {
+          "severity": 9.502,
+          "necessity": 7.234,
+          "feasibility": 6.233
+        },
+        "status": "ok",
+        "stopped_at": "feasibility",
+        "elapsed_sec": 22.971,
+        "e4c": {
+          "applicable": true,
+          "failed_condition": "NONE",
+          "sub_reason": "none",
+          "reason": "The privileged function 'initialize' is public and lacks an authority guard, allowing an external attacker to trigger it and mutate role/authority state via '_setupRole'.",
+          "evidence_refs": [
+            "initialize",
+            "DEFAULT_ADMIN_ROLE",
+            "_setupRole"
+          ]
+        }
+      },
+      "source_jsonl_line_1_based": 32
+    }
+  ]
+}
