@@ -1,0 +1,121 @@
+{
+  "label": "reconstructed_mover_initialize",
+  "contract": "2022-10-mover_HardenedTopupProxy",
+  "entry_function": "initialize",
+  "report_id": "2021-08-notional/H-08",
+  "expected": "",
+  "m_ref": {
+    "report_id": "2021-08-notional/H-08",
+    "target_function": "initialize",
+    "target_contract": "2022-10-mover_HardenedTopupProxy",
+    "support_function": "initialize",
+    "proof_anchor_function": "initialize",
+    "report_type": "S5-3",
+    "candidate_types": [
+      "S5-3"
+    ],
+    "pi_ref": {
+      "function_core_ops": [
+        "privileged_state_mutation",
+        "role_assignment"
+      ],
+      "report_core_ops": [
+        "role_assignment"
+      ],
+      "shared_core_ops": [
+        "role_assignment"
+      ],
+      "shared_core_relations": [],
+      "rel_core_match_count": 0
+    },
+    "c_ref": {
+      "function_condition_families": [
+        "C-S53a",
+        "C-S53e"
+      ],
+      "report_condition_families": [
+        "C-S53a"
+      ],
+      "family_support": true,
+      "hard_contradiction": false,
+      "exact_template": 1,
+      "exact_slots": 1,
+      "hard_conflicts": 0,
+      "best_function_condition": {
+        "template_id": "C-S53a",
+        "protected_action_kind": "authority_assignment",
+        "protected_object_kind": "caller_authority",
+        "deficiency_kind": "missing",
+        "slots": {
+          "authority_basis": "initializer_once",
+          "protected_action": "initialize"
+        }
+      },
+      "best_report_condition": {
+        "template_id": "C-S53a",
+        "protected_action_kind": "authority_assignment",
+        "protected_object_kind": "caller_authority",
+        "deficiency_kind": "missing",
+        "slots": {
+          "authority_basis": "initializer_once",
+          "protected_action": "initialize",
+          "value_anchor": "initialize() function"
+        }
+      },
+      "best_pair_metrics": {
+        "exact_template": 1,
+        "exact_slots": 1,
+        "hard_conflicts": 0
+      }
+    },
+    "tau_ref": {
+      "authority_basis": "role_assignment",
+      "price_source": "",
+      "surface_entry": "initialize",
+      "carrier_function": "initialize",
+      "target_path_bundle": [],
+      "report_path_bundle": [],
+      "role_action_consistency": 4,
+      "surface_action_affinity": 0,
+      "tau_gate": true,
+      "tau_score": 0,
+      "tau_reason": "neutral"
+    },
+    "retrieval_record": {
+      "report_id": "2021-08-notional/H-08",
+      "type_r": "S5-3",
+      "candidate_types": [
+        "S5-3"
+      ],
+      "type_compat": true,
+      "pi_core_gate": true,
+      "c_gate": true,
+      "tau_gate": true,
+      "sim_gate": 0.75,
+      "gate_pass": true,
+      "rank_key": [
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        4,
+        0
+      ],
+      "core_op_overlap": [
+        "role_assignment"
+      ],
+      "comparable_report_rel_count": 0,
+      "rel_core_match_count": 0,
+      "c_exact_template": 1,
+      "c_exact_slots": 1,
+      "c_hard_conflicts": 0,
+      "tau_score": 0,
+      "tau_reason": "neutral",
+      "gt_label": "GT",
+      "is_gt": true
+    }
+  }
+}

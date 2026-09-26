@@ -1,0 +1,252 @@
+{
+  "label": "reconstructed_telcoin_acceptExecutorship",
+  "contract": "2022-11-telcoin_TieredOwnership",
+  "benchmark_label": "SAFE",
+  "contract_focus_types": [],
+  "entry_function": "acceptExecutorship",
+  "report_id": "2021-05-yield/M-07",
+  "expected": "",
+  "path_candidates": {
+    "acceptExecutorship": [
+      "acceptExecutorship"
+    ],
+    "_msgSender": [
+      "acceptExecutorship",
+      "_msgSender"
+    ],
+    "nominatedExecutor": [
+      "acceptExecutorship",
+      "nominatedExecutor"
+    ],
+    "executor": [
+      "acceptExecutorship",
+      "executor"
+    ]
+  },
+  "function_facts": [
+    {
+      "name": "acceptExecutorship",
+      "visibility": "external",
+      "parameter_names": [],
+      "min_out_parameter_names": [],
+      "min_out_bound_present": false,
+      "deadline_bound_present": false,
+      "deadline_execution_primitives": [],
+      "deadline_execution_surface": false,
+      "fixed_tolerance_bound_sources": [],
+      "fixed_tolerance_bound_present": false,
+      "price_source_read_sources": [],
+      "price_source_read_present": false,
+      "reward_weight_sources": [],
+      "reward_weight_present": false,
+      "share_ratio_sources": [],
+      "share_ratio_present": false,
+      "external_value_sources": [],
+      "external_value_present": false,
+      "asset_execution_primitives": [],
+      "asset_execution_surface": false,
+      "cei_violation_present": false,
+      "cei_violation_variables": [],
+      "zero_supply_branch": false,
+      "raw_balance_of_self": false,
+      "is_entry": true,
+      "initializer_surface": false,
+      "auth_guard_present": true,
+      "writes_any_transitively": true,
+      "authority_primitive_present": false,
+      "caller_guard_state_writes": [
+        "_nominatedExecutor",
+        "_executor"
+      ],
+      "non_init_state_writes": [
+        "_nominatedExecutor",
+        "_executor"
+      ],
+      "transitive_state_writes": [
+        "_nominatedExecutor",
+        "_executor"
+      ],
+      "closure_functions": [
+        "acceptExecutorship",
+        "_msgSender",
+        "nominatedExecutor",
+        "executor"
+      ],
+      "slither_chain": [
+        "acceptExecutorship",
+        "_msgSender",
+        "nominatedExecutor",
+        "executor"
+      ]
+    },
+    {
+      "name": "_msgSender",
+      "visibility": "internal",
+      "parameter_names": [],
+      "min_out_parameter_names": [],
+      "min_out_bound_present": false,
+      "deadline_bound_present": false,
+      "deadline_execution_primitives": [],
+      "deadline_execution_surface": false,
+      "fixed_tolerance_bound_sources": [],
+      "fixed_tolerance_bound_present": false,
+      "price_source_read_sources": [],
+      "price_source_read_present": false,
+      "reward_weight_sources": [],
+      "reward_weight_present": false,
+      "share_ratio_sources": [],
+      "share_ratio_present": false,
+      "external_value_sources": [],
+      "external_value_present": false,
+      "asset_execution_primitives": [],
+      "asset_execution_surface": false,
+      "cei_violation_present": false,
+      "cei_violation_variables": [],
+      "zero_supply_branch": false,
+      "raw_balance_of_self": false,
+      "is_entry": false,
+      "initializer_surface": false,
+      "auth_guard_present": false,
+      "writes_any_transitively": false,
+      "authority_primitive_present": false,
+      "caller_guard_state_writes": [],
+      "non_init_state_writes": [],
+      "transitive_state_writes": [],
+      "closure_functions": [
+        "_msgSender"
+      ],
+      "slither_chain": [
+        "_msgSender"
+      ]
+    },
+    {
+      "name": "nominatedExecutor",
+      "visibility": "public",
+      "parameter_names": [],
+      "min_out_parameter_names": [],
+      "min_out_bound_present": false,
+      "deadline_bound_present": false,
+      "deadline_execution_primitives": [],
+      "deadline_execution_surface": false,
+      "fixed_tolerance_bound_sources": [],
+      "fixed_tolerance_bound_present": false,
+      "price_source_read_sources": [],
+      "price_source_read_present": false,
+      "reward_weight_sources": [],
+      "reward_weight_present": false,
+      "share_ratio_sources": [],
+      "share_ratio_present": false,
+      "external_value_sources": [],
+      "external_value_present": false,
+      "asset_execution_primitives": [],
+      "asset_execution_surface": false,
+      "cei_violation_present": false,
+      "cei_violation_variables": [],
+      "zero_supply_branch": false,
+      "raw_balance_of_self": false,
+      "is_entry": false,
+      "initializer_surface": false,
+      "auth_guard_present": false,
+      "writes_any_transitively": false,
+      "authority_primitive_present": false,
+      "caller_guard_state_writes": [],
+      "non_init_state_writes": [],
+      "transitive_state_writes": [],
+      "closure_functions": [
+        "nominatedExecutor"
+      ],
+      "slither_chain": [
+        "nominatedExecutor"
+      ]
+    },
+    {
+      "name": "executor",
+      "visibility": "public",
+      "parameter_names": [],
+      "min_out_parameter_names": [],
+      "min_out_bound_present": false,
+      "deadline_bound_present": false,
+      "deadline_execution_primitives": [],
+      "deadline_execution_surface": false,
+      "fixed_tolerance_bound_sources": [],
+      "fixed_tolerance_bound_present": false,
+      "price_source_read_sources": [],
+      "price_source_read_present": false,
+      "reward_weight_sources": [],
+      "reward_weight_present": false,
+      "share_ratio_sources": [],
+      "share_ratio_present": false,
+      "external_value_sources": [],
+      "external_value_present": false,
+      "asset_execution_primitives": [],
+      "asset_execution_surface": false,
+      "cei_violation_present": false,
+      "cei_violation_variables": [],
+      "zero_supply_branch": false,
+      "raw_balance_of_self": false,
+      "is_entry": false,
+      "initializer_surface": false,
+      "auth_guard_present": false,
+      "writes_any_transitively": false,
+      "authority_primitive_present": false,
+      "caller_guard_state_writes": [],
+      "non_init_state_writes": [],
+      "transitive_state_writes": [],
+      "closure_functions": [
+        "executor"
+      ],
+      "slither_chain": [
+        "executor"
+      ]
+    }
+  ],
+  "m_ref_summary": {
+    "report_type": "S5-3",
+    "pi_ref": {
+      "function_core_ops": [
+        "role_assignment"
+      ],
+      "shared_core_ops": [
+        "role_assignment"
+      ]
+    },
+    "best_function_condition": {
+      "template_id": "C-S53a",
+      "protected_action_kind": "authority_assignment",
+      "protected_object_kind": "caller_authority",
+      "deficiency_kind": "missing",
+      "slots": {
+        "authority_basis": "role",
+        "protected_action": "acceptExecutorship",
+        "value_anchor": "_msgSender() == nominatedExecutor()"
+      }
+    },
+    "tau_ref": {
+      "surface_entry": "acceptExecutorship",
+      "carrier_function": "acceptExecutorship",
+      "target_path_bundle": [],
+      "authority_basis": "role_assignment",
+      "role_action_consistency": 0
+    }
+  },
+  "caller_guard_state_vars": [
+    "_executor",
+    "_nominatedExecutor",
+    "_owners"
+  ],
+  "theorem_route": {
+    "theorem_basis": "b5_authority_handoff_or_escalation",
+    "route_variant": "role_self_escalation_or_acl_bypass",
+    "template_id": "C-S53a",
+    "protected_action_kind": "authority_assignment",
+    "protected_object_kind": "caller_authority",
+    "route_axes": {
+      "entry_kind": "non_initializer_entry",
+      "authority_state_kind": "caller_authority_state",
+      "downstream_privileged_kind": "future_privileged_authority"
+    },
+    "route_basis": "template_id=C-S53a + axes=non_initializer_entry/caller_authority_state/future_privileged_authority"
+  },
+  "m_ref_bound_surface_entry": "acceptExecutorship",
+  "m_ref_surface_entry_binding_source": "tau_ref.surface_entry"
+}

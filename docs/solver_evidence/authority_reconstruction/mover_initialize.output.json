@@ -1,0 +1,461 @@
+{
+  "label": "reconstructed_mover_initialize",
+  "contract": "2022-10-mover_HardenedTopupProxy",
+  "benchmark_label": "VULN",
+  "contract_focus_types": [],
+  "entry_function": "initialize",
+  "report_id": "2021-08-notional/H-08",
+  "expected": "",
+  "solver_result": "sat",
+  "theorem_route": {
+    "theorem_basis": "b5_authority_handoff_or_escalation",
+    "route_variant": "role_self_escalation_or_acl_bypass",
+    "template_id": "C-S53a",
+    "protected_action_kind": "authority_assignment",
+    "protected_object_kind": "caller_authority",
+    "route_axes": {
+      "entry_kind": "initializer_entry",
+      "authority_state_kind": "caller_authority_state",
+      "downstream_privileged_kind": "future_privileged_authority"
+    },
+    "route_basis": "template_id=C-S53a + axes=initializer_entry/caller_authority_state/future_privileged_authority"
+  },
+  "m_ref_surface_entry_binding": {
+    "bound_surface_entry": "initialize",
+    "binding_source": "tau_ref.surface_entry"
+  },
+  "witness": {
+    "entry_const": "fn_46_0",
+    "entry_function": "initialize",
+    "carrier_const": "fn_46_0",
+    "carrier_function": "initialize",
+    "path_const": "path_46_0",
+    "path_nodes": [
+      "initialize"
+    ],
+    "m_ref_carrier_function": "initialize",
+    "carrier_hint_matches": true
+  },
+  "path_candidates": {
+    "initialize": [
+      "initialize"
+    ],
+    "_msgSender": [
+      "initialize",
+      "_msgSender"
+    ],
+    "_setupRole": [
+      "initialize",
+      "_setupRole"
+    ],
+    "_grantRole": [
+      "initialize",
+      "_setupRole",
+      "_grantRole"
+    ],
+    "hasRole": [
+      "initialize",
+      "_setupRole",
+      "_grantRole",
+      "hasRole"
+    ]
+  },
+  "caller_guard_state_vars": [
+    "APPROVE_METHOD_ID",
+    "CHAIN_ID",
+    "CHAIN_ID_RLP",
+    "DEFAULT_ADMIN_ROLE",
+    "ETH_TOKEN_ADDRESS",
+    "LIST_LONG_START",
+    "LIST_SHORT_START",
+    "STRING_LONG_START",
+    "STRING_SHORT_START",
+    "TRUSTED_PAUSER_ROLE",
+    "TX_PROOF_RESULT_ABSENT",
+    "TX_PROOF_RESULT_PRESENT",
+    "TX_ROOT_HASH_INDEX",
+    "WORD_SIZE",
+    "_roles",
+    "allowanceTreshold",
+    "cardPartnerAddress",
+    "cardTopupToken",
+    "exchangeFee",
+    "exchangeProxyContract",
+    "maxAmount",
+    "minAmount",
+    "paused",
+    "topupFee",
+    "trustedRegistryContract",
+    "yieldDistributorAddress"
+  ],
+  "function_facts": [
+    {
+      "name": "initialize",
+      "visibility": "public",
+      "parameter_names": [
+        "_chainId",
+        "_chainIdRLP"
+      ],
+      "min_out_parameter_names": [],
+      "min_out_bound_present": false,
+      "deadline_bound_present": false,
+      "deadline_execution_primitives": [],
+      "deadline_execution_surface": false,
+      "fixed_tolerance_bound_sources": [],
+      "fixed_tolerance_bound_present": false,
+      "price_source_read_sources": [],
+      "price_source_read_present": false,
+      "reward_weight_sources": [],
+      "reward_weight_present": false,
+      "share_ratio_sources": [],
+      "share_ratio_present": false,
+      "external_value_sources": [],
+      "external_value_present": false,
+      "asset_execution_primitives": [],
+      "asset_execution_surface": false,
+      "cei_violation_present": false,
+      "cei_violation_variables": [],
+      "zero_supply_branch": false,
+      "raw_balance_of_self": false,
+      "is_entry": true,
+      "initializer_surface": true,
+      "auth_guard_present": false,
+      "writes_any_transitively": true,
+      "authority_primitive_present": true,
+      "caller_guard_state_writes": [
+        "CHAIN_ID_RLP",
+        "_roles",
+        "allowanceTreshold",
+        "CHAIN_ID",
+        "maxAmount"
+      ],
+      "non_init_state_writes": [
+        "CHAIN_ID_RLP",
+        "_roles",
+        "allowanceTreshold",
+        "_initializing",
+        "CHAIN_ID",
+        "maxAmount"
+      ],
+      "transitive_state_writes": [
+        "CHAIN_ID_RLP",
+        "_roles",
+        "_initialized",
+        "allowanceTreshold",
+        "_initializing",
+        "CHAIN_ID",
+        "maxAmount"
+      ],
+      "closure_functions": [
+        "initialize",
+        "_msgSender",
+        "_setupRole",
+        "_grantRole",
+        "hasRole"
+      ],
+      "slither_chain": [
+        "initialize",
+        "_msgSender",
+        "_setupRole",
+        "_grantRole",
+        "initializer"
+      ]
+    },
+    {
+      "name": "_msgSender",
+      "visibility": "internal",
+      "parameter_names": [],
+      "min_out_parameter_names": [],
+      "min_out_bound_present": false,
+      "deadline_bound_present": false,
+      "deadline_execution_primitives": [],
+      "deadline_execution_surface": false,
+      "fixed_tolerance_bound_sources": [],
+      "fixed_tolerance_bound_present": false,
+      "price_source_read_sources": [],
+      "price_source_read_present": false,
+      "reward_weight_sources": [],
+      "reward_weight_present": false,
+      "share_ratio_sources": [],
+      "share_ratio_present": false,
+      "external_value_sources": [],
+      "external_value_present": false,
+      "asset_execution_primitives": [],
+      "asset_execution_surface": false,
+      "cei_violation_present": false,
+      "cei_violation_variables": [],
+      "zero_supply_branch": false,
+      "raw_balance_of_self": false,
+      "is_entry": false,
+      "initializer_surface": false,
+      "auth_guard_present": false,
+      "writes_any_transitively": false,
+      "authority_primitive_present": false,
+      "caller_guard_state_writes": [],
+      "non_init_state_writes": [],
+      "transitive_state_writes": [],
+      "closure_functions": [
+        "_msgSender"
+      ],
+      "slither_chain": [
+        "_msgSender"
+      ]
+    },
+    {
+      "name": "_setupRole",
+      "visibility": "internal",
+      "parameter_names": [
+        "role",
+        "account"
+      ],
+      "min_out_parameter_names": [],
+      "min_out_bound_present": false,
+      "deadline_bound_present": false,
+      "deadline_execution_primitives": [],
+      "deadline_execution_surface": false,
+      "fixed_tolerance_bound_sources": [],
+      "fixed_tolerance_bound_present": false,
+      "price_source_read_sources": [],
+      "price_source_read_present": false,
+      "reward_weight_sources": [],
+      "reward_weight_present": false,
+      "share_ratio_sources": [],
+      "share_ratio_present": false,
+      "external_value_sources": [],
+      "external_value_present": false,
+      "asset_execution_primitives": [],
+      "asset_execution_surface": false,
+      "cei_violation_present": false,
+      "cei_violation_variables": [],
+      "zero_supply_branch": false,
+      "raw_balance_of_self": false,
+      "is_entry": false,
+      "initializer_surface": false,
+      "auth_guard_present": false,
+      "writes_any_transitively": true,
+      "authority_primitive_present": true,
+      "caller_guard_state_writes": [
+        "_roles"
+      ],
+      "non_init_state_writes": [
+        "_roles"
+      ],
+      "transitive_state_writes": [
+        "_roles"
+      ],
+      "closure_functions": [
+        "_setupRole",
+        "_grantRole",
+        "hasRole",
+        "_msgSender"
+      ],
+      "slither_chain": [
+        "_setupRole",
+        "_grantRole"
+      ]
+    },
+    {
+      "name": "_grantRole",
+      "visibility": "internal",
+      "parameter_names": [
+        "role",
+        "account"
+      ],
+      "min_out_parameter_names": [],
+      "min_out_bound_present": false,
+      "deadline_bound_present": false,
+      "deadline_execution_primitives": [],
+      "deadline_execution_surface": false,
+      "fixed_tolerance_bound_sources": [],
+      "fixed_tolerance_bound_present": false,
+      "price_source_read_sources": [],
+      "price_source_read_present": false,
+      "reward_weight_sources": [],
+      "reward_weight_present": false,
+      "share_ratio_sources": [],
+      "share_ratio_present": false,
+      "external_value_sources": [],
+      "external_value_present": false,
+      "asset_execution_primitives": [],
+      "asset_execution_surface": false,
+      "cei_violation_present": false,
+      "cei_violation_variables": [],
+      "zero_supply_branch": false,
+      "raw_balance_of_self": false,
+      "is_entry": false,
+      "initializer_surface": false,
+      "auth_guard_present": false,
+      "writes_any_transitively": true,
+      "authority_primitive_present": true,
+      "caller_guard_state_writes": [
+        "_roles"
+      ],
+      "non_init_state_writes": [
+        "_roles"
+      ],
+      "transitive_state_writes": [
+        "_roles"
+      ],
+      "closure_functions": [
+        "_grantRole",
+        "hasRole",
+        "_msgSender"
+      ],
+      "slither_chain": [
+        "_grantRole",
+        "hasRole",
+        "_msgSender"
+      ]
+    },
+    {
+      "name": "hasRole",
+      "visibility": "public",
+      "parameter_names": [
+        "role",
+        "account"
+      ],
+      "min_out_parameter_names": [],
+      "min_out_bound_present": false,
+      "deadline_bound_present": false,
+      "deadline_execution_primitives": [],
+      "deadline_execution_surface": false,
+      "fixed_tolerance_bound_sources": [],
+      "fixed_tolerance_bound_present": false,
+      "price_source_read_sources": [],
+      "price_source_read_present": false,
+      "reward_weight_sources": [],
+      "reward_weight_present": false,
+      "share_ratio_sources": [],
+      "share_ratio_present": false,
+      "external_value_sources": [],
+      "external_value_present": false,
+      "asset_execution_primitives": [],
+      "asset_execution_surface": false,
+      "cei_violation_present": false,
+      "cei_violation_variables": [],
+      "zero_supply_branch": false,
+      "raw_balance_of_self": false,
+      "is_entry": false,
+      "initializer_surface": false,
+      "auth_guard_present": false,
+      "writes_any_transitively": false,
+      "authority_primitive_present": false,
+      "caller_guard_state_writes": [],
+      "non_init_state_writes": [],
+      "transitive_state_writes": [],
+      "closure_functions": [
+        "hasRole"
+      ],
+      "slither_chain": [
+        "hasRole"
+      ]
+    }
+  ],
+  "m_ref_alignment": {
+    "m_ref_report_type": "S5-3",
+    "m_ref_function_core_ops": [
+      "privileged_state_mutation",
+      "role_assignment"
+    ],
+    "m_ref_best_function_condition": {
+      "template_id": "C-S53a",
+      "protected_action_kind": "authority_assignment",
+      "protected_object_kind": "caller_authority",
+      "deficiency_kind": "missing",
+      "slots": {
+        "authority_basis": "initializer_once",
+        "protected_action": "initialize"
+      }
+    },
+    "m_ref_theorem_route": {
+      "theorem_basis": "b5_authority_handoff_or_escalation",
+      "route_variant": "role_self_escalation_or_acl_bypass",
+      "template_id": "C-S53a",
+      "protected_action_kind": "authority_assignment",
+      "protected_object_kind": "caller_authority",
+      "route_axes": {
+        "entry_kind": "initializer_entry",
+        "authority_state_kind": "caller_authority_state",
+        "downstream_privileged_kind": "future_privileged_authority"
+      },
+      "route_basis": "template_id=C-S53a + axes=initializer_entry/caller_authority_state/future_privileged_authority"
+    },
+    "m_ref_theorem_basis": "b5_authority_handoff_or_escalation",
+    "m_ref_route_variant": "role_self_escalation_or_acl_bypass",
+    "m_ref_surface_entry_binding": {
+      "bound_surface_entry": "initialize",
+      "binding_source": "tau_ref.surface_entry"
+    },
+    "m_ref_tau_ref": {
+      "surface_entry": "initialize",
+      "carrier_function": "initialize",
+      "target_path_bundle": [],
+      "authority_basis": "role_assignment",
+      "role_action_consistency": 4
+    },
+    "code_side_initializer_surface": true,
+    "code_side_no_auth_guard": true,
+    "code_side_entry_asset_execution": false,
+    "code_side_entry_min_out_bound_present": false,
+    "code_side_entry_deadline_bound_present": false,
+    "code_side_deadline_execution_carriers": [],
+    "code_side_deadline_execution_primitives": {},
+    "code_side_fixed_tolerance_carriers": [],
+    "code_side_fixed_tolerance_sources": {},
+    "code_side_price_source_read_carriers": [],
+    "code_side_price_source_read_sources": {},
+    "code_side_reward_weight_carriers": [],
+    "code_side_reward_weight_sources": {},
+    "code_side_share_ratio_carriers": [],
+    "code_side_share_ratio_sources": {},
+    "code_side_external_value_carriers": [],
+    "code_side_external_value_sources": {},
+    "code_side_entry_cei_violation": false,
+    "code_side_entry_cei_variables": [],
+    "code_side_zero_supply_carriers": [],
+    "code_side_raw_balance_carriers": [],
+    "code_side_exact_authority_carriers": [
+      "initialize",
+      "_setupRole",
+      "_grantRole"
+    ],
+    "code_side_caller_guard_state_carriers": [
+      "initialize",
+      "_setupRole",
+      "_grantRole"
+    ],
+    "code_side_non_init_mutation_carriers": [
+      "initialize",
+      "_setupRole",
+      "_grantRole"
+    ],
+    "caller_guard_state_vars": [
+      "APPROVE_METHOD_ID",
+      "CHAIN_ID",
+      "CHAIN_ID_RLP",
+      "DEFAULT_ADMIN_ROLE",
+      "ETH_TOKEN_ADDRESS",
+      "LIST_LONG_START",
+      "LIST_SHORT_START",
+      "STRING_LONG_START",
+      "STRING_SHORT_START",
+      "TRUSTED_PAUSER_ROLE",
+      "TX_PROOF_RESULT_ABSENT",
+      "TX_PROOF_RESULT_PRESENT",
+      "TX_ROOT_HASH_INDEX",
+      "WORD_SIZE",
+      "_roles",
+      "allowanceTreshold",
+      "cardPartnerAddress",
+      "cardTopupToken",
+      "exchangeFee",
+      "exchangeProxyContract",
+      "maxAmount",
+      "minAmount",
+      "paused",
+      "topupFee",
+      "trustedRegistryContract",
+      "yieldDistributorAddress"
+    ]
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "scope": "Existing archived records and previously captured fact-replay SMT-LIB. No new pipeline or LLM execution.",
+  "scope": "This manifest covers root-level historical records and the 2026-09-24 archived-fact replay. The new Mover/Telcoin reconstruction is documented separately in authority_reconstruction/provenance.json.",
   "theory_fragment": "Finite enumerated datatypes, Boolean-valued predicates, equality and quantifiers; no arithmetic, arrays or symbolic Solidity state.",
   "witness_provenance": "Production Python enumerates emitted triples after Z3 SAT; not an extracted existential model assignment.",
   "original_archive": "docs/experiment/v10_test/V10_MDL_V0_S53_FORMAL_PROTOTYPE_V0.json",
@@ -293,7 +293,6 @@
     }
   ],
   "authority_cases": {
-    "raw_smtlib_available": false,
     "historical_solver_log": {
       "path": "logs/mdl_v0_mu_replay_after_gt_level_reproject_20260520_1620.json",
       "sha256": "193fabe09c38b18c9f476e1ebe52a021343ec5855814737957db10d58fb5eade"
@@ -348,10 +347,12 @@
         "sha256": "6b043f8616d1c27836cc15f1b3049d39b2f5d343383a38907942e44b21c5b24a"
       }
     },
-    "scope": "Exact current-source excerpts only; no historical SMT-LIB dump for these two chosen calls is claimed. Saved SAT/UNSAT outcomes and recovered bindings are historical records. The stored witness is recovered by code after SAT, not claimed to be a printed Z3 model."
+    "scope": "Exact current-source excerpts only; no historical SMT-LIB dump for these two chosen calls is claimed. Saved SAT/UNSAT outcomes and recovered bindings are historical records. The stored witness is recovered by code after SAT, not claimed to be a printed Z3 model.",
+    "historical_raw_smtlib_available": false,
+    "reconstructed_trace_manifest": "authority_reconstruction/provenance.json"
   },
   "files_sha256": {
-    "README.md": "0cb08398ad58ae82608b3cf67a20a975ab918535ffd6d90a32f10ebf6c9eeab7",
+    "README.md": "659703f8eb1aad4a7e189e26a6bc5510afc3b208a9f9a0124e2e34f39e861e7f",
     "autoroller_previewDeposit.archived.json": "5884bc4101c83f95e1b2df9c0c4c0f34bf4c7d81f8c6b8b271d1d87c6d3eec66",
     "autoroller_previewDeposit.input.json": "03de2ba6dcfded4e7c2c2b900c700208bb61fbbfb4c347cc3e36a7426b6f726f",
     "autoroller_previewDeposit.output.json": "c6a8100408d2caf216fbf8e4242b5de7d26d868367a41c63515c23f495cf0e71",

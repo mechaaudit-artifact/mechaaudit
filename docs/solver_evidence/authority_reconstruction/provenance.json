@@ -1,0 +1,122 @@
+{
+  "kind": "reconstructed_solver_trace_not_historical_dump",
+  "created_at_utc": "2026-09-26T05:27:58.715992+00:00",
+  "source_files": {
+    "encoder": {
+      "path": "scripts/isolated_mdl_v0_s53_formal_check.py",
+      "sha256": "3b176230658470cdd967f8f69efd14573896d8808efbc1bc72a00d96f18762b7"
+    },
+    "mover_pdg": {
+      "path": "cache/v9/sherlock/pdg/2022-10-mover_HardenedTopupProxy_pdg.json",
+      "sha256": "f584ca64df2a0e7c486e189c8b1df560d93d32572a32b06fdb59243b8010adb3",
+      "target_source": {
+        "path": "data/benchmark/sherlock/repos/2022-10-mover/cardtopup_contract/contracts/HardenedTopupProxy.sol",
+        "sha256": "a33a79b94903e1ea46c5be3efb760cb266af77e4e3be56fdb0bd3a72417aa4e2"
+      }
+    },
+    "tiered_pdg": {
+      "path": "cache/v9/sherlock/pdg/2022-11-telcoin_TieredOwnership_pdg.json",
+      "sha256": "1afdc994e9b2b7b40a5fd9f1671f0cf226912290a2721ca7a39c203c1029d646",
+      "target_source": {
+        "path": "data/benchmark/sherlock/repos/2022-11-telcoin/contracts/fee-buyback/TieredOwnership.sol",
+        "sha256": "4329c0c9cb9b9e2885dd5aa45e0a64001d3e89ab736f799b636fcf0f5af6c5aa"
+      }
+    },
+    "smt": {
+      "path": "logs/mdl_v0_mu_replay_after_gt_level_reproject_20260520_1620.json",
+      "sha256": "193fabe09c38b18c9f476e1ebe52a021343ec5855814737957db10d58fb5eade"
+    },
+    "retrieval": {
+      "path": "docs/experiment/v10_test/V10_MECHANISM_UNIT_REPLAY_TABLE_FULL.json",
+      "sha256": "b00651a3836e7267418fe16abedbbb6899d48462664d51f9108166db60602eaa"
+    },
+    "slither_targeted_verify.py": {
+      "path": "scripts/slither_targeted_verify.py",
+      "sha256": "31696be09c43ac5aecd6eafd9c750d33a6d1b453da0fa7e512a2ca0c2dbe0189"
+    },
+    "v10_pdg_utils.py": {
+      "path": "scripts/v10/v10_pdg_utils.py",
+      "sha256": "ae29fc144d65849769d3897fbe2f1ad80bd66b66ff2e92f91c18cd7d3583d629"
+    },
+    "v10_config.py": {
+      "path": "scripts/v10/v10_config.py",
+      "sha256": "83c74647bd3e535e573f44c2a87ea734ac42adbac287cd3b89d757d9ccd496a0"
+    },
+    "v10_selected_sherlock_102_manifest.json": {
+      "path": "config/v10_selected_sherlock_102_manifest.json",
+      "sha256": "c50a5de215bb79fc99faeac8314f9b9b0045e511d5f92ce1f88eb9ab1d76d215"
+    }
+  },
+  "versions": {
+    "z3-solver": "4.16.0.0",
+    "slither-analyzer": "0.11.5",
+    "crytic-compile": "0.3.11"
+  },
+  "no_llm_calls": true,
+  "reconstructed_steps": [
+    "Slither-based deterministic fact extraction from existing contract source and PDG",
+    "unmodified encoder constraint construction",
+    "Z3 check and full SMT-LIB export",
+    "independent parsing and checking of exported SMT-LIB"
+  ],
+  "solver_timeout_ms": 20000,
+  "cases": [
+    {
+      "name": "mover_initialize",
+      "historical_row_index_zero_based": 46,
+      "historical_result": "sat",
+      "reconstructed_result": "sat",
+      "reparsed_result": "sat",
+      "matches": {
+        "solver_result": true,
+        "reparsed_result": true,
+        "route": true,
+        "witness": true
+      },
+      "alignment_differences": {},
+      "solc_version": "0.8.20",
+      "formula": "(exists ((w_entry_46 Fn_46) (w_carrier_46 Fn_46) (w_path_46 Path_46))\n  (and (IsEntry_46 w_entry_46)\n       (EntryAdmissible_46 w_entry_46)\n       (PublicOrExternal_46 w_entry_46)\n       (NoCallerAuthGuard_46 w_entry_46)\n       (PathFromTo_46 w_path_46 w_entry_46 w_carrier_46)\n       (WritesNonInitState_46 w_carrier_46)\n       (or (ExactAuthorityPrimitive_46 w_carrier_46)\n           (WritesCallerGuardState_46 w_carrier_46))\n       (InitializerSurface_46 w_entry_46)))",
+      "assertion_count": 229,
+      "historical_record": "../mover_initialize.archived.json",
+      "comparison_scope": "Exact JSON equality of route, witness and every saved m_ref_alignment field, plus solver_result equality."
+    },
+    {
+      "name": "telcoin_acceptExecutorship",
+      "historical_row_index_zero_based": 692,
+      "historical_result": "unsat",
+      "reconstructed_result": "unsat",
+      "reparsed_result": "unsat",
+      "matches": {
+        "solver_result": true,
+        "reparsed_result": true,
+        "route": true,
+        "witness": true
+      },
+      "alignment_differences": {},
+      "solc_version": "0.8.20",
+      "formula": "(exists ((w_entry_692 Fn_692) (w_carrier_692 Fn_692) (w_path_692 Path_692))\n  (and (IsEntry_692 w_entry_692)\n       (EntryAdmissible_692 w_entry_692)\n       (PublicOrExternal_692 w_entry_692)\n       (NoCallerAuthGuard_692 w_entry_692)\n       (PathFromTo_692 w_path_692 w_entry_692 w_carrier_692)\n       (WritesNonInitState_692 w_carrier_692)\n       (or (ExactAuthorityPrimitive_692 w_carrier_692)\n           (WritesCallerGuardState_692 w_carrier_692))\n       (not (InitializerSurface_692 w_entry_692))))",
+      "assertion_count": 148,
+      "historical_record": "../telcoin_acceptExecutorship.archived.json",
+      "comparison_scope": "Exact JSON equality of route, witness and every saved m_ref_alignment field, plus solver_result equality."
+    }
+  ],
+  "files_sha256": {
+    "README.md": "a2ce2aee4026f99e29dd6f28a653cbc74842da0089a7d1efdac58dc679a020de",
+    "mover_initialize.input.json": "5210fc0ee9cf9df0440270eb03537e3ebcb7327d60f0ae0f949593e41f12c504",
+    "mover_initialize.model.txt": "7fa273da232a6a6d03f789f75931691ff5c6319c528cd60c4c7567789685b1e7",
+    "mover_initialize.output.json": "bdbccd87a00e9c43e4c94edacd7c7db8b36c941b415f56755372eecf9672879f",
+    "mover_initialize.proposal.json": "1b845bf7b2bf303488d3525b81c6b42c23c4a01be9d826cc1c381888f0fd2a30",
+    "mover_initialize.smt2": "2de76790cb777c7b65728eb67bec6b0e19c4d5cc96bfe6b6200953728acb6a44",
+    "telcoin_acceptExecutorship.input.json": "4a366f1d8a4fc899ac20825c9495996616cfbf7ed1f9f21591687444fee1f16e",
+    "telcoin_acceptExecutorship.output.json": "545121d155101361f855ed47b42813391e4c83b4b7a5ab25d258db443d228a13",
+    "telcoin_acceptExecutorship.proposal.json": "f2ad2bdddddc4f94a4c7d68ada7eb334d115e5309daed8e3a35713205a21dd62",
+    "telcoin_acceptExecutorship.smt2": "3366ec430fff618828c6f5ff61854d5df1c9ad3ba4e39516295af763a3f993fb"
+  },
+  "source_commit": "d36607aeb04bf85963d6b6dddf69dc38510431de",
+  "claim_scope": "New solver traces reconstructed from saved proposals and existing code/PDGs using the pinned encoder. All historical route, witness and m_ref_alignment fields match exactly. No claim of byte-identical historical SMT-LIB or historical extraction of every field in the new full input.",
+  "theory_fragment": "Finite enumerated datatypes, Boolean-valued predicates, equality and quantifiers.",
+  "witness_provenance": "The encoder obtains the witness by deterministic enumeration after SAT. The separate .model.txt file is the actual newly obtained Z3 model.",
+  "instrumentation": "A Solver subclass captured the unmodified encoder assertions and imposed a 20-second timeout. No fact values or constraints were patched.",
+  "compilation_isolation": "Project contracts copied to temporary directories, existing dependency directories referenced read-only, project preparation disabled.",
+  "reconstruction_driver_sha256": "b1842c2c00428da3b432599db35c6cfa362f505befdd98027da6d9713777775d"
+}

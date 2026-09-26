@@ -6,10 +6,13 @@ model-proposed missing-guard condition is accepted or rejected by independent
 code facts. It is not the paper's Figure 2 running example; that AutoRoller
 three-stage trace is documented on a separate page.
 
-The [solver evidence supplement](solver_evidence/README.md) now provides the
-historical input/proposal records, code facts, SAT/UNSAT results, and provenance
-for this pair. It also provides complete raw SMT-LIB from a separately identified
-archived-fact replay. No historical SMT-LIB dump is claimed for the two calls here.
+The [complete solver traces](solver_evidence/authority_reconstruction/README.md)
+provide raw SMT-LIB, input facts, SAT/UNSAT outputs, and provenance for this pair.
+They were reconstructed from the saved proposals and existing source/PDGs using
+the pinned encoder. Both results, registry routes, witnesses, and every saved
+alignment field match the historical records exactly. These are reconstructed
+traces, not recovered historical SMT-LIB files. The
+[historical records](solver_evidence/README.md) remain available separately.
 
 ## 1. Positive case: `HardenedTopupProxy.initialize`
 
@@ -79,6 +82,7 @@ clause keys are shown immediately below):
 ```text
 exists entry, carrier, path:
     Entry(entry)
+  and EntryAdmissible(entry)
   and PublicOrExternal(entry)
   and InitializerEntry(entry)
   and NoCallerAuthGuard(entry)

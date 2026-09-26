@@ -1,8 +1,13 @@
 # Solver inputs, outputs, and provenance
 
-This supplement makes the saved solver evidence available as files. It separates
-historical evaluation results from SMT-LIB exported during an already completed
-fact replay. Publishing these files does not introduce a new detection experiment.
+This supplement provides historical evaluation results, complete SMT-LIB from
+archived-fact replay, and newly reconstructed Mover/Telcoin solver traces.
+Historical and reconstructed records are identified separately.
+
+**For the A2 Mover/Telcoin contrast, see the
+[complete reconstructed solver traces](authority_reconstruction/README.md).**
+They include both raw formulas and reproduce the historical results, routes,
+witnesses, and all saved alignment fields. No LLM or Harm Verdict was rerun.
 
 ## Historical authority-check contrast
 
@@ -17,8 +22,10 @@ code facts accept or reject the proposed missing protection.
 The records come from rows 46 and 692 (zero-based) of the historical solver log.
 Their `solver_result` and `witness` fields are copied unchanged. The witness is
 recovered by deterministic code after SAT, rather than a printed Z3 assignment.
-No complete historical SMT-LIB text was located for these two calls. These JSON
-records are not represented as raw SMT-LIB dumps.
+No complete historical SMT-LIB text was located for these two calls. The raw
+formulas are therefore supplied as explicitly labeled
+[reconstructed traces](authority_reconstruction/README.md), whose outputs are
+compared against these unchanged historical JSON records.
 
 ## Complete SMT-LIB from an archived-fact replay
 
