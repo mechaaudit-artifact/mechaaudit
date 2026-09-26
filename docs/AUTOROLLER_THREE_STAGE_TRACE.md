@@ -84,6 +84,11 @@ share ratio. The Harm Verdict therefore evaluates the reported share-ratio
 obligation against these connected sinks rather than treating the SAT result as
 a complete economic proof.
 
+**Clarification:** `ZERO_SHARES` reverts zero-share deposits before asset transfer,
+so Section II.A's zero-share-transfer scenario does not apply to this path. The
+[original finding](https://github.com/sherlock-audit/2022-11-sense-judging/issues/50)
+concerns manipulated share prices that raise the deposit threshold.
+
 ### Registry constraint, SAT binding, and Harm Verdict
 
 For this final route, the actual encoder clause keys are:
